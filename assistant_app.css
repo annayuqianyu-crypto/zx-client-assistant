@@ -282,6 +282,7 @@ body.assistant-mode #apiConfigModal {
 .ca-top-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
 .ca-icon-btn { padding: 7px 9px; border-radius: 7px; background: #f6f7f8; color: var(--ca-sub); font-size: 12px; }
 .ca-icon-btn:hover { color: var(--ca-navy); background: #eaf0f4; }
+.ca-icon-btn[hidden] { display: none; }  /* 演示模板隐藏改名入口，防止被其他 display 规则盖掉 */
 
 .ca-insights {
   grid-row: 2;

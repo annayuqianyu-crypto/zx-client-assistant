@@ -247,6 +247,8 @@
       id: session.id || uid('session'),
       name: session.name || '未命名客户',
       manualName: !!session.manualName,
+      // 演示模板：名称由后台构建时写定，前端任何路径都不得修改
+      nameLocked: !!session.nameLocked,
       archived: !!session.archived,
       createdAt: session.createdAt || nowIso(),
       updatedAt: session.updatedAt || nowIso(),
@@ -1827,7 +1829,12 @@
     $('#caProgressBar').style.width = `${info.progress}%`;
     $('#caClientSub').textContent = session.archived
       ? '该客户已归档，仍可继续查看和恢复'
-      : '聊天、客户画像、痛点与 SKU 推荐将自动保存在本机';
+      : session.nameLocked
+        ? '演示模板 · 全员统一查看，名称与内容由后台维护，本地改动刷新后自动还原'
+        : '聊天、客户画像、痛点与 SKU 推荐将自动保存在本机';
+    // 演示模板不提供改名入口
+    const renameBtn = $('#caRenameSession');
+    if (renameBtn) renameBtn.hidden = !!session.nameLocked;
     $('#caArchiveSession').textContent = session.archived ? '取消归档' : '归档';
   }
 
@@ -2980,6 +2987,10 @@
   async function renameActiveSession() {
     const session = getActiveSession();
     if (!session) return;
+    if (session.nameLocked) {
+      toast('这是演示模板，名称由后台统一维护，前端无法修改');
+      return;
+    }
     const name = prompt('请输入客户会话名称', session.name);
     if (!name || !name.trim()) return;
     session.name = name.trim().slice(0, 40);
@@ -5043,7 +5054,7 @@ JSON 结构：
       if (Array.isArray(result.search_terms)) {
         session.searchTerms = Array.from(new Set([...session.searchTerms, ...result.search_terms.map(String)])).slice(-40);
       }
-      if (!session.manualName && result.title_suggestion && String(result.title_suggestion).trim()) {
+      if (!session.nameLocked && !session.manualName && result.title_suggestion && String(result.title_suggestion).trim()) {
         session.name = String(result.title_suggestion).trim().slice(0, 40);
       }
       await handleStageCompletion(session, result, changedKeys);
