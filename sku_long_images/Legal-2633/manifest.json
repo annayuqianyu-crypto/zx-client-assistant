@@ -1,0 +1,32 @@
+{
+  "sku_id": "Legal-2633",
+  "sku_name": "遗嘱及遗产管理人（无代持，企业实控人，家族后代交接班）",
+  "aliases": [
+    "2. 遗嘱及遗产管理人 - 无代持，企业实控人，家族后代交接班",
+    "Legal-2633",
+    "遗嘱及遗产管理人（无代持，企业实控人，家族后代交接班）"
+  ],
+  "source_ppt": "2. 遗嘱及遗产管理人 - 无代持，企业实控人，家族后代交接班.pptx",
+  "source_sha256": "af3a4bceb83cb5826a78b9191652e38e5bad6a7386961695f0e5b06b85c8d4dc",
+  "source_modified": "2026-07-03T16:20:38+08:00",
+  "slide_count": 11,
+  "chunk_count": 2,
+  "chunks": [
+    {
+      "file": "Legal-2633/Legal-2633-part-01.png",
+      "start_slide": 1,
+      "end_slide": 8,
+      "width": 1080,
+      "height": 4864,
+      "bytes": 2142871
+    },
+    {
+      "file": "Legal-2633/Legal-2633-part-02.png",
+      "start_slide": 9,
+      "end_slide": 11,
+      "width": 1080,
+      "height": 1824,
+      "bytes": 901014
+    }
+  ]
+}

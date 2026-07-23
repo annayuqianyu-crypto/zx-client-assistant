@@ -1,0 +1,32 @@
+{
+  "sku_id": "Legal-2628",
+  "sku_name": "权力过渡安排（多子女接班）",
+  "aliases": [
+    "3. 权力过渡安排 - 多子女接班",
+    "Legal-2628",
+    "权力过渡安排（多子女接班）"
+  ],
+  "source_ppt": "3. 权力过渡安排 - 多子女接班.pptx",
+  "source_sha256": "eebed882d22fa0d3022380017588d9ca1483133901f3640bc667c153b8996aed",
+  "source_modified": "2026-07-03T16:20:36+08:00",
+  "slide_count": 10,
+  "chunk_count": 2,
+  "chunks": [
+    {
+      "file": "Legal-2628/Legal-2628-part-01.png",
+      "start_slide": 1,
+      "end_slide": 8,
+      "width": 1080,
+      "height": 4864,
+      "bytes": 2083940
+    },
+    {
+      "file": "Legal-2628/Legal-2628-part-02.png",
+      "start_slide": 9,
+      "end_slide": 10,
+      "width": 1080,
+      "height": 1216,
+      "bytes": 555721
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "sku_id": "CM2384",
+  "sku_name": "银行-并购贷",
+  "aliases": [
+    "CM2384",
+    "银行-并购贷"
+  ],
+  "source_ppt": "银行-并购贷.pptx",
+  "source_sha256": "d8877a28ef166c4e9ef6e4dc0b41577175d76de61e8c94bf6810c34c6e890752",
+  "source_modified": "2026-07-03T16:21:06+08:00",
+  "slide_count": 2,
+  "chunk_count": 1,
+  "chunks": [
+    {
+      "file": "CM2384/CM2384-part-01.png",
+      "start_slide": 1,
+      "end_slide": 2,
+      "width": 1080,
+      "height": 1216,
+      "bytes": 113874
+    }
+  ]
+}

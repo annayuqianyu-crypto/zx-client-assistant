@@ -1,0 +1,31 @@
+{
+  "sku_id": "CM2330",
+  "sku_name": "境内-股权信托（已有标的公司）",
+  "aliases": [
+    "CM2330",
+    "境内-股权信托（已有标的公司）"
+  ],
+  "source_ppt": "境内-股权信托（已有标的公司）.pptx",
+  "source_sha256": "ae6921860aec2ea90f33cdf5dfc6e5dabcc43f7bb91d84d727879b9124aaa99d",
+  "source_modified": "2026-07-03T16:21:03+08:00",
+  "slide_count": 10,
+  "chunk_count": 2,
+  "chunks": [
+    {
+      "file": "CM2330/CM2330-part-01.png",
+      "start_slide": 1,
+      "end_slide": 8,
+      "width": 1080,
+      "height": 4864,
+      "bytes": 1455852
+    },
+    {
+      "file": "CM2330/CM2330-part-02.png",
+      "start_slide": 9,
+      "end_slide": 10,
+      "width": 1080,
+      "height": 1216,
+      "bytes": 424546
+    }
+  ]
+}

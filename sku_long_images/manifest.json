@@ -1,0 +1,437 @@
+{
+  "version": 1,
+  "generated_at": "2026-07-16T11:23:24+08:00",
+  "image_width": 1080,
+  "max_slides_per_image": 8,
+  "total_skus": 15,
+  "total_slides": 109,
+  "total_chunks": 24,
+  "items": [
+    {
+      "sku_id": "CM-2383",
+      "sku_name": "银行-限售股股质",
+      "aliases": [
+        "CM-2383",
+        "CM2383",
+        "银行-限售股股质"
+      ],
+      "source_ppt": "银行-限售股股质.pptx",
+      "source_sha256": "7a1a8dfada885e5003a092d94485707358847ef887a23e3865bfecd80c33f2d2",
+      "source_modified": "2026-07-03T16:21:06+08:00",
+      "slide_count": 2,
+      "chunk_count": 1,
+      "chunks": [
+        {
+          "file": "CM-2383/CM-2383-part-01.png",
+          "start_slide": 1,
+          "end_slide": 2,
+          "width": 1080,
+          "height": 1216,
+          "bytes": 117171
+        }
+      ]
+    },
+    {
+      "sku_id": "CM2330",
+      "sku_name": "境内-股权信托（已有标的公司）",
+      "aliases": [
+        "CM2330",
+        "境内-股权信托（已有标的公司）"
+      ],
+      "source_ppt": "境内-股权信托（已有标的公司）.pptx",
+      "source_sha256": "ae6921860aec2ea90f33cdf5dfc6e5dabcc43f7bb91d84d727879b9124aaa99d",
+      "source_modified": "2026-07-03T16:21:03+08:00",
+      "slide_count": 10,
+      "chunk_count": 2,
+      "chunks": [
+        {
+          "file": "CM2330/CM2330-part-01.png",
+          "start_slide": 1,
+          "end_slide": 8,
+          "width": 1080,
+          "height": 4864,
+          "bytes": 1455852
+        },
+        {
+          "file": "CM2330/CM2330-part-02.png",
+          "start_slide": 9,
+          "end_slide": 10,
+          "width": 1080,
+          "height": 1216,
+          "bytes": 424546
+        }
+      ]
+    },
+    {
+      "sku_id": "CM2349",
+      "sku_name": "离岸信托-FGT",
+      "aliases": [
+        "CM2349",
+        "离岸信托-FGT"
+      ],
+      "source_ppt": "离岸信托-FGT.pptx",
+      "source_sha256": "16339bb172836b1dc550e9815fb8a249026b097e7a6547f7713c82c7d021a334",
+      "source_modified": "2026-07-03T16:21:04+08:00",
+      "slide_count": 5,
+      "chunk_count": 1,
+      "chunks": [
+        {
+          "file": "CM2349/CM2349-part-01.png",
+          "start_slide": 1,
+          "end_slide": 5,
+          "width": 1080,
+          "height": 3040,
+          "bytes": 739258
+        }
+      ]
+    },
+    {
+      "sku_id": "CM2350",
+      "sku_name": "离岸信托-NRT",
+      "aliases": [
+        "CM2350",
+        "离岸信托-NRT"
+      ],
+      "source_ppt": "离岸信托-NRT.pptx",
+      "source_sha256": "8580320b33d997131d5e167d1232e007362f931becccfba2066b872693ca4d27",
+      "source_modified": "2026-07-03T16:21:04+08:00",
+      "slide_count": 3,
+      "chunk_count": 1,
+      "chunks": [
+        {
+          "file": "CM2350/CM2350-part-01.png",
+          "start_slide": 1,
+          "end_slide": 3,
+          "width": 1080,
+          "height": 1824,
+          "bytes": 349712
+        }
+      ]
+    },
+    {
+      "sku_id": "CM2382",
+      "sku_name": "银行-流通股股质",
+      "aliases": [
+        "CM2382",
+        "银行-流通股股质"
+      ],
+      "source_ppt": "银行-流通股股质.pptx",
+      "source_sha256": "15ceefda7192e776dafff528a9a63746a957fa0da00a3593f8756a4fd548d63b",
+      "source_modified": "2026-07-03T16:21:06+08:00",
+      "slide_count": 2,
+      "chunk_count": 1,
+      "chunks": [
+        {
+          "file": "CM2382/CM2382-part-01.png",
+          "start_slide": 1,
+          "end_slide": 2,
+          "width": 1080,
+          "height": 1216,
+          "bytes": 118624
+        }
+      ]
+    },
+    {
+      "sku_id": "CM2384",
+      "sku_name": "银行-并购贷",
+      "aliases": [
+        "CM2384",
+        "银行-并购贷"
+      ],
+      "source_ppt": "银行-并购贷.pptx",
+      "source_sha256": "d8877a28ef166c4e9ef6e4dc0b41577175d76de61e8c94bf6810c34c6e890752",
+      "source_modified": "2026-07-03T16:21:06+08:00",
+      "slide_count": 2,
+      "chunk_count": 1,
+      "chunks": [
+        {
+          "file": "CM2384/CM2384-part-01.png",
+          "start_slide": 1,
+          "end_slide": 2,
+          "width": 1080,
+          "height": 1216,
+          "bytes": 113874
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2610",
+      "sku_name": "拟上市公司改制合规事项（整体改制）",
+      "aliases": [
+        "1. 拟上市公司改制合规事项 - 整体改制",
+        "Legal-2610",
+        "拟上市公司改制合规事项（整体改制）"
+      ],
+      "source_ppt": "1. 拟上市公司改制合规事项 - 整体改制.pptx",
+      "source_sha256": "3bb7a5fa14459ec6dc02fe8a5a9ee9e5b47a24286cc41e63a18e51159d4fb5ea",
+      "source_modified": "2026-07-03T16:20:35+08:00",
+      "slide_count": 18,
+      "chunk_count": 3,
+      "chunks": [
+        {
+          "file": "Legal-2610/Legal-2610-part-01.png",
+          "start_slide": 1,
+          "end_slide": 8,
+          "width": 1080,
+          "height": 4864,
+          "bytes": 1695992
+        },
+        {
+          "file": "Legal-2610/Legal-2610-part-02.png",
+          "start_slide": 9,
+          "end_slide": 16,
+          "width": 1080,
+          "height": 4864,
+          "bytes": 2207507
+        },
+        {
+          "file": "Legal-2610/Legal-2610-part-03.png",
+          "start_slide": 17,
+          "end_slide": 18,
+          "width": 1080,
+          "height": 1216,
+          "bytes": 186610
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2613",
+      "sku_name": "拟上市公司辅导期（合规事项）",
+      "aliases": [
+        "Legal-2613",
+        "拟上市公司辅导期 - 合规事项",
+        "拟上市公司辅导期（合规事项）"
+      ],
+      "source_ppt": "拟上市公司辅导期 - 合规事项.pptx",
+      "source_sha256": "047caaf3421abaf37ac8ef42f0b811c072b3ee81da691647a0756584325babb3",
+      "source_modified": "2026-07-03T16:20:36+08:00",
+      "slide_count": 10,
+      "chunk_count": 2,
+      "chunks": [
+        {
+          "file": "Legal-2613/Legal-2613-part-01.png",
+          "start_slide": 1,
+          "end_slide": 8,
+          "width": 1080,
+          "height": 4864,
+          "bytes": 2351540
+        },
+        {
+          "file": "Legal-2613/Legal-2613-part-02.png",
+          "start_slide": 9,
+          "end_slide": 10,
+          "width": 1080,
+          "height": 1216,
+          "bytes": 577084
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2614",
+      "sku_name": "股权代持及应对（无法还原到被代持人名下）",
+      "aliases": [
+        "1. 股权代持及应对 - 无法还原到被代持人名下",
+        "Legal-2614",
+        "股权代持及应对（无法还原到被代持人名下）"
+      ],
+      "source_ppt": "1. 股权代持及应对 - 无法还原到被代持人名下.pptx",
+      "source_sha256": "498cec7fc9f52dfe250277902aa484b865b12e26d925fcabfdcddb85cb83f5f7",
+      "source_modified": "2026-07-03T16:20:34+08:00",
+      "slide_count": 11,
+      "chunk_count": 2,
+      "chunks": [
+        {
+          "file": "Legal-2614/Legal-2614-part-01.png",
+          "start_slide": 1,
+          "end_slide": 8,
+          "width": 1080,
+          "height": 4864,
+          "bytes": 1963156
+        },
+        {
+          "file": "Legal-2614/Legal-2614-part-02.png",
+          "start_slide": 9,
+          "end_slide": 11,
+          "width": 1080,
+          "height": 1824,
+          "bytes": 479122
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2615",
+      "sku_name": "股权代持及应对（可以还原到被代持人名下）",
+      "aliases": [
+        "2. 股权代持及应对 - 可以还原到被代持人名下",
+        "Legal-2615",
+        "股权代持及应对（可以还原到被代持人名下）"
+      ],
+      "source_ppt": "2. 股权代持及应对 - 可以还原到被代持人名下.pptx",
+      "source_sha256": "28af0f5b6d8228b58f0653c68001a0df7715e9b0d0120d6e8e70671346dee952",
+      "source_modified": "2026-07-03T16:20:34+08:00",
+      "slide_count": 10,
+      "chunk_count": 2,
+      "chunks": [
+        {
+          "file": "Legal-2615/Legal-2615-part-01.png",
+          "start_slide": 1,
+          "end_slide": 8,
+          "width": 1080,
+          "height": 4864,
+          "bytes": 2120409
+        },
+        {
+          "file": "Legal-2615/Legal-2615-part-02.png",
+          "start_slide": 9,
+          "end_slide": 10,
+          "width": 1080,
+          "height": 1216,
+          "bytes": 190035
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2627",
+      "sku_name": "权力过渡安排（独生子女接班，生前股权不转让）",
+      "aliases": [
+        "2. 权力过渡安排 - 独生子女接班，生前股权不转让",
+        "Legal-2627",
+        "权力过渡安排（独生子女接班，生前股权不转让）"
+      ],
+      "source_ppt": "2. 权力过渡安排 - 独生子女接班，生前股权不转让.pptx",
+      "source_sha256": "e3e7a01808b48cfb591d704088139fa35177e7b7dfc7403caed45d37667c9089",
+      "source_modified": "2026-07-03T16:20:36+08:00",
+      "slide_count": 10,
+      "chunk_count": 2,
+      "chunks": [
+        {
+          "file": "Legal-2627/Legal-2627-part-01.png",
+          "start_slide": 1,
+          "end_slide": 8,
+          "width": 1080,
+          "height": 4864,
+          "bytes": 2101503
+        },
+        {
+          "file": "Legal-2627/Legal-2627-part-02.png",
+          "start_slide": 9,
+          "end_slide": 10,
+          "width": 1080,
+          "height": 1216,
+          "bytes": 555721
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2628",
+      "sku_name": "权力过渡安排（多子女接班）",
+      "aliases": [
+        "3. 权力过渡安排 - 多子女接班",
+        "Legal-2628",
+        "权力过渡安排（多子女接班）"
+      ],
+      "source_ppt": "3. 权力过渡安排 - 多子女接班.pptx",
+      "source_sha256": "eebed882d22fa0d3022380017588d9ca1483133901f3640bc667c153b8996aed",
+      "source_modified": "2026-07-03T16:20:36+08:00",
+      "slide_count": 10,
+      "chunk_count": 2,
+      "chunks": [
+        {
+          "file": "Legal-2628/Legal-2628-part-01.png",
+          "start_slide": 1,
+          "end_slide": 8,
+          "width": 1080,
+          "height": 4864,
+          "bytes": 2083940
+        },
+        {
+          "file": "Legal-2628/Legal-2628-part-02.png",
+          "start_slide": 9,
+          "end_slide": 10,
+          "width": 1080,
+          "height": 1216,
+          "bytes": 555721
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2633",
+      "sku_name": "遗嘱及遗产管理人（无代持，企业实控人，家族后代交接班）",
+      "aliases": [
+        "2. 遗嘱及遗产管理人 - 无代持，企业实控人，家族后代交接班",
+        "Legal-2633",
+        "遗嘱及遗产管理人（无代持，企业实控人，家族后代交接班）"
+      ],
+      "source_ppt": "2. 遗嘱及遗产管理人 - 无代持，企业实控人，家族后代交接班.pptx",
+      "source_sha256": "af3a4bceb83cb5826a78b9191652e38e5bad6a7386961695f0e5b06b85c8d4dc",
+      "source_modified": "2026-07-03T16:20:38+08:00",
+      "slide_count": 11,
+      "chunk_count": 2,
+      "chunks": [
+        {
+          "file": "Legal-2633/Legal-2633-part-01.png",
+          "start_slide": 1,
+          "end_slide": 8,
+          "width": 1080,
+          "height": 4864,
+          "bytes": 2142871
+        },
+        {
+          "file": "Legal-2633/Legal-2633-part-02.png",
+          "start_slide": 9,
+          "end_slide": 11,
+          "width": 1080,
+          "height": 1824,
+          "bytes": 901014
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2677",
+      "sku_name": "境外NRT的法律文件",
+      "aliases": [
+        "Legal-2677",
+        "境外NRT的法律文件",
+        "离岸信托-NRT"
+      ],
+      "source_ppt": "离岸信托-NRT.pptx",
+      "source_sha256": "8580320b33d997131d5e167d1232e007362f931becccfba2066b872693ca4d27",
+      "source_modified": "2026-07-03T16:20:41+08:00",
+      "slide_count": 3,
+      "chunk_count": 1,
+      "chunks": [
+        {
+          "file": "Legal-2677/Legal-2677-part-01.png",
+          "start_slide": 1,
+          "end_slide": 3,
+          "width": 1080,
+          "height": 1824,
+          "bytes": 349712
+        }
+      ]
+    },
+    {
+      "sku_id": "Tax-2409",
+      "sku_name": "加拿大-登陆税务合规-基础合规",
+      "aliases": [
+        "Tax-2409",
+        "加拿大-登陆税务合规-基础合规"
+      ],
+      "source_ppt": "加拿大-登陆税务合规-基础合规.pptx",
+      "source_sha256": "cd69d0067aa2479d0ff5f29bff8c262ff6230cdfd49e16d55d5806e23b429d94",
+      "source_modified": "2026-07-03T16:20:50+08:00",
+      "slide_count": 2,
+      "chunk_count": 1,
+      "chunks": [
+        {
+          "file": "Tax-2409/Tax-2409-part-01.png",
+          "start_slide": 1,
+          "end_slide": 2,
+          "width": 1080,
+          "height": 1216,
+          "bytes": 220811
+        }
+      ]
+    }
+  ]
+}

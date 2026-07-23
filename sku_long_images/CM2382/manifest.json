@@ -1,0 +1,23 @@
+{
+  "sku_id": "CM2382",
+  "sku_name": "银行-流通股股质",
+  "aliases": [
+    "CM2382",
+    "银行-流通股股质"
+  ],
+  "source_ppt": "银行-流通股股质.pptx",
+  "source_sha256": "15ceefda7192e776dafff528a9a63746a957fa0da00a3593f8756a4fd548d63b",
+  "source_modified": "2026-07-03T16:21:06+08:00",
+  "slide_count": 2,
+  "chunk_count": 1,
+  "chunks": [
+    {
+      "file": "CM2382/CM2382-part-01.png",
+      "start_slide": 1,
+      "end_slide": 2,
+      "width": 1080,
+      "height": 1216,
+      "bytes": 118624
+    }
+  ]
+}

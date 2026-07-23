@@ -1,0 +1,32 @@
+{
+  "sku_id": "Legal-2615",
+  "sku_name": "股权代持及应对（可以还原到被代持人名下）",
+  "aliases": [
+    "2. 股权代持及应对 - 可以还原到被代持人名下",
+    "Legal-2615",
+    "股权代持及应对（可以还原到被代持人名下）"
+  ],
+  "source_ppt": "2. 股权代持及应对 - 可以还原到被代持人名下.pptx",
+  "source_sha256": "28af0f5b6d8228b58f0653c68001a0df7715e9b0d0120d6e8e70671346dee952",
+  "source_modified": "2026-07-03T16:20:34+08:00",
+  "slide_count": 10,
+  "chunk_count": 2,
+  "chunks": [
+    {
+      "file": "Legal-2615/Legal-2615-part-01.png",
+      "start_slide": 1,
+      "end_slide": 8,
+      "width": 1080,
+      "height": 4864,
+      "bytes": 2120409
+    },
+    {
+      "file": "Legal-2615/Legal-2615-part-02.png",
+      "start_slide": 9,
+      "end_slide": 10,
+      "width": 1080,
+      "height": 1216,
+      "bytes": 190035
+    }
+  ]
+}

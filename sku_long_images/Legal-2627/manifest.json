@@ -1,0 +1,32 @@
+{
+  "sku_id": "Legal-2627",
+  "sku_name": "权力过渡安排（独生子女接班，生前股权不转让）",
+  "aliases": [
+    "2. 权力过渡安排 - 独生子女接班，生前股权不转让",
+    "Legal-2627",
+    "权力过渡安排（独生子女接班，生前股权不转让）"
+  ],
+  "source_ppt": "2. 权力过渡安排 - 独生子女接班，生前股权不转让.pptx",
+  "source_sha256": "e3e7a01808b48cfb591d704088139fa35177e7b7dfc7403caed45d37667c9089",
+  "source_modified": "2026-07-03T16:20:36+08:00",
+  "slide_count": 10,
+  "chunk_count": 2,
+  "chunks": [
+    {
+      "file": "Legal-2627/Legal-2627-part-01.png",
+      "start_slide": 1,
+      "end_slide": 8,
+      "width": 1080,
+      "height": 4864,
+      "bytes": 2101503
+    },
+    {
+      "file": "Legal-2627/Legal-2627-part-02.png",
+      "start_slide": 9,
+      "end_slide": 10,
+      "width": 1080,
+      "height": 1216,
+      "bytes": 555721
+    }
+  ]
+}

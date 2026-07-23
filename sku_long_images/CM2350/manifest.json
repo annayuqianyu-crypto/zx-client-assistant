@@ -1,0 +1,23 @@
+{
+  "sku_id": "CM2350",
+  "sku_name": "离岸信托-NRT",
+  "aliases": [
+    "CM2350",
+    "离岸信托-NRT"
+  ],
+  "source_ppt": "离岸信托-NRT.pptx",
+  "source_sha256": "8580320b33d997131d5e167d1232e007362f931becccfba2066b872693ca4d27",
+  "source_modified": "2026-07-03T16:21:04+08:00",
+  "slide_count": 3,
+  "chunk_count": 1,
+  "chunks": [
+    {
+      "file": "CM2350/CM2350-part-01.png",
+      "start_slide": 1,
+      "end_slide": 3,
+      "width": 1080,
+      "height": 1824,
+      "bytes": 349712
+    }
+  ]
+}

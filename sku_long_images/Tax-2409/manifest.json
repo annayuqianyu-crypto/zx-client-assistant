@@ -1,0 +1,23 @@
+{
+  "sku_id": "Tax-2409",
+  "sku_name": "加拿大-登陆税务合规-基础合规",
+  "aliases": [
+    "Tax-2409",
+    "加拿大-登陆税务合规-基础合规"
+  ],
+  "source_ppt": "加拿大-登陆税务合规-基础合规.pptx",
+  "source_sha256": "cd69d0067aa2479d0ff5f29bff8c262ff6230cdfd49e16d55d5806e23b429d94",
+  "source_modified": "2026-07-03T16:20:50+08:00",
+  "slide_count": 2,
+  "chunk_count": 1,
+  "chunks": [
+    {
+      "file": "Tax-2409/Tax-2409-part-01.png",
+      "start_slide": 1,
+      "end_slide": 2,
+      "width": 1080,
+      "height": 1216,
+      "bytes": 220811
+    }
+  ]
+}

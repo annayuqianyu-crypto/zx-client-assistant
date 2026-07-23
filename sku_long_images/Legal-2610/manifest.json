@@ -1,0 +1,40 @@
+{
+  "sku_id": "Legal-2610",
+  "sku_name": "拟上市公司改制合规事项（整体改制）",
+  "aliases": [
+    "1. 拟上市公司改制合规事项 - 整体改制",
+    "Legal-2610",
+    "拟上市公司改制合规事项（整体改制）"
+  ],
+  "source_ppt": "1. 拟上市公司改制合规事项 - 整体改制.pptx",
+  "source_sha256": "3bb7a5fa14459ec6dc02fe8a5a9ee9e5b47a24286cc41e63a18e51159d4fb5ea",
+  "source_modified": "2026-07-03T16:20:35+08:00",
+  "slide_count": 18,
+  "chunk_count": 3,
+  "chunks": [
+    {
+      "file": "Legal-2610/Legal-2610-part-01.png",
+      "start_slide": 1,
+      "end_slide": 8,
+      "width": 1080,
+      "height": 4864,
+      "bytes": 1695992
+    },
+    {
+      "file": "Legal-2610/Legal-2610-part-02.png",
+      "start_slide": 9,
+      "end_slide": 16,
+      "width": 1080,
+      "height": 4864,
+      "bytes": 2207507
+    },
+    {
+      "file": "Legal-2610/Legal-2610-part-03.png",
+      "start_slide": 17,
+      "end_slide": 18,
+      "width": 1080,
+      "height": 1216,
+      "bytes": 186610
+    }
+  ]
+}

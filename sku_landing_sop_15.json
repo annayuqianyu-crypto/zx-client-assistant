@@ -1,0 +1,4301 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-16T14:07:48+08:00",
+  "source_root": "测试用样本/SKU资料",
+  "sku_count": 15,
+  "total_rows": 319,
+  "quality": {
+    "missing_a": 0,
+    "missing_b": 0,
+    "missing_e": 0
+  },
+  "stage_order": [
+    "1 需求初判",
+    "2 资产梳理",
+    "3 方案设计",
+    "4 文件制备",
+    "5 交付执行",
+    "6 售后维护"
+  ],
+  "skus": [
+    {
+      "sku_id": "CM-2383",
+      "sku_name": "银行-限售股股质",
+      "aliases": [
+        "CM-2383",
+        "CM2383",
+        "银行-限售股股质"
+      ],
+      "source_file": "银行-限售股股质.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "d9bb151f7fa35b904eea30a9e1d53881de5fa0ea74d1cdcf0636e609f2d57299",
+      "source_modified": "2026-07-03T16:21:06+08:00",
+      "row_count": 17,
+      "rows": [
+        {
+          "id": "CM-2383-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "融资目标与资金用途确认",
+          "client_cooperation": "如实披露资金具体用途、金额及用款时间计划；提供相关证明材料（如税务通知书、借款合同等）",
+          "actions": [
+            "如实披露资金具体用途、金额及用款时间计划",
+            "提供相关证明材料（如税务通知书、借款合同等）"
+          ]
+        },
+        {
+          "id": "CM-2383-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "股东身份与限售状态确认",
+          "client_cooperation": "提供股东身份信息、持股比例、限售股来源及限售承诺文件；确认是否存在额外自愿锁定承诺",
+          "actions": [
+            "提供股东身份信息、持股比例、限售股来源及限售承诺文件",
+            "确认是否存在额外自愿锁定承诺"
+          ]
+        },
+        {
+          "id": "CM-2383-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "合规性与适用性初步判断",
+          "client_cooperation": "告知是否存在其他已签约或正在洽谈的融资安排；确认近期是否有增减持计划",
+          "actions": [
+            "告知是否存在其他已签约或正在洽谈的融资安排",
+            "确认近期是否有增减持计划"
+          ]
+        },
+        {
+          "id": "CM-2383-R5",
+          "row_number": 5,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "质押标的股票信息盘点",
+          "client_cooperation": "提供完整持股明细（含限售/流通分类、成本价、质押/冻结状态）；提供中登公司持股证明",
+          "actions": [
+            "提供完整持股明细（含限售/流通分类、成本价、质押/冻结状态）",
+            "提供中登公司持股证明"
+          ]
+        },
+        {
+          "id": "CM-2383-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "股东整体资产负债状况梳理",
+          "client_cooperation": "提供个人/家庭资产负债表、现有融资合同及还款计划；配合提供征信报告",
+          "actions": [
+            "提供个人/家庭资产负债表、现有融资合同及还款计划",
+            "配合提供征信报告"
+          ]
+        },
+        {
+          "id": "CM-2383-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "融资成本承受能力与还款来源确认",
+          "client_cooperation": "明确可接受的利率上限；说明预期还款来源及时间节点；确认可用于补仓的备付资金规模及来源",
+          "actions": [
+            "明确可接受的利率上限",
+            "说明预期还款来源及时间节点",
+            "确认可用于补仓的备付资金规模及来源"
+          ]
+        },
+        {
+          "id": "CM-2383-R8",
+          "row_number": 8,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "质押率与融资额度确定",
+          "client_cooperation": "明确最终所需融资金额的最低底线；确认是否接受分期放款安排",
+          "actions": [
+            "明确最终所需融资金额的最低底线",
+            "确认是否接受分期放款安排"
+          ]
+        },
+        {
+          "id": "CM-2383-R9",
+          "row_number": 9,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "资金用途合规路径与替代方案设计",
+          "client_cooperation": "配合评估替代方案（信托通道、结构化产品）的适用性与成本；如需架构调整，提供相关主体信息",
+          "actions": [
+            "配合评估替代方案（信托通道、结构化产品）的适用性与成本",
+            "如需架构调整，提供相关主体信息"
+          ]
+        },
+        {
+          "id": "CM-2383-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "利率、期限与风控条款磋商",
+          "client_cooperation": "确认可接受的期限、利率类型（固定/浮动）；评估补仓能力和意愿；明确是否可能在限售期解禁后提前还款",
+          "actions": [
+            "确认可接受的期限、利率类型（固定/浮动）",
+            "评估补仓能力和意愿",
+            "明确是否可能在限售期解禁后提前还款"
+          ]
+        },
+        {
+          "id": "CM-2383-R11",
+          "row_number": 11,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "质押合同与配套协议制备",
+          "client_cooperation": "审阅并确认质押合同核心条款；配合签署配偶/共有人同意函；提供身份证明及婚姻状况证明",
+          "actions": [
+            "审阅并确认质押合同核心条款",
+            "配合签署配偶/共有人同意函",
+            "提供身份证明及婚姻状况证明"
+          ]
+        },
+        {
+          "id": "CM-2383-R12",
+          "row_number": 12,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "内部决议与合规文件准备",
+          "client_cooperation": "协调上市公司证券部/董事会办公室配合完成内部审批和信息披露文件；确认公告时间和措辞",
+          "actions": [
+            "协调上市公司证券部/董事会办公室配合完成内部审批和信息披露文件",
+            "确认公告时间和措辞"
+          ]
+        },
+        {
+          "id": "CM-2383-R13",
+          "row_number": 13,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "银行内部审批与授信",
+          "client_cooperation": "配合银行尽职调查和补充材料要求；按银行要求开立监管账户",
+          "actions": [
+            "配合银行尽职调查和补充材料要求",
+            "按银行要求开立监管账户"
+          ]
+        },
+        {
+          "id": "CM-2383-R14",
+          "row_number": 14,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "质押登记与信息披露",
+          "client_cooperation": "授权办理质押登记；配合上市公司在规定时间内完成信息披露",
+          "actions": [
+            "授权办理质押登记",
+            "配合上市公司在规定时间内完成信息披露"
+          ]
+        },
+        {
+          "id": "CM-2383-R15",
+          "row_number": 15,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "资金放款与用途合规管理",
+          "client_cooperation": "确认收款账户信息；按银行要求提供资金用途凭证（如完税证明、还款凭证）；确保资金不用于违规领域",
+          "actions": [
+            "确认收款账户信息",
+            "按银行要求提供资金用途凭证（如完税证明、还款凭证）",
+            "确保资金不用于违规领域"
+          ]
+        },
+        {
+          "id": "CM-2383-R16",
+          "row_number": 16,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "存续期盯盘与预警管理",
+          "client_cooperation": "授权家办或指定人员接收预警通知；提前准备好补仓资金或可追加的质押标的；在触发预警时及时响应",
+          "actions": [
+            "授权家办或指定人员接收预警通知",
+            "提前准备好补仓资金或可追加的质押标的",
+            "在触发预警时及时响应"
+          ]
+        },
+        {
+          "id": "CM-2383-R17",
+          "row_number": 17,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "到期还款或续贷安排",
+          "client_cooperation": "提前评估还款能力和意愿；如有续贷需求，提前准备相关材料；如计划减持还款，提前规划减持节奏与税务影响",
+          "actions": [
+            "提前评估还款能力和意愿",
+            "如有续贷需求，提前准备相关材料",
+            "如计划减持还款，提前规划减持节奏与税务影响"
+          ]
+        },
+        {
+          "id": "CM-2383-R18",
+          "row_number": 18,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "限售期满后处置方案与税务规划",
+          "client_cooperation": "明确解禁后的持股意向（持有/减持/部分减持）；配合税务顾问进行减持税负测算和优化",
+          "actions": [
+            "明确解禁后的持股意向（持有/减持/部分减持）",
+            "配合税务顾问进行减持税负测算和优化"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "CM2330",
+      "sku_name": "境内-股权信托（已有标的公司）",
+      "aliases": [
+        "CM2330",
+        "境内-股权信托（已有标的公司）"
+      ],
+      "source_file": "境内-股权信托（已有标的公司）.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "6b5affdf961fb7679c23a25249a23cff7a49e42c0cf916ebaf3b4577b422f353",
+      "source_modified": "2026-07-03T16:21:03+08:00",
+      "row_count": 18,
+      "rows": [
+        {
+          "id": "CM2330-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "债务与婚姻风险识别",
+          "client_cooperation": "如实披露个人及公司重大债务、担保、诉讼情况；说明自身及子女婚姻现状（是否已签署婚前协议、是否存在婚变可能）；提供征信或企业信用报告（如需）",
+          "actions": [
+            "如实披露个人及公司重大债务、担保、诉讼情况",
+            "说明自身及子女婚姻现状（是否已签署婚前协议、是否存在婚变可能）",
+            "提供征信或企业信用报告（如需）"
+          ]
+        },
+        {
+          "id": "CM2330-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "控制权与经营权偏好确认",
+          "client_cooperation": "明确是否接受“所有权与经营权分离”的信托逻辑；指定拟担任SPV的GP人选（本人或指定代表）；说明对公司重大决策（如增资、并购、分红）的参与意愿",
+          "actions": [
+            "明确是否接受“所有权与经营权分离”的信托逻辑",
+            "指定拟担任SPV的GP人选（本人或指定代表）",
+            "说明对公司重大决策（如增资、并购、分红）的参与意愿"
+          ]
+        },
+        {
+          "id": "CM2330-R4",
+          "row_number": 4,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "标的公司股权结构与代持情况",
+          "client_cooperation": "提供标的公司章程、股东名册、工商登记信息；梳理并书面说明是否存在代持及代持人信息；提供股权质押、冻结等权利受限情况说明；与代持人沟通信托设立计划并取得初步配合意向",
+          "actions": [
+            "提供标的公司章程、股东名册、工商登记信息",
+            "梳理并书面说明是否存在代持及代持人信息",
+            "提供股权质押、冻结等权利受限情况说明",
+            "与代持人沟通信托设立计划并取得初步配合意向"
+          ]
+        },
+        {
+          "id": "CM2330-R5",
+          "row_number": 5,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "标的公司财务与债务梳理",
+          "client_cooperation": "提供最近三年审计报告或财务报表；说明公司对外担保、关联交易、股东借款等重大事项；说明公司利润分配历史与未来分红预期",
+          "actions": [
+            "提供最近三年审计报告或财务报表",
+            "说明公司对外担保、关联交易、股东借款等重大事项",
+            "说明公司利润分配历史与未来分红预期"
+          ]
+        },
+        {
+          "id": "CM2330-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "股东间协议与章程限制梳理",
+          "client_cooperation": "提供公司章程、股东协议、投资协议等全套文件；梳理所有涉及股权转让限制的条款；提前与其他股东沟通信托设立意向",
+          "actions": [
+            "提供公司章程、股东协议、投资协议等全套文件",
+            "梳理所有涉及股权转让限制的条款",
+            "提前与其他股东沟通信托设立意向"
+          ]
+        },
+        {
+          "id": "CM2330-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "税务成本评估与优化路径",
+          "client_cooperation": "配合提供公司净资产明细及估值基础资料；确认是否接受聘请第三方评估机构进行股权价值评估；就盈余管理方案（如公转私安排）进行决策",
+          "actions": [
+            "配合提供公司净资产明细及估值基础资料",
+            "确认是否接受聘请第三方评估机构进行股权价值评估",
+            "就盈余管理方案（如公转私安排）进行决策"
+          ]
+        },
+        {
+          "id": "CM2330-R8",
+          "row_number": 8,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "信托架构设计（SPV/有限合伙安排）",
+          "client_cooperation": "确认是否接受“信托+有限合伙”双层架构；指定SPV的GP人选（委托人或其指定代表）并明确权责；确认LP份额的分配安排（是否预留未来家族成员进入空间）",
+          "actions": [
+            "确认是否接受“信托+有限合伙”双层架构",
+            "指定SPV的GP人选（委托人或其指定代表）并明确权责",
+            "确认LP份额的分配安排（是否预留未来家族成员进入空间）"
+          ]
+        },
+        {
+          "id": "CM2330-R9",
+          "row_number": 9,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "受益人分配方案设计",
+          "client_cooperation": "提供受益人名单及基本信息（年龄、学业/事业阶段、婚姻状况）；明确各项分配金额/比例的初步意向；确认是否希望设置受益人行为约束条款（如禁止赌博、鼓励创业）",
+          "actions": [
+            "提供受益人名单及基本信息（年龄、学业/事业阶段、婚姻状况）",
+            "明确各项分配金额/比例的初步意向",
+            "确认是否希望设置受益人行为约束条款（如禁止赌博、鼓励创业）"
+          ]
+        },
+        {
+          "id": "CM2330-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "信托控制权与治理机制设计",
+          "client_cooperation": "明确希望保留的权力清单；指定保护人/监察人人选（通常为信任的家族成员或专业顾问）；确认信托存续期间重大事项的决策机制",
+          "actions": [
+            "明确希望保留的权力清单",
+            "指定保护人/监察人人选（通常为信任的家族成员或专业顾问）",
+            "确认信托存续期间重大事项的决策机制"
+          ]
+        },
+        {
+          "id": "CM2330-R11",
+          "row_number": 11,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "信托合同与交易文件起草",
+          "client_cooperation": "审阅并确认信托合同草案中的核心条款（特别是分配规则与权力保留条款）；配合签署股权转让协议、合伙协议等文件；确认文件中的个人及公司信息准确无误",
+          "actions": [
+            "审阅并确认信托合同草案中的核心条款（特别是分配规则与权力保留条款）",
+            "配合签署股权转让协议、合伙协议等文件",
+            "确认文件中的个人及公司信息准确无误"
+          ]
+        },
+        {
+          "id": "CM2330-R12",
+          "row_number": 12,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "股东会决议与工商变更准备",
+          "client_cooperation": "召集并主持标的公司股东会，推动出具书面决议；协调其他股东签署放弃优先购买权声明；提供工商变更所需的公司证照、法人身份证明等材料",
+          "actions": [
+            "召集并主持标的公司股东会，推动出具书面决议",
+            "协调其他股东签署放弃优先购买权声明",
+            "提供工商变更所需的公司证照、法人身份证明等材料"
+          ]
+        },
+        {
+          "id": "CM2330-R13",
+          "row_number": 13,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "税务申报文件准备",
+          "client_cooperation": "配合提供税务申报所需材料（股权转让协议、评估报告、身份证明等）；确认是否委托税务顾问代为申报；预留税款资金以备缴纳",
+          "actions": [
+            "配合提供税务申报所需材料（股权转让协议、评估报告、身份证明等）",
+            "确认是否委托税务顾问代为申报",
+            "预留税款资金以备缴纳"
+          ]
+        },
+        {
+          "id": "CM2330-R14",
+          "row_number": 14,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "股权转让与工商变更",
+          "client_cooperation": "配合完成股权转让价款支付并提供付款凭证；配合提交工商变更申请并跟进进度；留存工商变更后的全套文件备查",
+          "actions": [
+            "配合完成股权转让价款支付并提供付款凭证",
+            "配合提交工商变更申请并跟进进度",
+            "留存工商变更后的全套文件备查"
+          ]
+        },
+        {
+          "id": "CM2330-R15",
+          "row_number": 15,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "信托设立与资产置入",
+          "client_cooperation": "完成信托合同最终签署及用印；配合信托公司完成反洗钱及KYC审查；确认信托财产交付清单并签署交接文件",
+          "actions": [
+            "完成信托合同最终签署及用印",
+            "配合信托公司完成反洗钱及KYC审查",
+            "确认信托财产交付清单并签署交接文件"
+          ]
+        },
+        {
+          "id": "CM2330-R16",
+          "row_number": 16,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "受益人登记与分配规则生效",
+          "client_cooperation": "提供受益人身份证明文件及收款账户信息；确认首次分配时间表与金额；签署受益人登记确认文件",
+          "actions": [
+            "提供受益人身份证明文件及收款账户信息",
+            "确认首次分配时间表与金额",
+            "签署受益人登记确认文件"
+          ]
+        },
+        {
+          "id": "CM2330-R17",
+          "row_number": 17,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "信托运营与年度检视",
+          "client_cooperation": "配合年度信托信息更新（如受益人变动、地址变更）；出席年度信托检视会议；反馈企业经营重大变化（如增资、股改、上市计划等）",
+          "actions": [
+            "配合年度信托信息更新（如受益人变动、地址变更）",
+            "出席年度信托检视会议",
+            "反馈企业经营重大变化（如增资、股改、上市计划等）"
+          ]
+        },
+        {
+          "id": "CM2330-R18",
+          "row_number": 18,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "分配执行与税务申报",
+          "client_cooperation": "提示受益人就信托分配所得进行自主申报（如需）；配合受托人收集并留存分配凭证；关注税务政策变化并及时咨询顾问",
+          "actions": [
+            "提示受益人就信托分配所得进行自主申报（如需）",
+            "配合受托人收集并留存分配凭证",
+            "关注税务政策变化并及时咨询顾问"
+          ]
+        },
+        {
+          "id": "CM2330-R19",
+          "row_number": 19,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "家庭情况变化与方案调整",
+          "client_cooperation": "发生重大家庭变动时（如子女结婚/离异、新生孙辈等）及时知会家办；企业发生控制权变更或上市前，提前与家办沟通信托架构影响；根据家办建议及时启动方案修订程序",
+          "actions": [
+            "发生重大家庭变动时（如子女结婚/离异、新生孙辈等）及时知会家办",
+            "企业发生控制权变更或上市前，提前与家办沟通信托架构影响",
+            "根据家办建议及时启动方案修订程序"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "CM2349",
+      "sku_name": "离岸信托-FGT",
+      "aliases": [
+        "CM2349",
+        "离岸信托-FGT"
+      ],
+      "source_file": "离岸信托-FGT.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "6f76b6e077439a1e35cf94619c27a222875f9c828c770ae0d2ef9bd952186dbe",
+      "source_modified": "2026-07-03T16:21:04+08:00",
+      "row_count": 26,
+      "rows": [
+        {
+          "id": "CM2349-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "身份与税务居民确认",
+          "client_cooperation": "提供委托人及配偶的国籍、税务居民身份证明、签证状态及未来移民计划；如实告知是否曾拥有美国身份",
+          "actions": [
+            "提供委托人及配偶的国籍、税务居民身份证明、签证状态及未来移民计划",
+            "如实告知是否曾拥有美国身份"
+          ]
+        },
+        {
+          "id": "CM2349-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "传承目标与资产范围确认",
+          "client_cooperation": "梳理家庭资产清单，初步估算资产规模；明确传承对象（子女姓名、美国身份状态）",
+          "actions": [
+            "梳理家庭资产清单，初步估算资产规模",
+            "明确传承对象（子女姓名、美国身份状态）"
+          ]
+        },
+        {
+          "id": "CM2349-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "美籍受益人税务影响初步评估",
+          "client_cooperation": "提供受益人最近一年的美国个税申报表（1040）、身份证明、赠与税申报记录（如有）",
+          "actions": [
+            "提供受益人最近一年的美国个税申报表（1040）、身份证明、赠与税申报记录（如有）"
+          ]
+        },
+        {
+          "id": "CM2349-R5",
+          "row_number": 5,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "解决方案适用性初步判断",
+          "client_cooperation": "说明资产的地理分布与底层法律结构；披露任何在美关联实体、合伙权益或不动产",
+          "actions": [
+            "说明资产的地理分布与底层法律结构",
+            "披露任何在美关联实体、合伙权益或不动产"
+          ]
+        },
+        {
+          "id": "CM2349-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "拟注入资产清单梳理",
+          "client_cooperation": "提供资产明细表，包括公司股权结构图、持股平台注册地、资产负债表、分红记录",
+          "actions": [
+            "提供资产明细表，包括公司股权结构图、持股平台注册地、资产负债表、分红记录"
+          ]
+        },
+        {
+          "id": "CM2349-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "资产税务属性与成本基础厘清",
+          "client_cooperation": "提供资产取得时的合同、银行流水、完税凭证、评估报告等成本证明文件；协助核实资产公允价值",
+          "actions": [
+            "提供资产取得时的合同、银行流水、完税凭证、评估报告等成本证明文件",
+            "协助核实资产公允价值"
+          ]
+        },
+        {
+          "id": "CM2349-R8",
+          "row_number": 8,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "现有法律结构/代持情况排查",
+          "client_cooperation": "提供现有遗嘱、信托契约、代持协议、公司章程等法律文件；告知是否有未决诉讼或债务担保",
+          "actions": [
+            "提供现有遗嘱、信托契约、代持协议、公司章程等法律文件",
+            "告知是否有未决诉讼或债务担保"
+          ]
+        },
+        {
+          "id": "CM2349-R9",
+          "row_number": 9,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "资产跨境流动限制确认",
+          "client_cooperation": "配合查询相关法律，提供资产所在地合规信息；如有必要，进行 ODI/境外投资备案",
+          "actions": [
+            "配合查询相关法律，提供资产所在地合规信息",
+            "如有必要，进行 ODI/境外投资备案"
+          ]
+        },
+        {
+          "id": "CM2349-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "FGT 信托角色设计",
+          "client_cooperation": "明确对信托控制权、决策机制的偏好；指定保护人/顾问人选",
+          "actions": [
+            "明确对信托控制权、决策机制的偏好",
+            "指定保护人/顾问人选"
+          ]
+        },
+        {
+          "id": "CM2349-R11",
+          "row_number": 11,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "信托资产注入方案与税务影响分析",
+          "client_cooperation": "决定注入节奏与方式；提供家庭现金流信息以评估税务支付能力",
+          "actions": [
+            "决定注入节奏与方式",
+            "提供家庭现金流信息以评估税务支付能力"
+          ]
+        },
+        {
+          "id": "CM2349-R12",
+          "row_number": 12,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "信托条款设计",
+          "client_cooperation": "沟通子女的教育、生活、创业等资金需求预期；表达对受益人管理水平的判断",
+          "actions": [
+            "沟通子女的教育、生活、创业等资金需求预期",
+            "表达对受益人管理水平的判断"
+          ]
+        },
+        {
+          "id": "CM2349-R13",
+          "row_number": 13,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "受托人与信托地选择",
+          "client_cooperation": "配合调研受托人资质；了解不同信托地的法律与成本差异",
+          "actions": [
+            "配合调研受托人资质",
+            "了解不同信托地的法律与成本差异"
+          ]
+        },
+        {
+          "id": "CM2349-R14",
+          "row_number": 14,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "法律意见书及税务意见安排",
+          "client_cooperation": "授权家办协调相关律师与税务师；配合提供尽调资料",
+          "actions": [
+            "授权家办协调相关律师与税务师",
+            "配合提供尽调资料"
+          ]
+        },
+        {
+          "id": "CM2349-R15",
+          "row_number": 15,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "信托契约起草与审阅",
+          "client_cooperation": "聘请独立法律顾问审阅契约条款；书面确认对核心条款的理解与同意",
+          "actions": [
+            "聘请独立法律顾问审阅契约条款",
+            "书面确认对核心条款的理解与同意"
+          ]
+        },
+        {
+          "id": "CM2349-R16",
+          "row_number": 16,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "美国税务律师法律意见书出具",
+          "client_cooperation": "配合律师进行事实陈述与文件核对；签署授权文件",
+          "actions": [
+            "配合律师进行事实陈述与文件核对",
+            "签署授权文件"
+          ]
+        },
+        {
+          "id": "CM2349-R17",
+          "row_number": 17,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "资产转移文件制备",
+          "client_cooperation": "配合签署股权转让文件、银行划款指令；协调公司秘书、银行完成相关手续",
+          "actions": [
+            "配合签署股权转让文件、银行划款指令",
+            "协调公司秘书、银行完成相关手续"
+          ]
+        },
+        {
+          "id": "CM2349-R18",
+          "row_number": 18,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "合规申报文件准备",
+          "client_cooperation": "配合准备 ODI 申请材料（如适用）；提供受益人美国税务申报所需信息",
+          "actions": [
+            "配合准备 ODI 申请材料（如适用）",
+            "提供受益人美国税务申报所需信息"
+          ]
+        },
+        {
+          "id": "CM2349-R19",
+          "row_number": 19,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "信托设立与登记",
+          "client_cooperation": "签署信托契约，并指定安全保管地点；支付信托设立费",
+          "actions": [
+            "签署信托契约，并指定安全保管地点",
+            "支付信托设立费"
+          ]
+        },
+        {
+          "id": "CM2349-R20",
+          "row_number": 20,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "资产注入操作",
+          "client_cooperation": "按时间表配合完成资金划转、股权交割；留存所有划款凭证与交割文件",
+          "actions": [
+            "按时间表配合完成资金划转、股权交割",
+            "留存所有划款凭证与交割文件"
+          ]
+        },
+        {
+          "id": "CM2349-R21",
+          "row_number": 21,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "美籍受益人申报要求告知",
+          "client_cooperation": "接收家办提供的受益人税务申报手册；按指引向 IRS 进行申报",
+          "actions": [
+            "接收家办提供的受益人税务申报手册",
+            "按指引向 IRS 进行申报"
+          ]
+        },
+        {
+          "id": "CM2349-R22",
+          "row_number": 22,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "初始税务申报（如有）",
+          "client_cooperation": "提供签字、盖章等配合；支付初始申报涉及的服务费",
+          "actions": [
+            "提供签字、盖章等配合",
+            "支付初始申报涉及的服务费"
+          ]
+        },
+        {
+          "id": "CM2349-R23",
+          "row_number": 23,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "与现有家族治理/遗嘱协调",
+          "client_cooperation": "配合修改遗嘱；安排家庭会议沟通（如需要）",
+          "actions": [
+            "配合修改遗嘱",
+            "安排家庭会议沟通（如需要）"
+          ]
+        },
+        {
+          "id": "CM2349-R24",
+          "row_number": 24,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "信托年度合规维护",
+          "client_cooperation": "配合提供资产变动信息；如身份变化，及时通知家办",
+          "actions": [
+            "配合提供资产变动信息",
+            "如身份变化，及时通知家办"
+          ]
+        },
+        {
+          "id": "CM2349-R25",
+          "row_number": 25,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "受益人税务申报支持",
+          "client_cooperation": "提供家庭财务变化信息；按时完成申报",
+          "actions": [
+            "提供家庭财务变化信息",
+            "按时完成申报"
+          ]
+        },
+        {
+          "id": "CM2349-R26",
+          "row_number": 26,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "资产变化监控与方案调整",
+          "client_cooperation": "实时通知重大资产事件；配合评估方案调整",
+          "actions": [
+            "实时通知重大资产事件",
+            "配合评估方案调整"
+          ]
+        },
+        {
+          "id": "CM2349-R27",
+          "row_number": 27,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "法规变动定期复盘",
+          "client_cooperation": "参与年度复盘会议；必要时决策是否进行架构二次优化",
+          "actions": [
+            "参与年度复盘会议",
+            "必要时决策是否进行架构二次优化"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "CM2350",
+      "sku_name": "离岸信托-NRT",
+      "aliases": [
+        "CM2350",
+        "离岸信托-NRT"
+      ],
+      "source_file": "离岸信托-NRT.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "eebfd0a55378efe089aae6af338b3b33a4b3b5870f1172cc7d8e651023ebf009",
+      "source_modified": "2026-07-03T16:21:04+08:00",
+      "row_count": 19,
+      "rows": [
+        {
+          "id": "CM2350-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "1.1 委托人身份与资格确认",
+          "client_cooperation": "提供委托人过去五年的税务居民身份声明及相关证明；如实披露未来移民规划；提供护照及长期居留证明",
+          "actions": [
+            "提供委托人过去五年的税务居民身份声明及相关证明",
+            "如实披露未来移民规划",
+            "提供护照及长期居留证明"
+          ]
+        },
+        {
+          "id": "CM2350-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "1.2 委托人身份与资格确认",
+          "client_cooperation": "提供过去五年的出入境记录；说明在加拿大的住房、家庭、经济联系现状；提供加拿大银行账户及投资账户清单",
+          "actions": [
+            "提供过去五年的出入境记录",
+            "说明在加拿大的住房、家庭、经济联系现状",
+            "提供加拿大银行账户及投资账户清单"
+          ]
+        },
+        {
+          "id": "CM2350-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "1.3 受益人身份与税务居民确认",
+          "client_cooperation": "提供各受益人的加拿大税务居民身份证明（如Notice of Assessment）；列出所有潜在受益人的身份清单及取得加拿大身份的时间",
+          "actions": [
+            "提供各受益人的加拿大税务居民身份证明（如Notice of Assessment）",
+            "列出所有潜在受益人的身份清单及取得加拿大身份的时间"
+          ]
+        },
+        {
+          "id": "CM2350-R5",
+          "row_number": 5,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "1.4 传承资产属性初步确认",
+          "client_cooperation": "提供拟注入资产的大类清单及所在地信息；说明资产持有结构（个人直接持有/通过公司持有）；确认有无加拿大境内关联资产",
+          "actions": [
+            "提供拟注入资产的大类清单及所在地信息",
+            "说明资产持有结构（个人直接持有/通过公司持有）",
+            "确认有无加拿大境内关联资产"
+          ]
+        },
+        {
+          "id": "CM2350-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "2.1 拟注入资产清单与估值",
+          "client_cooperation": "提供资产清单（含类型、所在地、估值、取得时间、取得成本）；提供权属证明文件；说明资产是否设有抵押或担保",
+          "actions": [
+            "提供资产清单（含类型、所在地、估值、取得时间、取得成本）",
+            "提供权属证明文件",
+            "说明资产是否设有抵押或担保"
+          ]
+        },
+        {
+          "id": "CM2350-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "2.2 资产加拿大关联性全面排查",
+          "client_cooperation": "提供所有资产穿透后的最终底层资产信息；披露是否存在BVI/开曼等离岸公司间接持有加拿大资产的情况",
+          "actions": [
+            "提供所有资产穿透后的最终底层资产信息",
+            "披露是否存在BVI/开曼等离岸公司间接持有加拿大资产的情况"
+          ]
+        },
+        {
+          "id": "CM2350-R8",
+          "row_number": 8,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "3.1 信托设立地与适用法律选择",
+          "client_cooperation": "配合评估不同设立地的优劣；确认对设立地合规要求的接受程度；理解中国大陆信托法对信托财产独立性的保护机制",
+          "actions": [
+            "配合评估不同设立地的优劣",
+            "确认对设立地合规要求的接受程度",
+            "理解中国大陆信托法对信托财产独立性的保护机制"
+          ]
+        },
+        {
+          "id": "CM2350-R9",
+          "row_number": 9,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "3.2 信托角色与治理结构设计",
+          "client_cooperation": "确定受托人候选方案（机构/个人/组合）；明确委托人希望保留的控制权边界；确认是否引入第三方保护人",
+          "actions": [
+            "确定受托人候选方案（机构/个人/组合）",
+            "明确委托人希望保留的控制权边界",
+            "确认是否引入第三方保护人"
+          ]
+        },
+        {
+          "id": "CM2350-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "3.3 信托分配机制与收益本金化设计",
+          "client_cooperation": "明确受益人分配偏好（定期分配/事件驱动分配/全权酌情）；提供受益人当前及预期生活需求预算；确认是否接受收益延迟分配以配合本金化安排",
+          "actions": [
+            "明确受益人分配偏好（定期分配/事件驱动分配/全权酌情）",
+            "提供受益人当前及预期生活需求预算",
+            "确认是否接受收益延迟分配以配合本金化安排"
+          ]
+        },
+        {
+          "id": "CM2350-R11",
+          "row_number": 11,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "3.4 加拿大税务安全港合规设计",
+          "client_cooperation": "理解并接受安全港条件对委托人权利的限制；配合提供委托人身份变动的时间线证明；确认不对受托人发出具有约束力的分配指令",
+          "actions": [
+            "理解并接受安全港条件对委托人权利的限制",
+            "配合提供委托人身份变动的时间线证明",
+            "确认不对受托人发出具有约束力的分配指令"
+          ]
+        },
+        {
+          "id": "CM2350-R12",
+          "row_number": 12,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "4.1 信托契约与配套文件起草",
+          "client_cooperation": "审阅信托契约草案并提供反馈；确认信托财产清单的准确性与完整性；配合签署意向书及正式契约",
+          "actions": [
+            "审阅信托契约草案并提供反馈",
+            "确认信托财产清单的准确性与完整性",
+            "配合签署意向书及正式契约"
+          ]
+        },
+        {
+          "id": "CM2350-R13",
+          "row_number": 13,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "4.2 加拿大税务法律意见书取得",
+          "client_cooperation": "提供加拿大税务律师所需的所有背景材料与声明；理解法律意见书并非绝对保障，而是专业判断；接受意见书中的风险提示与前提假设",
+          "actions": [
+            "提供加拿大税务律师所需的所有背景材料与声明",
+            "理解法律意见书并非绝对保障，而是专业判断",
+            "接受意见书中的风险提示与前提假设"
+          ]
+        },
+        {
+          "id": "CM2350-R14",
+          "row_number": 14,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "4.3 T1142申报准备文件预审",
+          "client_cooperation": "协助整理信托底层资产明细用于T1142申报；确认受益人个税申报由谁负责（自行/委托会计师）；提供受益人加拿大SIN号码",
+          "actions": [
+            "协助整理信托底层资产明细用于T1142申报",
+            "确认受益人个税申报由谁负责（自行/委托会计师）",
+            "提供受益人加拿大SIN号码"
+          ]
+        },
+        {
+          "id": "CM2350-R15",
+          "row_number": 15,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "5.1 信托设立与资产注入执行",
+          "client_cooperation": "配合办理资产过户、股权变更、银行账户开立等手续；支付信托设立费用及首年管理费；确认资产注入时点并签署注入确认文件",
+          "actions": [
+            "配合办理资产过户、股权变更、银行账户开立等手续",
+            "支付信托设立费用及首年管理费",
+            "确认资产注入时点并签署注入确认文件"
+          ]
+        },
+        {
+          "id": "CM2350-R16",
+          "row_number": 16,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "5.2 首次T1142申报完成",
+          "client_cooperation": "确认受益人是否已完成当年加拿大个税申报；提供T1142申报所需补充信息；留存CRA确认回执",
+          "actions": [
+            "确认受益人是否已完成当年加拿大个税申报",
+            "提供T1142申报所需补充信息",
+            "留存CRA确认回执"
+          ]
+        },
+        {
+          "id": "CM2350-R17",
+          "row_number": 17,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "5.3 受益人沟通与文件交付",
+          "client_cooperation": "参加受益人沟通会议；接收并妥善保管信托相关文件；明确未来年度申报的对接人与时间节点",
+          "actions": [
+            "参加受益人沟通会议",
+            "接收并妥善保管信托相关文件",
+            "明确未来年度申报的对接人与时间节点"
+          ]
+        },
+        {
+          "id": "CM2350-R18",
+          "row_number": 18,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "6.1 年度T1142申报持续跟踪",
+          "client_cooperation": "每年配合提供受益人身份状态更新；确认跨境税务会计师的年度服务协议；及时关注CRA的申报截止日",
+          "actions": [
+            "每年配合提供受益人身份状态更新",
+            "确认跨境税务会计师的年度服务协议",
+            "及时关注CRA的申报截止日"
+          ]
+        },
+        {
+          "id": "CM2350-R19",
+          "row_number": 19,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "6.2 信托存续合规年度审查",
+          "client_cooperation": "配合年度合规问卷填写；及时如实告知委托人/受益人移民、税务身份变化；保留与受托人沟通记录以证明未施加不当指令",
+          "actions": [
+            "配合年度合规问卷填写",
+            "及时如实告知委托人/受益人移民、税务身份变化",
+            "保留与受托人沟通记录以证明未施加不当指令"
+          ]
+        },
+        {
+          "id": "CM2350-R20",
+          "row_number": 20,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "6.3 委托人/受益人身份变动监控",
+          "client_cooperation": "提前告知家办任何身份变动计划；在受益权代际传承时配合提供继承文件；理解身份变动可能触发的信托重构需求",
+          "actions": [
+            "提前告知家办任何身份变动计划",
+            "在受益权代际传承时配合提供继承文件",
+            "理解身份变动可能触发的信托重构需求"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "CM2382",
+      "sku_name": "银行-流通股股质",
+      "aliases": [
+        "CM2382",
+        "银行-流通股股质"
+      ],
+      "source_file": "银行-流通股股质.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "37d9faee8010ee13abeaac27c22d4b0afeaa352ff1e590b5f586aa97abbfdbbd",
+      "source_modified": "2026-07-03T16:21:06+08:00",
+      "row_count": 18,
+      "rows": [
+        {
+          "id": "CM2382-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "融资需求与目的确认",
+          "client_cooperation": "提供详细资金用途说明及佐证材料（如税单、借款合同）；告知期望融资金额与期限",
+          "actions": [
+            "提供详细资金用途说明及佐证材料（如税单、借款合同）",
+            "告知期望融资金额与期限"
+          ]
+        },
+        {
+          "id": "CM2382-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "股东身份及持股合规性排查",
+          "client_cooperation": "提供股东名册、持股明细及任何可能影响质押的限制性说明；配合身份合规核查",
+          "actions": [
+            "提供股东名册、持股明细及任何可能影响质押的限制性说明",
+            "配合身份合规核查"
+          ]
+        },
+        {
+          "id": "CM2382-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "整体可行性综合初判",
+          "client_cooperation": "如实回答家办提出的各项可行性问询；若初步不可行，考虑替代路径并配合信息提供",
+          "actions": [
+            "如实回答家办提出的各项可行性问询",
+            "若初步不可行，考虑替代路径并配合信息提供"
+          ]
+        },
+        {
+          "id": "CM2382-R5",
+          "row_number": 5,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "拟质押股票基本面核查",
+          "client_cooperation": "提供持仓明细、历史交易记录；授权家办查询中证登质押登记信息",
+          "actions": [
+            "提供持仓明细、历史交易记录",
+            "授权家办查询中证登质押登记信息"
+          ]
+        },
+        {
+          "id": "CM2382-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "存量债务及征信核查",
+          "client_cooperation": "提供全部现有质押合同、还款记录、贷款余额；提供个人/企业征信报告；披露所有对外担保",
+          "actions": [
+            "提供全部现有质押合同、还款记录、贷款余额",
+            "提供个人/企业征信报告",
+            "披露所有对外担保"
+          ]
+        },
+        {
+          "id": "CM2382-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "资金用途与还款来源匹配评估",
+          "client_cooperation": "提供纳税申报表、缴税通知书、借款合同等；明确未来现金流入计划和时间表；指定还款资金归集账户",
+          "actions": [
+            "提供纳税申报表、缴税通知书、借款合同等",
+            "明确未来现金流入计划和时间表",
+            "指定还款资金归集账户"
+          ]
+        },
+        {
+          "id": "CM2382-R8",
+          "row_number": 8,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "银行产品选择及条款比对",
+          "client_cooperation": "表明偏好（追求最低成本、最快时效还是最高质押率）；提供可接受的利率与质押率区间；考虑是否接受结构化安排",
+          "actions": [
+            "表明偏好（追求最低成本、最快时效还是最高质押率）",
+            "提供可接受的利率与质押率区间",
+            "考虑是否接受结构化安排"
+          ]
+        },
+        {
+          "id": "CM2382-R9",
+          "row_number": 9,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "质押率、利率、期限等核心要素确认",
+          "client_cooperation": "明确给出可接受的质押率、利率、期限区间，并书面确认；对浮动利率还是固定利率做出选择",
+          "actions": [
+            "明确给出可接受的质押率、利率、期限区间，并书面确认",
+            "对浮动利率还是固定利率做出选择"
+          ]
+        },
+        {
+          "id": "CM2382-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "资金流转路径及合规设计",
+          "client_cooperation": "配合开立监管账户；签署资金用途承诺函；与税务顾问确认资金到账后的个人申报义务",
+          "actions": [
+            "配合开立监管账户",
+            "签署资金用途承诺函",
+            "与税务顾问确认资金到账后的个人申报义务"
+          ]
+        },
+        {
+          "id": "CM2382-R11",
+          "row_number": 11,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "质押合同及配套法律文件审阅",
+          "client_cooperation": "配合律师审阅合同，提出对关键条款的疑问；提供签署文件所需的身份证、授权书等",
+          "actions": [
+            "配合律师审阅合同，提出对关键条款的疑问",
+            "提供签署文件所需的身份证、授权书等"
+          ]
+        },
+        {
+          "id": "CM2382-R12",
+          "row_number": 12,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "信息披露及公告方案",
+          "client_cooperation": "提前告知上市公司方，协调董办准备公告；审核公告披露内容并给出意见",
+          "actions": [
+            "提前告知上市公司方，协调董办准备公告",
+            "审核公告披露内容并给出意见"
+          ]
+        },
+        {
+          "id": "CM2382-R13",
+          "row_number": 13,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "内部决议及授权文件签署",
+          "client_cooperation": "完成内部审批，出具有效决议原件；签署授权委托书；提供盖章、签字样本",
+          "actions": [
+            "完成内部审批，出具有效决议原件",
+            "签署授权委托书",
+            "提供盖章、签字样本"
+          ]
+        },
+        {
+          "id": "CM2382-R14",
+          "row_number": 14,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "银行审批与放款跟踪",
+          "client_cooperation": "指定专人对接，及时提供补充材料；配合银行可能进行的现场访谈或尽调",
+          "actions": [
+            "指定专人对接，及时提供补充材料",
+            "配合银行可能进行的现场访谈或尽调"
+          ]
+        },
+        {
+          "id": "CM2382-R15",
+          "row_number": 15,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "办理质押登记",
+          "client_cooperation": "提供身份证明文件、质押合同编号；配合签署登记申请文件；确认登记证明",
+          "actions": [
+            "提供身份证明文件、质押合同编号",
+            "配合签署登记申请文件",
+            "确认登记证明"
+          ]
+        },
+        {
+          "id": "CM2382-R16",
+          "row_number": 16,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "资金到账与用途执行",
+          "client_cooperation": "严格按照约定用途使用资金，决不挪用；保存好转账凭证、缴款单据等；配合银行贷后检查",
+          "actions": [
+            "严格按照约定用途使用资金，决不挪用",
+            "保存好转账凭证、缴款单据等",
+            "配合银行贷后检查"
+          ]
+        },
+        {
+          "id": "CM2382-R17",
+          "row_number": 17,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "质押期间盯市与风险预警",
+          "client_cooperation": "保持对股价和预警线的关注；提前准备补仓资金或备用股票；收到通知后迅速决策并操作",
+          "actions": [
+            "保持对股价和预警线的关注",
+            "提前准备补仓资金或备用股票",
+            "收到通知后迅速决策并操作"
+          ]
+        },
+        {
+          "id": "CM2382-R18",
+          "row_number": 18,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "定期报告及合规窗口管理",
+          "client_cooperation": "阅读并理解每期质押报告；在关键时间窗口前与家办确认操作限制；避免不经意违规",
+          "actions": [
+            "阅读并理解每期质押报告",
+            "在关键时间窗口前与家办确认操作限制",
+            "避免不经意违规"
+          ]
+        },
+        {
+          "id": "CM2382-R19",
+          "row_number": 19,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "到期还款/续期/解押安排",
+          "client_cooperation": "提前备足还款资金，或在规定时间内提交续期申请；配合办理解押手续，签署相关文件",
+          "actions": [
+            "提前备足还款资金，或在规定时间内提交续期申请",
+            "配合办理解押手续，签署相关文件"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "CM2384",
+      "sku_name": "银行-并购贷",
+      "aliases": [
+        "CM2384",
+        "银行-并购贷"
+      ],
+      "source_file": "银行-并购贷.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "b43887144300743fa239b47c2a02f0fb8cdff757fda5f28e18946b55b22df648",
+      "source_modified": "2026-07-03T16:21:06+08:00",
+      "row_count": 24,
+      "rows": [
+        {
+          "id": "CM2384-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "增持/收购目标与资金缺口确认",
+          "client_cooperation": "提供目标上市公司基本信息（股票代码、当前持股比例、拟增持/收购比例）；初步说明可用于自有出资的资金规模及来源；告知是否有正在接触的交易对手方或中介",
+          "actions": [
+            "提供目标上市公司基本信息（股票代码、当前持股比例、拟增持/收购比例）",
+            "初步说明可用于自有出资的资金规模及来源",
+            "告知是否有正在接触的交易对手方或中介"
+          ]
+        },
+        {
+          "id": "CM2384-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "融资主体资格与银行准入条件确认",
+          "client_cooperation": "提供实控人/股东身份证明文件及最新征信报告；提供近三年个人及关联企业财务摘要；如实告知是否存在未决诉讼、行政处罚等",
+          "actions": [
+            "提供实控人/股东身份证明文件及最新征信报告",
+            "提供近三年个人及关联企业财务摘要",
+            "如实告知是否存在未决诉讼、行政处罚等"
+          ]
+        },
+        {
+          "id": "CM2384-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "资金用途合规性与监管适配性确认",
+          "client_cooperation": "提供收购/增持的具体交易路径说明（竞价交易、大宗交易、定增认购等）；提供与标的企业或其股东的意向协议或说明；确认是否有监管审批前置事项（如反垄断、外资审查等）",
+          "actions": [
+            "提供收购/增持的具体交易路径说明（竞价交易、大宗交易、定增认购等）",
+            "提供与标的企业或其股东的意向协议或说明",
+            "确认是否有监管审批前置事项（如反垄断、外资审查等）"
+          ]
+        },
+        {
+          "id": "CM2384-R5",
+          "row_number": 5,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "信托/SPV融资结构适用性初判",
+          "client_cooperation": "说明对持股架构的初步偏好（直接持有/信托/SPV）；提供现有持股架构图；确认是否接受因架构调整带来的额外时间与税务成本",
+          "actions": [
+            "说明对持股架构的初步偏好（直接持有/信托/SPV）",
+            "提供现有持股架构图",
+            "确认是否接受因架构调整带来的额外时间与税务成本"
+          ]
+        },
+        {
+          "id": "CM2384-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "现有持股结构与控制权图谱梳理",
+          "client_cooperation": "提供完整的股权穿透图及关联方列表；提供历次持股变动记录（转让、增持、减持）；如实告知所有代持、收益权转移、一致行动安排",
+          "actions": [
+            "提供完整的股权穿透图及关联方列表",
+            "提供历次持股变动记录（转让、增持、减持）",
+            "如实告知所有代持、收益权转移、一致行动安排"
+          ]
+        },
+        {
+          "id": "CM2384-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "标的股票质押可行性与权利负担排查",
+          "client_cooperation": "联系中登公司或券商获取最新持股及质押冻结明细；协调现有质押权人出具是否同意新增质押或变更顺位的书面意见；确认限售股解禁时间表",
+          "actions": [
+            "联系中登公司或券商获取最新持股及质押冻结明细",
+            "协调现有质押权人出具是否同意新增质押或变更顺位的书面意见",
+            "确认限售股解禁时间表"
+          ]
+        },
+        {
+          "id": "CM2384-R8",
+          "row_number": 8,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "可用于增信的核心资产与现金流盘点",
+          "client_cooperation": "提供名下主要资产清单及估值材料（房产证、持股证明、理财产品对账单等）；提供未来3年可预期的现金流预测（分红、减持计划等）；配合银行认可的评估机构进行资产评估",
+          "actions": [
+            "提供名下主要资产清单及估值材料（房产证、持股证明、理财产品对账单等）",
+            "提供未来3年可预期的现金流预测（分红、减持计划等）",
+            "配合银行认可的评估机构进行资产评估"
+          ]
+        },
+        {
+          "id": "CM2384-R9",
+          "row_number": 9,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "关联方负债与信用状况梳理",
+          "client_cooperation": "提供控制企业的最新审计报告及贷款卡信息；整理所有对外担保合同及对赌协议摘要；配合银行完成关联方尽调问卷",
+          "actions": [
+            "提供控制企业的最新审计报告及贷款卡信息",
+            "整理所有对外担保合同及对赌协议摘要",
+            "配合银行完成关联方尽调问卷"
+          ]
+        },
+        {
+          "id": "CM2384-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "融资架构路径选择（直贷/信托结构/SPV结构）",
+          "client_cooperation": "与家办及税务顾问讨论各类架构的优缺点；明确自身对控制权、税务、隐私的优先级排序；选择最终架构方向并授权推进",
+          "actions": [
+            "与家办及税务顾问讨论各类架构的优缺点",
+            "明确自身对控制权、税务、隐私的优先级排序",
+            "选择最终架构方向并授权推进"
+          ]
+        },
+        {
+          "id": "CM2384-R11",
+          "row_number": 11,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "贷款金额、期限与利率条件设计",
+          "client_cooperation": "明确自身对期限（如3/5/7年）和还款节奏的偏好；提供多家可比银行贷款方案供家办参考；配合家办进行银行询价与条款谈判",
+          "actions": [
+            "明确自身对期限（如3/5/7年）和还款节奏的偏好",
+            "提供多家可比银行贷款方案供家办参考",
+            "配合家办进行银行询价与条款谈判"
+          ]
+        },
+        {
+          "id": "CM2384-R12",
+          "row_number": 12,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "担保结构与质押率安排",
+          "client_cooperation": "配合银行完成质押物价值评估；签署担保合同及相关承诺书；开立保证金账户（如需）；明确股价下跌时的补仓资金来源预案",
+          "actions": [
+            "配合银行完成质押物价值评估",
+            "签署担保合同及相关承诺书",
+            "开立保证金账户（如需）",
+            "明确股价下跌时的补仓资金来源预案"
+          ]
+        },
+        {
+          "id": "CM2384-R13",
+          "row_number": 13,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "税务影响评估与架构优化设计",
+          "client_cooperation": "提供历史持股成本凭证及完税证明；配合税务顾问进行架构方案下的税务模拟；确认是否接受为税务优化而增加架构的复杂性",
+          "actions": [
+            "提供历史持股成本凭证及完税证明",
+            "配合税务顾问进行架构方案下的税务模拟",
+            "确认是否接受为税务优化而增加架构的复杂性"
+          ]
+        },
+        {
+          "id": "CM2384-R14",
+          "row_number": 14,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "贷款协议与担保文件起草",
+          "client_cooperation": "配合律师逐条审阅贷款协议与担保文件；提供协议所需的基础信息与证明文件；确认并签署终版文件",
+          "actions": [
+            "配合律师逐条审阅贷款协议与担保文件",
+            "提供协议所需的基础信息与证明文件",
+            "确认并签署终版文件"
+          ]
+        },
+        {
+          "id": "CM2384-R15",
+          "row_number": 15,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "信托/SPV设立与合规文件制备",
+          "client_cooperation": "提供信托/SPV设立所需的主体信息、证件、地址证明；配合受托人或GP完成KYC/反洗钱合规审查；完成出资及工商/税务登记手续",
+          "actions": [
+            "提供信托/SPV设立所需的主体信息、证件、地址证明",
+            "配合受托人或GP完成KYC/反洗钱合规审查",
+            "完成出资及工商/税务登记手续"
+          ]
+        },
+        {
+          "id": "CM2384-R16",
+          "row_number": 16,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "上市公司信息披露与合规文件准备",
+          "client_cooperation": "配合律师及券商准备权益变动报告书等信息披露文件；按时间表完成交易所/证监会的申报或公告；严格管理信息知情范围",
+          "actions": [
+            "配合律师及券商准备权益变动报告书等信息披露文件",
+            "按时间表完成交易所/证监会的申报或公告",
+            "严格管理信息知情范围"
+          ]
+        },
+        {
+          "id": "CM2384-R17",
+          "row_number": 17,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "内部决议与授权文件制备",
+          "client_cooperation": "完成借款主体的内部决议并公证（如需）；协调标的上市公司配合盖章（如需）；取得家庭成员对担保安排的书面同意",
+          "actions": [
+            "完成借款主体的内部决议并公证（如需）",
+            "协调标的上市公司配合盖章（如需）",
+            "取得家庭成员对担保安排的书面同意"
+          ]
+        },
+        {
+          "id": "CM2384-R18",
+          "row_number": 18,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "银行审批与放款条件落实",
+          "client_cooperation": "逐项完成CP清单并提交佐证材料；配合银行完成现场尽调；开立并激活资金监管账户",
+          "actions": [
+            "逐项完成CP清单并提交佐证材料",
+            "配合银行完成现场尽调",
+            "开立并激活资金监管账户"
+          ]
+        },
+        {
+          "id": "CM2384-R19",
+          "row_number": 19,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "增持/收购交易执行与资金划转",
+          "client_cooperation": "委托券商完成交易账户设置；确认大宗交易对手方及定价机制；按银行受托支付指令完成资金划转",
+          "actions": [
+            "委托券商完成交易账户设置",
+            "确认大宗交易对手方及定价机制",
+            "按银行受托支付指令完成资金划转"
+          ]
+        },
+        {
+          "id": "CM2384-R20",
+          "row_number": 20,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "质押登记与担保权益完善",
+          "client_cooperation": "配合银行及律师准备质押登记申请材料；完成中登公司在线的质押登记或临柜办理；取得质押登记证明并归档",
+          "actions": [
+            "配合银行及律师准备质押登记申请材料",
+            "完成中登公司在线的质押登记或临柜办理",
+            "取得质押登记证明并归档"
+          ]
+        },
+        {
+          "id": "CM2384-R21",
+          "row_number": 21,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "资金流向合规记录与归档",
+          "client_cooperation": "收集并整理全流程资金凭证；建立贷款资金使用台账；归档全套贷款、担保、交易文件",
+          "actions": [
+            "收集并整理全流程资金凭证",
+            "建立贷款资金使用台账",
+            "归档全套贷款、担保、交易文件"
+          ]
+        },
+        {
+          "id": "CM2384-R22",
+          "row_number": 22,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "贷后定期管理与合规报告",
+          "client_cooperation": "按银行要求定期提交财务及合规材料；安排年度质押物价值重估；保持与银行的定期沟通",
+          "actions": [
+            "按银行要求定期提交财务及合规材料",
+            "安排年度质押物价值重估",
+            "保持与银行的定期沟通"
+          ]
+        },
+        {
+          "id": "CM2384-R23",
+          "row_number": 23,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "股价波动监控与补仓/预警应对",
+          "client_cooperation": "订阅股价预警通知；股价接近警戒线时提前准备补仓资金或质押物；与银行保持密切沟通避免触发强制平仓",
+          "actions": [
+            "订阅股价预警通知",
+            "股价接近警戒线时提前准备补仓资金或质押物",
+            "与银行保持密切沟通避免触发强制平仓"
+          ]
+        },
+        {
+          "id": "CM2384-R24",
+          "row_number": 24,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "到期还款与再融资衔接",
+          "client_cooperation": "提前1年以上启动还款资金筹备；配合再融资的尽调与申请；如需减持，提前制定减持计划并完成预披露",
+          "actions": [
+            "提前1年以上启动还款资金筹备",
+            "配合再融资的尽调与申请",
+            "如需减持，提前制定减持计划并完成预披露"
+          ]
+        },
+        {
+          "id": "CM2384-R25",
+          "row_number": 25,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "架构调整与退出策略优化",
+          "client_cooperation": "委托家办定期进行持股架构体检；提供未来3-5年的财富目标与计划；配合架构调整的尽调与文件签署",
+          "actions": [
+            "委托家办定期进行持股架构体检",
+            "提供未来3-5年的财富目标与计划",
+            "配合架构调整的尽调与文件签署"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2610",
+      "sku_name": "拟上市公司改制合规事项（整体改制）",
+      "aliases": [
+        "1. 拟上市公司改制合规事项 - 整体改制",
+        "Legal-2610",
+        "拟上市公司改制合规事项（整体改制）"
+      ],
+      "source_file": "1. 拟上市公司改制合规事项 - 整体改制.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "7b72e0792b7624b791fb61ca420e9c416370bbf19529c4cf057b8dfeb651e311",
+      "source_modified": "2026-07-03T16:20:35+08:00",
+      "row_count": 23,
+      "rows": [
+        {
+          "id": "Legal-2610-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "上市意愿与目标确认",
+          "client_cooperation": "提供股东会/董事会关于上市意向的初步沟通纪要；明确期望上市时间窗口和融资目标",
+          "actions": [
+            "提供股东会/董事会关于上市意向的初步沟通纪要",
+            "明确期望上市时间窗口和融资目标"
+          ]
+        },
+        {
+          "id": "Legal-2610-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "改制路径初步判断",
+          "client_cooperation": "提供公司自设立至今的工商底档、历次股权变更协议、出资证明等文件",
+          "actions": [
+            "提供公司自设立至今的工商底档、历次股权变更协议、出资证明等文件"
+          ]
+        },
+        {
+          "id": "Legal-2610-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "股东意愿摸底与反对风险",
+          "client_cooperation": "提供公司章程、股东协议中关于股东表决权、一票否决权等特殊权利条款；协助组织股东沟通会",
+          "actions": [
+            "提供公司章程、股东协议中关于股东表决权、一票否决权等特殊权利条款",
+            "协助组织股东沟通会"
+          ]
+        },
+        {
+          "id": "Legal-2610-R5",
+          "row_number": 5,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "现有合同限制条款排查",
+          "client_cooperation": "提供所有正在履行及即将签署的重大合同复印件或清单，标注存在限制性条款的合同",
+          "actions": [
+            "提供所有正在履行及即将签署的重大合同复印件或清单，标注存在限制性条款的合同"
+          ]
+        },
+        {
+          "id": "Legal-2610-R6",
+          "row_number": 6,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "注册资本与实缴情况",
+          "client_cooperation": "提供验资报告、出资凭证及最新财务报表",
+          "actions": [
+            "提供验资报告、出资凭证及最新财务报表"
+          ]
+        },
+        {
+          "id": "Legal-2610-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "财务与资产尽职调查",
+          "client_cooperation": "开放财务系统查阅权限，提供银行流水、关联方清单及交易明细；配合访谈财务负责人",
+          "actions": [
+            "开放财务系统查阅权限，提供银行流水、关联方清单及交易明细",
+            "配合访谈财务负责人"
+          ]
+        },
+        {
+          "id": "Legal-2610-R8",
+          "row_number": 8,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "股权结构与历史沿革梳理",
+          "client_cooperation": "提供所有股权代持协议、对赌协议、历史股权转让的股东会决议及款项支付凭证",
+          "actions": [
+            "提供所有股权代持协议、对赌协议、历史股权转让的股东会决议及款项支付凭证"
+          ]
+        },
+        {
+          "id": "Legal-2610-R9",
+          "row_number": 9,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "重大债权债务梳理",
+          "client_cooperation": "提供征信报告、贷款合同、担保合同、未决诉讼清单及案件材料",
+          "actions": [
+            "提供征信报告、贷款合同、担保合同、未决诉讼清单及案件材料"
+          ]
+        },
+        {
+          "id": "Legal-2610-R10",
+          "row_number": 10,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "税务合规与税负摸底",
+          "client_cooperation": "提供历年纳税申报表、完税证明、税务处罚决定、税务体检报告",
+          "actions": [
+            "提供历年纳税申报表、完税证明、税务处罚决定、税务体检报告"
+          ]
+        },
+        {
+          "id": "Legal-2610-R11",
+          "row_number": 11,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "改制路径与时间表设计",
+          "client_cooperation": "确认改制的核心方案路径和时间表；提供对未来上市申报的时间期望",
+          "actions": [
+            "确认改制的核心方案路径和时间表",
+            "提供对未来上市申报的时间期望"
+          ]
+        },
+        {
+          "id": "Legal-2610-R12",
+          "row_number": 12,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "反对派股东清退或绕行方案设计",
+          "client_cooperation": "与家办/律师共同确定清退策略；提供反对股东的联络方式及谈判态度信息；配合确定回购/减资/重组对价",
+          "actions": [
+            "与家办/律师共同确定清退策略",
+            "提供反对股东的联络方式及谈判态度信息",
+            "配合确定回购/减资/重组对价"
+          ]
+        },
+        {
+          "id": "Legal-2610-R13",
+          "row_number": 13,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "股份公司治理架构设计",
+          "client_cooperation": "提名董事、监事候选人；提供对重大决策（如对外投资、担保、关联交易）的审批权限构想",
+          "actions": [
+            "提名董事、监事候选人",
+            "提供对重大决策（如对外投资、担保、关联交易）的审批权限构想"
+          ]
+        },
+        {
+          "id": "Legal-2610-R14",
+          "row_number": 14,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "中介机构遴选与协同方案",
+          "client_cooperation": "配合家办进行机构遴选，提供对服务质量的期望；授权家办统一协调各中介机构",
+          "actions": [
+            "配合家办进行机构遴选，提供对服务质量的期望",
+            "授权家办统一协调各中介机构"
+          ]
+        },
+        {
+          "id": "Legal-2610-R15",
+          "row_number": 15,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "审计与评估报告出具",
+          "client_cooperation": "向会所/评估机构提供完整财务资料与资产清单；签署管理层声明书；配合资产盘点",
+          "actions": [
+            "向会所/评估机构提供完整财务资料与资产清单",
+            "签署管理层声明书",
+            "配合资产盘点"
+          ]
+        },
+        {
+          "id": "Legal-2610-R16",
+          "row_number": 16,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "法律文件草拟与审阅",
+          "client_cooperation": "审阅文件草案，提出修改意见；确认发起人名单及认购股份数；提供需要纳入章程的特殊约定",
+          "actions": [
+            "审阅文件草案，提出修改意见",
+            "确认发起人名单及认购股份数",
+            "提供需要纳入章程的特殊约定"
+          ]
+        },
+        {
+          "id": "Legal-2610-R17",
+          "row_number": 17,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "内部决策程序推进",
+          "client_cooperation": "协调召开股东会、董事会、职工代表大会；推动各方签署决议及发起人协议；如有反对股东，按既定方案执行清退或替代程序",
+          "actions": [
+            "协调召开股东会、董事会、职工代表大会",
+            "推动各方签署决议及发起人协议",
+            "如有反对股东，按既定方案执行清退或替代程序"
+          ]
+        },
+        {
+          "id": "Legal-2610-R18",
+          "row_number": 18,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "名称预核准及证照变更准备",
+          "client_cooperation": "提供所有现有证照、专利/商标证书、银行账户信息、对外投资明细；选定新公司名称；提前通知银行等机构",
+          "actions": [
+            "提供所有现有证照、专利/商标证书、银行账户信息、对外投资明细",
+            "选定新公司名称",
+            "提前通知银行等机构"
+          ]
+        },
+        {
+          "id": "Legal-2610-R19",
+          "row_number": 19,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "创立大会召开与股份公司设立登记",
+          "client_cooperation": "召集并出席创立大会；签署相关设立文件；提供法定代表人、董事、监事、住所等信息；配合在工商局进行设立登记",
+          "actions": [
+            "召集并出席创立大会",
+            "签署相关设立文件",
+            "提供法定代表人、董事、监事、住所等信息",
+            "配合在工商局进行设立登记"
+          ]
+        },
+        {
+          "id": "Legal-2610-R20",
+          "row_number": 20,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "股份公司税务登记与银行账户切换",
+          "client_cooperation": "指派专人负责跟进各项变更手续；提供最新证照、印鉴、法人身份证明等必要材料",
+          "actions": [
+            "指派专人负责跟进各项变更手续",
+            "提供最新证照、印鉴、法人身份证明等必要材料"
+          ]
+        },
+        {
+          "id": "Legal-2610-R21",
+          "row_number": 21,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "机构间衔接与疑难问题应对",
+          "client_cooperation": "全程参与关键协调会议；在出现分歧时及时作出商务决策",
+          "actions": [
+            "全程参与关键协调会议",
+            "在出现分歧时及时作出商务决策"
+          ]
+        },
+        {
+          "id": "Legal-2610-R22",
+          "row_number": 22,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "股份公司合规运营支持",
+          "client_cooperation": "配备董秘或相关人员，接受合规培训；按新三会制度按期召开会议并形成书面决议",
+          "actions": [
+            "配备董秘或相关人员，接受合规培训",
+            "按新三会制度按期召开会议并形成书面决议"
+          ]
+        },
+        {
+          "id": "Legal-2610-R23",
+          "row_number": 23,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "文件归档与监管备查准备",
+          "client_cooperation": "配合整理所有决议、协议、报告及审批底稿；确认电子/纸质档案保管责任人",
+          "actions": [
+            "配合整理所有决议、协议、报告及审批底稿",
+            "确认电子/纸质档案保管责任人"
+          ]
+        },
+        {
+          "id": "Legal-2610-R24",
+          "row_number": 24,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "上市辅导与后续时间表衔接",
+          "client_cooperation": "配合券商签订辅导协议；提供辅导阶段所需的公司资料与访谈安排",
+          "actions": [
+            "配合券商签订辅导协议",
+            "提供辅导阶段所需的公司资料与访谈安排"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2613",
+      "sku_name": "拟上市公司辅导期（合规事项）",
+      "aliases": [
+        "Legal-2613",
+        "拟上市公司辅导期 - 合规事项",
+        "拟上市公司辅导期（合规事项）"
+      ],
+      "source_file": "拟上市公司辅导期 - 合规事项.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "53c511af7a013b1675ec468a4bd6e847fed0cf37877e5890acc877be63cb7f27",
+      "source_modified": "2026-07-03T16:20:36+08:00",
+      "row_count": 23,
+      "rows": [
+        {
+          "id": "Legal-2613-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "上市目标与时间表确认",
+          "client_cooperation": "提供公司基本信息、上市意向说明及时间预期；与家办坦诚沟通战略目标与风险偏好。",
+          "actions": [
+            "提供公司基本信息、上市意向说明及时间预期",
+            "与家办坦诚沟通战略目标与风险偏好。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "公司治理现状诊断",
+          "client_cooperation": "提供公司章程、近三年三会决议及记录、内控手册；安排核心高管接受访谈。",
+          "actions": [
+            "提供公司章程、近三年三会决议及记录、内控手册",
+            "安排核心高管接受访谈。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "辅导对象合规基础评估",
+          "client_cooperation": "提供董监高及重要股东的完整简历、无犯罪记录证明；安排相关人员准备参加知识测试。",
+          "actions": [
+            "提供董监高及重要股东的完整简历、无犯罪记录证明",
+            "安排相关人员准备参加知识测试。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R5",
+          "row_number": 5,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "历史出资与资产权属初检",
+          "client_cooperation": "提供全套验资报告、资产评估报告、专利证书、出资凭证；说明无形资产形成过程。",
+          "actions": [
+            "提供全套验资报告、资产评估报告、专利证书、出资凭证",
+            "说明无形资产形成过程。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "历史沿革与股权结构详细核查",
+          "client_cooperation": "提供自设立以来的全套工商档案、股东名册、历次股权转让协议、代持协议（如有）、对赌协议等；配合提供相关方信息。",
+          "actions": [
+            "提供自设立以来的全套工商档案、股东名册、历次股权转让协议、代持协议（如有）、对赌协议等",
+            "配合提供相关方信息。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "关联方及关联交易全面梳理",
+          "client_cooperation": "提供实际控制人及其近亲属控制的企业清单、近三年关联交易合同、定价凭证、资金往来流水。",
+          "actions": [
+            "提供实际控制人及其近亲属控制的企业清单、近三年关联交易合同、定价凭证、资金往来流水。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R8",
+          "row_number": 8,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "同业竞争及整体上市可行性分析",
+          "client_cooperation": "提供实际控制人控制的所有企业主营业务说明；配合出具避免同业竞争承诺函；若需资产重组，提供初步意向。",
+          "actions": [
+            "提供实际控制人控制的所有企业主营业务说明",
+            "配合出具避免同业竞争承诺函",
+            "若需资产重组，提供初步意向。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R9",
+          "row_number": 9,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "财务内控与税务合规盘点",
+          "client_cooperation": "提供近三年审计报告、纳税申报表及完税证明、全部银行流水、现行财务制度文件；配合进行内控测试。",
+          "actions": [
+            "提供近三年审计报告、纳税申报表及完税证明、全部银行流水、现行财务制度文件",
+            "配合进行内控测试。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "中介机构选聘与协作方案",
+          "client_cooperation": "明确选聘标准与预算；参与中介机构评选会议；与选定的机构签订服务协议；指定内部对接窗口。",
+          "actions": [
+            "明确选聘标准与预算",
+            "参与中介机构评选会议",
+            "与选定的机构签订服务协议",
+            "指定内部对接窗口。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R11",
+          "row_number": 11,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "公司治理与内控制度整改方案",
+          "client_cooperation": "审批整改方案；明确各整改事项的责任人与完成时限；督促各部门按方案落实制度修订。",
+          "actions": [
+            "审批整改方案",
+            "明确各整改事项的责任人与完成时限",
+            "督促各部门按方案落实制度修订。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R12",
+          "row_number": 12,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "股权结构优化与风险预案",
+          "client_cooperation": "提供反对派股东沟通记录与真实诉求；配合与相关方谈判或签署法律文件；如涉及重组，提供资产剥离意向清单。",
+          "actions": [
+            "提供反对派股东沟通记录与真实诉求",
+            "配合与相关方谈判或签署法律文件",
+            "如涉及重组，提供资产剥离意向清单。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R13",
+          "row_number": 13,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "信息披露与辅导计划排期",
+          "client_cooperation": "确认信息披露敏感度边界；提供业务、财务等编制所需数据；审核披露材料草稿并提出修改意见。",
+          "actions": [
+            "确认信息披露敏感度边界",
+            "提供业务、财务等编制所需数据",
+            "审核披露材料草稿并提出修改意见。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R14",
+          "row_number": 14,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "辅导协议及备案文件",
+          "client_cooperation": "提供公司证照、章程等基础文件；签署辅导协议；配合在所在地证监会派出机构办理备案登记。",
+          "actions": [
+            "提供公司证照、章程等基础文件",
+            "签署辅导协议",
+            "配合在所在地证监会派出机构办理备案登记。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R15",
+          "row_number": 15,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "公司治理制度与三会文件",
+          "client_cooperation": "组织董事会/股东会审议并通过新制度；签署全套决议文件；按需办理工商备案。",
+          "actions": [
+            "组织董事会/股东会审议并通过新制度",
+            "签署全套决议文件",
+            "按需办理工商备案。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R16",
+          "row_number": 16,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "辅导培训与考试材料",
+          "client_cooperation": "提供培训场地与设备；组织应考人员按时参训；督促高管认真备考，严禁作弊。",
+          "actions": [
+            "提供培训场地与设备",
+            "组织应考人员按时参训",
+            "督促高管认真备考，严禁作弊。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R17",
+          "row_number": 17,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "招股说明书及申报底稿",
+          "client_cooperation": "按照底稿清单及时提供业务、财务、法律相关资料；配合券商、律师、会计师进行尽职调查；认真审核招股书内容。",
+          "actions": [
+            "按照底稿清单及时提供业务、财务、法律相关资料",
+            "配合券商、律师、会计师进行尽职调查",
+            "认真审核招股书内容。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R18",
+          "row_number": 18,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "辅导培训与考试实施",
+          "client_cooperation": "确保应考人员到场参试，杜绝作弊、无故缺席；对未通过者安排补考并督促学习。",
+          "actions": [
+            "确保应考人员到场参试，杜绝作弊、无故缺席",
+            "对未通过者安排补考并督促学习。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R19",
+          "row_number": 19,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "社会公告及备案报告报送",
+          "client_cooperation": "联系当地报纸并按期刊登公告；确认公告内容与格式；配合券商按时提供备案报告所需材料。",
+          "actions": [
+            "联系当地报纸并按期刊登公告",
+            "确认公告内容与格式",
+            "配合券商按时提供备案报告所需材料。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R20",
+          "row_number": 20,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "整改措施落实与督导",
+          "client_cooperation": "逐项落实整改并保留全套支撑材料；接受辅导机构的现场检查；对已完成整改事项签字确认。",
+          "actions": [
+            "逐项落实整改并保留全套支撑材料",
+            "接受辅导机构的现场检查",
+            "对已完成整改事项签字确认。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R21",
+          "row_number": 21,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "辅导工作总结与上市推荐",
+          "client_cooperation": "审核辅导总结报告内容；配合证监局验收评估；若需延长，保持耐心并继续配合后续工作。",
+          "actions": [
+            "审核辅导总结报告内容",
+            "配合证监局验收评估",
+            "若需延长，保持耐心并继续配合后续工作。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R22",
+          "row_number": 22,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "上市后持续合规支持",
+          "client_cooperation": "建立内部合规部门并指定专员；及时向家办及中介通报重大事项；配合年度审计及定期信息披露。",
+          "actions": [
+            "建立内部合规部门并指定专员",
+            "及时向家办及中介通报重大事项",
+            "配合年度审计及定期信息披露。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R23",
+          "row_number": 23,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "后续法律问题与危机应对",
+          "client_cooperation": "第一时间向家办通报危机事件；不对外随意发声；配合制定统一应对策略并授权执行。",
+          "actions": [
+            "第一时间向家办通报危机事件",
+            "不对外随意发声",
+            "配合制定统一应对策略并授权执行。"
+          ]
+        },
+        {
+          "id": "Legal-2613-R24",
+          "row_number": 24,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "股权结构及员工持股平台维护",
+          "client_cooperation": "提供完整的员工股权激励计划规则及名单；发生变动时及时通知管理方；配合评估并设立持股信托（如需）。",
+          "actions": [
+            "提供完整的员工股权激励计划规则及名单",
+            "发生变动时及时通知管理方",
+            "配合评估并设立持股信托（如需）。"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2614",
+      "sku_name": "股权代持及应对（无法还原到被代持人名下）",
+      "aliases": [
+        "1. 股权代持及应对 - 无法还原到被代持人名下",
+        "Legal-2614",
+        "股权代持及应对（无法还原到被代持人名下）"
+      ],
+      "source_file": "1. 股权代持及应对 - 无法还原到被代持人名下.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "b5d4c84214cc38c8f46636fc29b4a0a99bb366149a58387b2cd56d590dc107da",
+      "source_modified": "2026-07-03T16:20:34+08:00",
+      "row_count": 24,
+      "rows": [
+        {
+          "id": "Legal-2614-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "代持背景与目的确认",
+          "client_cooperation": "如实说明代持的真实原因与核心诉求；提供目标企业基本信息（行业、上市计划、股东结构）",
+          "actions": [
+            "如实说明代持的真实原因与核心诉求",
+            "提供目标企业基本信息（行业、上市计划、股东结构）"
+          ]
+        },
+        {
+          "id": "Legal-2614-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "身份限制与还原障碍识别",
+          "client_cooperation": "提供自身身份信息及是否存在行业准入限制、外资限制等合规障碍；告知此前是否尝试过还原及其结果",
+          "actions": [
+            "提供自身身份信息及是否存在行业准入限制、外资限制等合规障碍",
+            "告知此前是否尝试过还原及其结果"
+          ]
+        },
+        {
+          "id": "Legal-2614-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "代持协议效力初步判断",
+          "client_cooperation": "如实披露目标企业性质（是否为上市公司/金融机构/受特殊监管企业）；提供目标企业所处行业信息",
+          "actions": [
+            "如实披露目标企业性质（是否为上市公司/金融机构/受特殊监管企业）",
+            "提供目标企业所处行业信息"
+          ]
+        },
+        {
+          "id": "Legal-2614-R5",
+          "row_number": 5,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "整体方案可行性评估",
+          "client_cooperation": "明确自身风险承受能力与预期投入成本；确认是否接受替代方案（如近亲属代持、信托持有）",
+          "actions": [
+            "明确自身风险承受能力与预期投入成本",
+            "确认是否接受替代方案（如近亲属代持、信托持有）"
+          ]
+        },
+        {
+          "id": "Legal-2614-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "代持股权权属与出资核查",
+          "client_cooperation": "提供全部出资凭证（转账记录、收款凭证、验资报告、出资证明书）；梳理出资时间线与资金来源",
+          "actions": [
+            "提供全部出资凭证（转账记录、收款凭证、验资报告、出资证明书）",
+            "梳理出资时间线与资金来源"
+          ]
+        },
+        {
+          "id": "Legal-2614-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "现有代持文件与证据链盘点",
+          "client_cooperation": "提供现有全部代持协议及相关文件；补充提供沟通记录、分红记录等辅助证据；协助联系代持人确认文件完整性",
+          "actions": [
+            "提供现有全部代持协议及相关文件",
+            "补充提供沟通记录、分红记录等辅助证据",
+            "协助联系代持人确认文件完整性"
+          ]
+        },
+        {
+          "id": "Legal-2614-R8",
+          "row_number": 8,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "代持人及关联方风险摸排",
+          "client_cooperation": "协助了解代持人婚姻、健康、债务等基本情况；协调代持人出具相关书面说明或承诺；推动代持人安排遗嘱",
+          "actions": [
+            "协助了解代持人婚姻、健康、债务等基本情况",
+            "协调代持人出具相关书面说明或承诺",
+            "推动代持人安排遗嘱"
+          ]
+        },
+        {
+          "id": "Legal-2614-R9",
+          "row_number": 9,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "公司内部认可度确认",
+          "client_cooperation": "梳理并收集其他股东知情或认可的证据（如历史沟通记录、分红签收记录、会议参与记录）；协助评估是否需要正式取得股东书面确认",
+          "actions": [
+            "梳理并收集其他股东知情或认可的证据（如历史沟通记录、分红签收记录、会议参与记录）",
+            "协助评估是否需要正式取得股东书面确认"
+          ]
+        },
+        {
+          "id": "Legal-2614-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "代持架构加固与优化",
+          "client_cooperation": "明确对控制权、隐私保护、成本预算、操作灵活性的偏好排序；确认是否接受引入信托等第三方机构",
+          "actions": [
+            "明确对控制权、隐私保护、成本预算、操作灵活性的偏好排序",
+            "确认是否接受引入信托等第三方机构"
+          ]
+        },
+        {
+          "id": "Legal-2614-R11",
+          "row_number": 11,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "替代持有方案设计",
+          "client_cooperation": "提供近亲属名单及关系证明（如考虑近亲属代持）；明确对受益分配和信托管理的初步设想；配合进行信托架构的KYC尽调",
+          "actions": [
+            "提供近亲属名单及关系证明（如考虑近亲属代持）",
+            "明确对受益分配和信托管理的初步设想",
+            "配合进行信托架构的KYC尽调"
+          ]
+        },
+        {
+          "id": "Legal-2614-R12",
+          "row_number": 12,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "代持人约束与担保措施",
+          "client_cooperation": "确认是否同意办理股权质押及配合相关程序；确认违约责任设定的严格程度",
+          "actions": [
+            "确认是否同意办理股权质押及配合相关程序",
+            "确认违约责任设定的严格程度"
+          ]
+        },
+        {
+          "id": "Legal-2614-R13",
+          "row_number": 13,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "税务影响分析与优化",
+          "client_cooperation": "提供历史分红记录及税务处理方式；确认未来的分红计划和退出预期；配合提供税务居民身份信息",
+          "actions": [
+            "提供历史分红记录及税务处理方式",
+            "确认未来的分红计划和退出预期",
+            "配合提供税务居民身份信息"
+          ]
+        },
+        {
+          "id": "Legal-2614-R14",
+          "row_number": 14,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "代持协议及配套文件起草",
+          "client_cooperation": "审核协议内容并提供反馈意见；协调代持人及其配偶参与文件签署；确认协议条款可接受性",
+          "actions": [
+            "审核协议内容并提供反馈意见",
+            "协调代持人及其配偶参与文件签署",
+            "确认协议条款可接受性"
+          ]
+        },
+        {
+          "id": "Legal-2614-R15",
+          "row_number": 15,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "股东会决议及公司内部文件制备",
+          "client_cooperation": "协调目标公司配合出具股东会决议或股东确认文件；推动过半数股东签署知情确认函；确认公司章程是否需要相应调整",
+          "actions": [
+            "协调目标公司配合出具股东会决议或股东确认文件",
+            "推动过半数股东签署知情确认函",
+            "确认公司章程是否需要相应调整"
+          ]
+        },
+        {
+          "id": "Legal-2614-R16",
+          "row_number": 16,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "质押/担保登记文件准备",
+          "client_cooperation": "配合提供质押登记所需身份及主体文件；确认质押条款与代持协议的衔接",
+          "actions": [
+            "配合提供质押登记所需身份及主体文件",
+            "确认质押条款与代持协议的衔接"
+          ]
+        },
+        {
+          "id": "Legal-2614-R17",
+          "row_number": 17,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "替代架构设立文件（如适用）",
+          "client_cooperation": "如设立信托：配合信托公司完成尽职调查，明确信托目的、受益人及分配规则；如转至近亲属：协调近亲属签署新代持协议",
+          "actions": [
+            "如设立信托：配合信托公司完成尽职调查，明确信托目的、受益人及分配规则",
+            "如转至近亲属：协调近亲属签署新代持协议"
+          ]
+        },
+        {
+          "id": "Legal-2614-R18",
+          "row_number": 18,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "协议签署、公证及告知",
+          "client_cooperation": "按约定时间安排本人、代持人、配偶等签署全部文件；配合办理公证（如需）；确认信息披露范围与节奏",
+          "actions": [
+            "按约定时间安排本人、代持人、配偶等签署全部文件",
+            "配合办理公证（如需）",
+            "确认信息披露范围与节奏"
+          ]
+        },
+        {
+          "id": "Legal-2614-R19",
+          "row_number": 19,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "股权质押登记手续办理",
+          "client_cooperation": "提供质押登记所需身份证明、主体资格文件；配合完成工商窗口或线上提交；妥善保管质押登记回执",
+          "actions": [
+            "提供质押登记所需身份证明、主体资格文件",
+            "配合完成工商窗口或线上提交",
+            "妥善保管质押登记回执"
+          ]
+        },
+        {
+          "id": "Legal-2614-R20",
+          "row_number": 20,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "公司内部程序履行",
+          "client_cooperation": "配合公司完成内部程序（股东会召开、决议签署）；协助办理工商备案（如需）；确认公司内部文件归档位置",
+          "actions": [
+            "配合公司完成内部程序（股东会召开、决议签署）",
+            "协助办理工商备案（如需）",
+            "确认公司内部文件归档位置"
+          ]
+        },
+        {
+          "id": "Legal-2614-R21",
+          "row_number": 21,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "资金流转与税务申报",
+          "client_cooperation": "按方案要求完成资金划转；配合提供税务申报所需资料；确认是否需要就方案执行进行税务备案",
+          "actions": [
+            "按方案要求完成资金划转",
+            "配合提供税务申报所需资料",
+            "确认是否需要就方案执行进行税务备案"
+          ]
+        },
+        {
+          "id": "Legal-2614-R22",
+          "row_number": 22,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "代持关系持续监控",
+          "client_cooperation": "配合建立定期沟通机制；及时通报自身或代持人重大变化；协助维护与代持人的良好关系",
+          "actions": [
+            "配合建立定期沟通机制",
+            "及时通报自身或代持人重大变化",
+            "协助维护与代持人的良好关系"
+          ]
+        },
+        {
+          "id": "Legal-2614-R23",
+          "row_number": 23,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "文件管理与证据动态保全",
+          "client_cooperation": "将全套文件原件交由家办或委托机构保管；新增出资及分红记录及时归档；定期检查文件完整性",
+          "actions": [
+            "将全套文件原件交由家办或委托机构保管",
+            "新增出资及分红记录及时归档",
+            "定期检查文件完整性"
+          ]
+        },
+        {
+          "id": "Legal-2614-R24",
+          "row_number": 24,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "应急事件响应与预案启动",
+          "client_cooperation": "在突发事件发生时第一时间通知家办；按照预案配合启动法律程序或资产处置；协助提供应急所需的相关证明文件",
+          "actions": [
+            "在突发事件发生时第一时间通知家办",
+            "按照预案配合启动法律程序或资产处置",
+            "协助提供应急所需的相关证明文件"
+          ]
+        },
+        {
+          "id": "Legal-2614-R25",
+          "row_number": 25,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "长期架构优化与退出规划",
+          "client_cooperation": "定期与家办沟通个人及家庭情况变化；根据建议择机启动架构优化；在身份限制消除后主动触发还原程序",
+          "actions": [
+            "定期与家办沟通个人及家庭情况变化",
+            "根据建议择机启动架构优化",
+            "在身份限制消除后主动触发还原程序"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2615",
+      "sku_name": "股权代持及应对（可以还原到被代持人名下）",
+      "aliases": [
+        "2. 股权代持及应对 - 可以还原到被代持人名下",
+        "Legal-2615",
+        "股权代持及应对（可以还原到被代持人名下）"
+      ],
+      "source_file": "2. 股权代持及应对 - 可以还原到被代持人名下.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "7847b90102d3fad1dd23b2d0bd6c54a0377cf6c33748ea139acc1f62d468f125",
+      "source_modified": "2026-07-03T16:20:34+08:00",
+      "row_count": 19,
+      "rows": [
+        {
+          "id": "Legal-2615-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "代持还原目标与约束确认",
+          "client_cooperation": "明确说明代持还原的真实目的及期望时间表；如实披露自身身份背景及是否存在股东资格限制；说明代持还原后的持股规划（长期持有/后续转让/上市安排）",
+          "actions": [
+            "明确说明代持还原的真实目的及期望时间表",
+            "如实披露自身身份背景及是否存在股东资格限制",
+            "说明代持还原后的持股规划（长期持有/后续转让/上市安排）"
+          ]
+        },
+        {
+          "id": "Legal-2615-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "代持原因及合法性评估",
+          "client_cooperation": "如实陈述设立代持的历史背景和真实原因；提供代持设立时签署的任何协议或书面记录；说明是否曾向公司其他股东披露代持情况",
+          "actions": [
+            "如实陈述设立代持的历史背景和真实原因",
+            "提供代持设立时签署的任何协议或书面记录",
+            "说明是否曾向公司其他股东披露代持情况"
+          ]
+        },
+        {
+          "id": "Legal-2615-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "代持还原后控制权及治理安排预判",
+          "client_cooperation": "明确显名后在公司治理中的角色定位；说明是否有与其他股东的一致行动安排或表决权协议",
+          "actions": [
+            "明确显名后在公司治理中的角色定位",
+            "说明是否有与其他股东的一致行动安排或表决权协议"
+          ]
+        },
+        {
+          "id": "Legal-2615-R5",
+          "row_number": 5,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "代持股权现状梳理",
+          "client_cooperation": "提供被代持股权的详细信息（公司名称、注册资本、持股比例、出资实缴状态）；配合确认股权是否存在权利受限情形；协助梳理公司历次股权变动记录",
+          "actions": [
+            "提供被代持股权的详细信息（公司名称、注册资本、持股比例、出资实缴状态）",
+            "配合确认股权是否存在权利受限情形",
+            "协助梳理公司历次股权变动记录"
+          ]
+        },
+        {
+          "id": "Legal-2615-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "代持相关方关系梳理",
+          "client_cooperation": "提供名义股东的完整身份信息及联系方式；如实说明名义股东目前是否存在婚姻纠纷、债务问题或健康隐患；协助评估名义股东的配合意愿",
+          "actions": [
+            "提供名义股东的完整身份信息及联系方式",
+            "如实说明名义股东目前是否存在婚姻纠纷、债务问题或健康隐患",
+            "协助评估名义股东的配合意愿"
+          ]
+        },
+        {
+          "id": "Legal-2615-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "历史文件及出资凭证整理",
+          "client_cooperation": "收集并整理全部与代持相关的历史文件，包括但不限于：出资转账记录、代持协议（含历史版本）、名义股东出具的声明文件、分红记录；协助追溯并向名义股东核实文件的完整性与真实性",
+          "actions": [
+            "收集并整理全部与代持相关的历史文件，包括但不限于：出资转账记录、代持协议（含历史版本）、名义股东出具的声明文件、分红记录",
+            "协助追溯并向名义股东核实文件的完整性与真实性"
+          ]
+        },
+        {
+          "id": "Legal-2615-R8",
+          "row_number": 8,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "还原路径选择",
+          "client_cooperation": "与家办及律师充分讨论不同还原路径的利弊；明确对还原后持股结构的具体偏好（个人直接持有/通过有限公司持有/通过信托持有）；如涉及还原至近亲属，需协调近亲属配合意愿",
+          "actions": [
+            "与家办及律师充分讨论不同还原路径的利弊",
+            "明确对还原后持股结构的具体偏好（个人直接持有/通过有限公司持有/通过信托持有）",
+            "如涉及还原至近亲属，需协调近亲属配合意愿"
+          ]
+        },
+        {
+          "id": "Legal-2615-R9",
+          "row_number": 9,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "税务影响分析",
+          "client_cooperation": "提供完整的出资成本证明文件；配合税务顾问进行税务影响测算；确认是否可接受特定税务处理方案的成本及时间安排",
+          "actions": [
+            "提供完整的出资成本证明文件",
+            "配合税务顾问进行税务影响测算",
+            "确认是否可接受特定税务处理方案的成本及时间安排"
+          ]
+        },
+        {
+          "id": "Legal-2615-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "风险预案设计",
+          "client_cooperation": "与家办及律师讨论并确认风险应对预案；在律师协助下与名义股东进行预沟通，明确配合义务及违约后果",
+          "actions": [
+            "与家办及律师讨论并确认风险应对预案",
+            "在律师协助下与名义股东进行预沟通，明确配合义务及违约后果"
+          ]
+        },
+        {
+          "id": "Legal-2615-R11",
+          "row_number": 11,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "股权代持协议及配套文件制备",
+          "client_cooperation": "配合律师提供所需信息以便起草协议及配套文件；协调名义股东及其配偶/家庭成员签署相关声明文件；审阅文件条款并确认与自身意愿一致",
+          "actions": [
+            "配合律师提供所需信息以便起草协议及配套文件",
+            "协调名义股东及其配偶/家庭成员签署相关声明文件",
+            "审阅文件条款并确认与自身意愿一致"
+          ]
+        },
+        {
+          "id": "Legal-2615-R12",
+          "row_number": 12,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "公司内部决议及工商文件制备",
+          "client_cooperation": "确认股东会召开时间及议程；协助与公司及其他股东沟通决议内容；提供工商变更登记所需的身份证明及签字材料",
+          "actions": [
+            "确认股东会召开时间及议程",
+            "协助与公司及其他股东沟通决议内容",
+            "提供工商变更登记所需的身份证明及签字材料"
+          ]
+        },
+        {
+          "id": "Legal-2615-R13",
+          "row_number": 13,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "税务申报文件制备",
+          "client_cooperation": "配合提供税务申报所需的个人信息及出资证明文件；确认是否授权中介机构代理税务申报",
+          "actions": [
+            "配合提供税务申报所需的个人信息及出资证明文件",
+            "确认是否授权中介机构代理税务申报"
+          ]
+        },
+        {
+          "id": "Legal-2615-R14",
+          "row_number": 14,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "协议签署与文件确认",
+          "client_cooperation": "协调名义股东完成全部文件的签署；配合办理公证手续（如需要）；对签署完成的文件进行最终审核确认",
+          "actions": [
+            "协调名义股东完成全部文件的签署",
+            "配合办理公证手续（如需要）",
+            "对签署完成的文件进行最终审核确认"
+          ]
+        },
+        {
+          "id": "Legal-2615-R15",
+          "row_number": 15,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "股东会召开及决议确认",
+          "client_cooperation": "配合确定股东会召开日期及议程；协助确保法定通知程序完整；出席股东会或授权代表出席并行使表决权",
+          "actions": [
+            "配合确定股东会召开日期及议程",
+            "协助确保法定通知程序完整",
+            "出席股东会或授权代表出席并行使表决权"
+          ]
+        },
+        {
+          "id": "Legal-2615-R16",
+          "row_number": 16,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "工商变更登记办理",
+          "client_cooperation": "提供工商变更登记所需的签字及身份证明文件；配合工商部门可能的问询或补充材料要求；协助协调名义股东配合签署工商文件",
+          "actions": [
+            "提供工商变更登记所需的签字及身份证明文件",
+            "配合工商部门可能的问询或补充材料要求",
+            "协助协调名义股东配合签署工商文件"
+          ]
+        },
+        {
+          "id": "Legal-2615-R17",
+          "row_number": 17,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "税务申报及完税",
+          "client_cooperation": "按税务顾问指导完成申报资料的签字确认；配合缴纳相关税款（如适用）；索取并妥善保管完税证明原件",
+          "actions": [
+            "按税务顾问指导完成申报资料的签字确认",
+            "配合缴纳相关税款（如适用）",
+            "索取并妥善保管完税证明原件"
+          ]
+        },
+        {
+          "id": "Legal-2615-R18",
+          "row_number": 18,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "文件归档与证据保全",
+          "client_cooperation": "将所有文件原件交由家办或指定安全机构保管；制定并更新个人财产清单，将已还原的股权明确记载；确认所有文件副本已交律师备案",
+          "actions": [
+            "将所有文件原件交由家办或指定安全机构保管",
+            "制定并更新个人财产清单，将已还原的股权明确记载",
+            "确认所有文件副本已交律师备案"
+          ]
+        },
+        {
+          "id": "Legal-2615-R19",
+          "row_number": 19,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "后续跟踪与持续咨询",
+          "client_cooperation": "配合家办定期更新个人及家族资产状况；如发生可能影响已还原股权的事件（婚姻变动/债务纠纷/再转让计划），及时告知家办；配合完成定期回顾会议",
+          "actions": [
+            "配合家办定期更新个人及家族资产状况",
+            "如发生可能影响已还原股权的事件（婚姻变动/债务纠纷/再转让计划），及时告知家办",
+            "配合完成定期回顾会议"
+          ]
+        },
+        {
+          "id": "Legal-2615-R20",
+          "row_number": 20,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "应急预案维护",
+          "client_cooperation": "配合家办制定并定期更新个人应急预案（包括遗嘱、财产清单等）；将已还原股权纳入个人及家族财富整体规划中；如适用，配合设立信托等资产保护架构",
+          "actions": [
+            "配合家办制定并定期更新个人应急预案（包括遗嘱、财产清单等）",
+            "将已还原股权纳入个人及家族财富整体规划中",
+            "如适用，配合设立信托等资产保护架构"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2627",
+      "sku_name": "权力过渡安排（独生子女接班，生前股权不转让）",
+      "aliases": [
+        "2. 权力过渡安排 - 独生子女接班，生前股权不转让",
+        "Legal-2627",
+        "权力过渡安排（独生子女接班，生前股权不转让）"
+      ],
+      "source_file": "2. 权力过渡安排 - 独生子女接班，生前股权不转让.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "e544433bccd694c3dc5517d3f79a999106b70743d9fbb784d2dce67b1957e88d",
+      "source_modified": "2026-07-03T16:20:36+08:00",
+      "row_count": 18,
+      "rows": [
+        {
+          "id": "Legal-2627-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "传承目标与约束确认",
+          "client_cooperation": "1. 提供独生子女的基本信息（年龄、婚姻状况、职业背景、是否已在企业任职等）；2. 明确表达传承的核心诉求与底线（如是否坚决要求生前不转让股权、对子女配偶参与企业经营的顾虑程度等）；3. 提供家族成员基本情况及家庭内部关系说明",
+          "actions": [
+            "提供独生子女的基本信息（年龄、婚姻状况、职业背景、是否已在企业任职等）",
+            "明确表达传承的核心诉求与底线（如是否坚决要求生前不转让股权、对子女配偶参与企业经营的顾虑程度等）",
+            "提供家族成员基本情况及家庭内部关系说明"
+          ]
+        },
+        {
+          "id": "Legal-2627-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "独生子女接班意愿与能力评估",
+          "client_cooperation": "1. 安排家办与独生子女进行一对一坦诚沟通，了解其真实想法与中长期职业规划；2. 提供子女的完整教育背景、历任工作履历、在家族企业的过往任职经历等客观信息；3. 诚实反馈子女在经营管理能力上的具体优势与短板",
+          "actions": [
+            "安排家办与独生子女进行一对一坦诚沟通，了解其真实想法与中长期职业规划",
+            "提供子女的完整教育背景、历任工作履历、在家族企业的过往任职经历等客观信息",
+            "诚实反馈子女在经营管理能力上的具体优势与短板"
+          ]
+        },
+        {
+          "id": "Legal-2627-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "公司章程与法律限制排查",
+          "client_cooperation": "1. 提供目标公司的全套章程、章程修正案及现行有效的股东协议；2. 提供公司股东名册、合资合同、投资协议等与股权权利相关的全部协议文件；3. 如实披露公司是否涉及特殊行业资质、特许经营许可或外资准入要求",
+          "actions": [
+            "提供目标公司的全套章程、章程修正案及现行有效的股东协议",
+            "提供公司股东名册、合资合同、投资协议等与股权权利相关的全部协议文件",
+            "如实披露公司是否涉及特殊行业资质、特许经营许可或外资准入要求"
+          ]
+        },
+        {
+          "id": "Legal-2627-R5",
+          "row_number": 5,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "家族财产与企业股权结构梳理",
+          "client_cooperation": "1. 提供个人及家族名下完整的资产清单（含多层持股结构图并标明出资路径）；2. 提供所有股权代持协议、质押合同、司法冻结裁定书等涉及股权权利限制的文件；3. 配合说明各项重大资产的取得方式、取得时间与初始成本基础",
+          "actions": [
+            "提供个人及家族名下完整的资产清单（含多层持股结构图并标明出资路径）",
+            "提供所有股权代持协议、质押合同、司法冻结裁定书等涉及股权权利限制的文件",
+            "配合说明各项重大资产的取得方式、取得时间与初始成本基础"
+          ]
+        },
+        {
+          "id": "Legal-2627-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "企业经营与治理现状评估",
+          "client_cooperation": "1. 提供公司近三年的财务报表及外部审计报告；2. 提供现行有效的董事会议事规则、股东会议事规则及近期相关会议纪要；3. 安排家办与公司核心管理层进行沟通，深入了解经营现状与未来发展战略",
+          "actions": [
+            "提供公司近三年的财务报表及外部审计报告",
+            "提供现行有效的董事会议事规则、股东会议事规则及近期相关会议纪要",
+            "安排家办与公司核心管理层进行沟通，深入了解经营现状与未来发展战略"
+          ]
+        },
+        {
+          "id": "Legal-2627-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "潜在风险点识别（婚姻、债务、代持等）",
+          "client_cooperation": "1. 坦诚披露独生子女的婚姻状况、配偶家庭背景及财务情况；2. 提供原股东个人对外担保合同、大额借款合同等全部重大债务信息；3. 全面梳理历史上所有家族股权代持关系，并提供相关证据材料（如早期转账凭证、邮件往来等）",
+          "actions": [
+            "坦诚披露独生子女的婚姻状况、配偶家庭背景及财务情况",
+            "提供原股东个人对外担保合同、大额借款合同等全部重大债务信息",
+            "全面梳理历史上所有家族股权代持关系，并提供相关证据材料（如早期转账凭证、邮件往来等）"
+          ]
+        },
+        {
+          "id": "Legal-2627-R8",
+          "row_number": 8,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "权力过渡工具选择与组合设计",
+          "client_cooperation": "1. 与家办深入讨论并明确对各过渡工具的使用偏好、接受度与核心顾虑；2. 初步确认独生子女在各过渡阶段拟担任的职务与权限范围；3. 如计划引入职业经理人，提供候选人背景信息或正式授权家办协助进行市场化遴选",
+          "actions": [
+            "与家办深入讨论并明确对各过渡工具的使用偏好、接受度与核心顾虑",
+            "初步确认独生子女在各过渡阶段拟担任的职务与权限范围",
+            "如计划引入职业经理人，提供候选人背景信息或正式授权家办协助进行市场化遴选"
+          ]
+        },
+        {
+          "id": "Legal-2627-R9",
+          "row_number": 9,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "控制权过渡路径设计",
+          "client_cooperation": "1. 明确表达希望在哪些特定事项上保留否决权或最终审批权；2. 提供对未来董事会人员构成与董事会专门委员会设置的初步想法；3. 配合评估现有持股架构是否需要调整，以适配选定的控制权过渡方案",
+          "actions": [
+            "明确表达希望在哪些特定事项上保留否决权或最终审批权",
+            "提供对未来董事会人员构成与董事会专门委员会设置的初步想法",
+            "配合评估现有持股架构是否需要调整，以适配选定的控制权过渡方案"
+          ]
+        },
+        {
+          "id": "Legal-2627-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "股权传承路径设计（遗嘱/信托/赠与对比）",
+          "client_cooperation": "1. 与家办深入讨论各传承工具的利弊，明确表达偏好与核心顾虑；2. 如选择遗嘱，确认是否需要在其中加入遗产管理人条款，并初步指定人选；3. 如选择信托，积极配合受托人选任流程，并明确信托管控架构的偏好",
+          "actions": [
+            "与家办深入讨论各传承工具的利弊，明确表达偏好与核心顾虑",
+            "如选择遗嘱，确认是否需要在其中加入遗产管理人条款，并初步指定人选",
+            "如选择信托，积极配合受托人选任流程，并明确信托管控架构的偏好"
+          ]
+        },
+        {
+          "id": "Legal-2627-R11",
+          "row_number": 11,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "税务影响分析与优化",
+          "client_cooperation": "1. 提供股权原始取得成本凭证、历次出资证明等税务基础信息；2. 配合税务顾问进行各可行传承路径的模拟税负测算；3. 确认自身对税务优化方案的接受度与合规底线",
+          "actions": [
+            "提供股权原始取得成本凭证、历次出资证明等税务基础信息",
+            "配合税务顾问进行各可行传承路径的模拟税负测算",
+            "确认自身对税务优化方案的接受度与合规底线"
+          ]
+        },
+        {
+          "id": "Legal-2627-R12",
+          "row_number": 12,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "遗嘱文件起草与公证",
+          "client_cooperation": "1. 配合律师提供遗嘱起草所需的所有个人信息、财产清单、法定继承人详细信息等；2. 仔细确认遗嘱内容的最终版本，并在符合法律要求的见证人见证下完成签署；3. 如需公证，配合前往公证处完成身份核验与遗嘱公证的全部程序",
+          "actions": [
+            "配合律师提供遗嘱起草所需的所有个人信息、财产清单、法定继承人详细信息等",
+            "仔细确认遗嘱内容的最终版本，并在符合法律要求的见证人见证下完成签署",
+            "如需公证，配合前往公证处完成身份核验与遗嘱公证的全部程序"
+          ]
+        },
+        {
+          "id": "Legal-2627-R13",
+          "row_number": 13,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "信托/协议文件制备（表决权委托、一致行动人、代持协议、析产协议等）",
+          "client_cooperation": "1. 与律师逐条详细讨论关键协议条款的细节，确保商业意图与法律表述精准一致；2. 协调相关利益方（如一致行动人、代持人、信托受托人、其他家族成员等）参与协议的谈判与正式签署；3. 对协议中设定的关键时间节点、触发条件、行权方式等进行最终确认",
+          "actions": [
+            "与律师逐条详细讨论关键协议条款的细节，确保商业意图与法律表述精准一致",
+            "协调相关利益方（如一致行动人、代持人、信托受托人、其他家族成员等）参与协议的谈判与正式签署",
+            "对协议中设定的关键时间节点、触发条件、行权方式等进行最终确认"
+          ]
+        },
+        {
+          "id": "Legal-2627-R14",
+          "row_number": 14,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "公司章程修订与内部决议文件",
+          "client_cooperation": "1. 协助并正式召集股东会/董事会，将章程修订与传承方案作为正式议案进行审议与表决；2. 主动与其他重要股东进行前置沟通，清晰说明传承计划的背景与目的，争取理解与支持；3. 确认证照章管理新规的实际落地责任人，并明确其权责",
+          "actions": [
+            "协助并正式召集股东会/董事会，将章程修订与传承方案作为正式议案进行审议与表决",
+            "主动与其他重要股东进行前置沟通，清晰说明传承计划的背景与目的，争取理解与支持",
+            "确认证照章管理新规的实际落地责任人，并明确其权责"
+          ]
+        },
+        {
+          "id": "Legal-2627-R15",
+          "row_number": 15,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "文件签署与备案登记",
+          "client_cooperation": "1. 配合完成所有法律文件的最终签署（包含本人、配偶、见证人、公证员等角色的签署）；2. 迅速提供工商、税务等政府部门备案所需的全部基础材料（营业执照、股东名册、身份证明、决议文件等）；3. 指定专人或授权家办作为总接口，负责与各中介机构对接备案进度",
+          "actions": [
+            "配合完成所有法律文件的最终签署（包含本人、配偶、见证人、公证员等角色的签署）",
+            "迅速提供工商、税务等政府部门备案所需的全部基础材料（营业执照、股东名册、身份证明、决议文件等）",
+            "指定专人或授权家办作为总接口，负责与各中介机构对接备案进度"
+          ]
+        },
+        {
+          "id": "Legal-2627-R16",
+          "row_number": 16,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "控制权过渡执行（董监高更换/证照章移交/表决权行使等）",
+          "client_cooperation": "1. 亲自主持或出席关键的股东会/董事会，正式公布传承安排及相应的人事变动；2. 全程监督证照章的实际移交过程，确保无任何遗漏、违规或潜在风险；3. 协调与重要外部方（银行、主要客户/供应商、政府主管部门等）就控制权变更事宜进行正式或非正式沟通",
+          "actions": [
+            "亲自主持或出席关键的股东会/董事会，正式公布传承安排及相应的人事变动",
+            "全程监督证照章的实际移交过程，确保无任何遗漏、违规或潜在风险",
+            "协调与重要外部方（银行、主要客户/供应商、政府主管部门等）就控制权变更事宜进行正式或非正式沟通"
+          ]
+        },
+        {
+          "id": "Legal-2627-R17",
+          "row_number": 17,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "中介机构协调与进度管理",
+          "client_cooperation": "1. 正式指定家办作为项目总协调方，并给予充分的授权以统筹调动各方资源；2. 按要求定期参加项目进度协调会，对关键节点的事项做出及时决策；3. 确保各中介机构能根据项目节奏及时获取其所需的全部内部资料与信息",
+          "actions": [
+            "正式指定家办作为项目总协调方，并给予充分的授权以统筹调动各方资源",
+            "按要求定期参加项目进度协调会，对关键节点的事项做出及时决策",
+            "确保各中介机构能根据项目节奏及时获取其所需的全部内部资料与信息"
+          ]
+        },
+        {
+          "id": "Legal-2627-R18",
+          "row_number": 18,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "方案落地跟踪与动态调整",
+          "client_cooperation": "1. 与家办明确约定长期定期回顾的时间窗口，并将其固化为一项年度例行事务；2. 承诺在家庭关系或企业经营发生任何重大变化时，第一时间向家办通报；3. 配合并支持接班人参与家办组织的持续性治理培训与企业经营实践辅导",
+          "actions": [
+            "与家办明确约定长期定期回顾的时间窗口，并将其固化为一项年度例行事务",
+            "承诺在家庭关系或企业经营发生任何重大变化时，第一时间向家办通报",
+            "配合并支持接班人参与家办组织的持续性治理培训与企业经营实践辅导"
+          ]
+        },
+        {
+          "id": "Legal-2627-R19",
+          "row_number": 19,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "定期法务陪伴与风险监测",
+          "client_cooperation": "1. 定期主动向家办反馈家族内部关系、企业经营状态、核心人员变动等软性信息；2. 正式授权家办进行定期的合规与风险扫描，查阅必要文件；3. 在遇到重大投融资决策、潜在家族内部争议或外部挑战时，做到先咨询再决策",
+          "actions": [
+            "定期主动向家办反馈家族内部关系、企业经营状态、核心人员变动等软性信息",
+            "正式授权家办进行定期的合规与风险扫描，查阅必要文件",
+            "在遇到重大投融资决策、潜在家族内部争议或外部挑战时，做到先咨询再决策"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2628",
+      "sku_name": "权力过渡安排（多子女接班）",
+      "aliases": [
+        "3. 权力过渡安排 - 多子女接班",
+        "Legal-2628",
+        "权力过渡安排（多子女接班）"
+      ],
+      "source_file": "3. 权力过渡安排 - 多子女接班.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "564a41be2761a3b9502fa9a69c539a0cbf0c2457eb6968474d859f2c173ab7ff",
+      "source_modified": "2026-07-03T16:20:36+08:00",
+      "row_count": 23,
+      "rows": [
+        {
+          "id": "Legal-2628-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "传承目标与范围确认",
+          "client_cooperation": "明确并书面列出传承目标清单与核心顾虑；召开核心家庭成员沟通会，初步传达传承意图",
+          "actions": [
+            "明确并书面列出传承目标清单与核心顾虑",
+            "召开核心家庭成员沟通会，初步传达传承意图"
+          ]
+        },
+        {
+          "id": "Legal-2628-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "家族成员意愿与能力摸底",
+          "client_cooperation": "安排与各子女分别一对一沟通接班意愿与职业规划；如实反馈子女的接班意愿、能力评估及婚姻状况",
+          "actions": [
+            "安排与各子女分别一对一沟通接班意愿与职业规划",
+            "如实反馈子女的接班意愿、能力评估及婚姻状况"
+          ]
+        },
+        {
+          "id": "Legal-2628-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "多子女接班模式初步判断",
+          "client_cooperation": "提供各子女的性格特征、能力特长、个人意愿及彼此关系的客观评估；初步表达对公平性与企业效率偏好的权衡",
+          "actions": [
+            "提供各子女的性格特征、能力特长、个人意愿及彼此关系的客观评估",
+            "初步表达对公平性与企业效率偏好的权衡"
+          ]
+        },
+        {
+          "id": "Legal-2628-R5",
+          "row_number": 5,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "核心约束与风险边界确认",
+          "client_cooperation": "提供公司章程、股东协议、现有股东名册等文件的复印件或电子版；告知是否存在未披露的特殊股东约定",
+          "actions": [
+            "提供公司章程、股东协议、现有股东名册等文件的复印件或电子版",
+            "告知是否存在未披露的特殊股东约定"
+          ]
+        },
+        {
+          "id": "Legal-2628-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "企业股权结构全面梳理",
+          "client_cooperation": "提供完整的企业股权架构图及各级股东信息；如实披露所有代持、口头约定、未登记安排等隐性关系",
+          "actions": [
+            "提供完整的企业股权架构图及各级股东信息",
+            "如实披露所有代持、口头约定、未登记安排等隐性关系"
+          ]
+        },
+        {
+          "id": "Legal-2628-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "家族整体资产盘点",
+          "client_cooperation": "提供家族资产负债表或财产清单；配合说明各类资产的来源、当前持有状态及涉税情况",
+          "actions": [
+            "提供家族资产负债表或财产清单",
+            "配合说明各类资产的来源、当前持有状态及涉税情况"
+          ]
+        },
+        {
+          "id": "Legal-2628-R8",
+          "row_number": 8,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "子女婚姻与债务风险评估",
+          "client_cooperation": "如实告知各子女的婚姻状况、配偶背景及是否签署过婚前/夫妻财产协议；披露子女是否存在个人借款、对外担保、诉讼等风险事项",
+          "actions": [
+            "如实告知各子女的婚姻状况、配偶背景及是否签署过婚前/夫妻财产协议",
+            "披露子女是否存在个人借款、对外担保、诉讼等风险事项"
+          ]
+        },
+        {
+          "id": "Legal-2628-R9",
+          "row_number": 9,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "公司章程与现有法律安排审查",
+          "client_cooperation": "提供所有现有法律文件、协议及公司治理文件；披露公司实际证照章保管人及使用流程现状",
+          "actions": [
+            "提供所有现有法律文件、协议及公司治理文件",
+            "披露公司实际证照章保管人及使用流程现状"
+          ]
+        },
+        {
+          "id": "Legal-2628-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "股权过渡方式选择与组合",
+          "client_cooperation": "对各过渡方式的利弊做初步判断；确认可接受的时间节奏与税务成本预算；参与方案讨论并做出最终选择",
+          "actions": [
+            "对各过渡方式的利弊做初步判断",
+            "确认可接受的时间节奏与税务成本预算",
+            "参与方案讨论并做出最终选择"
+          ]
+        },
+        {
+          "id": "Legal-2628-R11",
+          "row_number": 11,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "控制权过渡安排设计",
+          "client_cooperation": "与核心管理层提前沟通接班意图；配合设计循序渐进的管理权交接时间表；明确过渡期内创始人与接班人的职权边界",
+          "actions": [
+            "与核心管理层提前沟通接班意图",
+            "配合设计循序渐进的管理权交接时间表",
+            "明确过渡期内创始人与接班人的职权边界"
+          ]
+        },
+        {
+          "id": "Legal-2628-R12",
+          "row_number": 12,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "接班人培养与职权安排",
+          "client_cooperation": "安排接班子女在企业内部有明确的职级与职责；参与对接班人能力评估及培训方案的制定；对非接班子女提前沟通财产分配方案，减少心理落差",
+          "actions": [
+            "安排接班子女在企业内部有明确的职级与职责",
+            "参与对接班人能力评估及培训方案的制定",
+            "对非接班子女提前沟通财产分配方案，减少心理落差"
+          ]
+        },
+        {
+          "id": "Legal-2628-R13",
+          "row_number": 13,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "风险隔离机制设计",
+          "client_cooperation": "确认对子女婚姻、债务的风险隔离意愿强烈程度；提供可用于风险隔离的资产清单；参与家族治理架构的设计讨论",
+          "actions": [
+            "确认对子女婚姻、债务的风险隔离意愿强烈程度",
+            "提供可用于风险隔离的资产清单",
+            "参与家族治理架构的设计讨论"
+          ]
+        },
+        {
+          "id": "Legal-2628-R14",
+          "row_number": 14,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "遗嘱与遗产管理人文件准备",
+          "client_cooperation": "明确遗嘱核心内容及各继承人分配意愿；配合提供办理公证所需身份及亲属关系证明；选定并委托遗产管理人（如需）",
+          "actions": [
+            "明确遗嘱核心内容及各继承人分配意愿",
+            "配合提供办理公证所需身份及亲属关系证明",
+            "选定并委托遗产管理人（如需）"
+          ]
+        },
+        {
+          "id": "Legal-2628-R15",
+          "row_number": 15,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "股权过渡协议起草",
+          "client_cooperation": "确认各协议的核心商业条款（价格、条件、时间节点等）；配合完成协议谈判中需要客户方作出的决定；审阅协议草案并提出修改意见",
+          "actions": [
+            "确认各协议的核心商业条款（价格、条件、时间节点等）",
+            "配合完成协议谈判中需要客户方作出的决定",
+            "审阅协议草案并提出修改意见"
+          ]
+        },
+        {
+          "id": "Legal-2628-R16",
+          "row_number": 16,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "控制权相关文件起草",
+          "client_cooperation": "确认表决权委托/一致行动人的核心授权范围；配合协调其他股东签署一致行动人协议或修改章程；提供公司内部决策所需文件",
+          "actions": [
+            "确认表决权委托/一致行动人的核心授权范围",
+            "配合协调其他股东签署一致行动人协议或修改章程",
+            "提供公司内部决策所需文件"
+          ]
+        },
+        {
+          "id": "Legal-2628-R17",
+          "row_number": 17,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "公司内部决议与配套文件",
+          "client_cooperation": "召开并主持股东会/董事会，按程序形成决议文件；配合提出新任董监高候选人及其任职资格材料；安排证照章管理制度的修订与内部审批",
+          "actions": [
+            "召开并主持股东会/董事会，按程序形成决议文件",
+            "配合提出新任董监高候选人及其任职资格材料",
+            "安排证照章管理制度的修订与内部审批"
+          ]
+        },
+        {
+          "id": "Legal-2628-R18",
+          "row_number": 18,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "文件签署与公证",
+          "client_cooperation": "协调所有签署方完成文件签署；配合到公证处办理公证手续；履行文件的送达与保管安排",
+          "actions": [
+            "协调所有签署方完成文件签署",
+            "配合到公证处办理公证手续",
+            "履行文件的送达与保管安排"
+          ]
+        },
+        {
+          "id": "Legal-2628-R19",
+          "row_number": 19,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "工商变更登记",
+          "client_cooperation": "提供工商变更登记所需的证照原件、身份证明等材料；配合完成线上或线下工商申报；完成税务申报（如需）",
+          "actions": [
+            "提供工商变更登记所需的证照原件、身份证明等材料",
+            "配合完成线上或线下工商申报",
+            "完成税务申报（如需）"
+          ]
+        },
+        {
+          "id": "Legal-2628-R20",
+          "row_number": 20,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "公司内部程序履行",
+          "client_cooperation": "安排新任董监高与核心团队见面会；完成证照章实物盘点与交接签收；发布新制度并组织宣贯",
+          "actions": [
+            "安排新任董监高与核心团队见面会",
+            "完成证照章实物盘点与交接签收",
+            "发布新制度并组织宣贯"
+          ]
+        },
+        {
+          "id": "Legal-2628-R21",
+          "row_number": 21,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "过渡期管理交接与沟通",
+          "client_cooperation": "配合执行过渡期权限划分方案；安排对外沟通口径与时间节点；确认应急联系人及决策机制",
+          "actions": [
+            "配合执行过渡期权限划分方案",
+            "安排对外沟通口径与时间节点",
+            "确认应急联系人及决策机制"
+          ]
+        },
+        {
+          "id": "Legal-2628-R22",
+          "row_number": 22,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "方案落地跟踪与回顾",
+          "client_cooperation": "建立并参加定期回顾会议；反馈方案执行中的实际困难与不受之处；对子女的表现及企业经营状况做客观评估",
+          "actions": [
+            "建立并参加定期回顾会议",
+            "反馈方案执行中的实际困难与不受之处",
+            "对子女的表现及企业经营状况做客观评估"
+          ]
+        },
+        {
+          "id": "Legal-2628-R23",
+          "row_number": 23,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "应对新变化与调整",
+          "client_cooperation": "及时通报影响传承方案的重大个人或企业变化；配合方案调整所需的信息提供与文件签署；参与家族财富管理培训或研讨",
+          "actions": [
+            "及时通报影响传承方案的重大个人或企业变化",
+            "配合方案调整所需的信息提供与文件签署",
+            "参与家族财富管理培训或研讨"
+          ]
+        },
+        {
+          "id": "Legal-2628-R24",
+          "row_number": 24,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "持续法务陪伴与咨询",
+          "client_cooperation": "在日常经营中遇到传承相关问题时主动寻求专业意见；安排子女参加相关培训与辅导；保持与家办的常态化沟通",
+          "actions": [
+            "在日常经营中遇到传承相关问题时主动寻求专业意见",
+            "安排子女参加相关培训与辅导",
+            "保持与家办的常态化沟通"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2633",
+      "sku_name": "遗嘱及遗产管理人（无代持，企业实控人，家族后代交接班）",
+      "aliases": [
+        "2. 遗嘱及遗产管理人 - 无代持，企业实控人，家族后代交接班",
+        "Legal-2633",
+        "遗嘱及遗产管理人（无代持，企业实控人，家族后代交接班）"
+      ],
+      "source_file": "2. 遗嘱及遗产管理人 - 无代持，企业实控人，家族后代交接班.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "36022604978efb9941bb1702ef99dc1c999c8e32ddb5ed2b85cf9248febde00d",
+      "source_modified": "2026-07-03T16:20:38+08:00",
+      "row_count": 24,
+      "rows": [
+        {
+          "id": "Legal-2633-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "传承目标与意愿确认",
+          "client_cooperation": "清晰表达传承核心目标与顾虑；提供家庭成员基本关系信息；初步说明对子女接班能力与意愿的判断；确认配偶对传承安排的知悉程度",
+          "actions": [
+            "清晰表达传承核心目标与顾虑",
+            "提供家庭成员基本关系信息",
+            "初步说明对子女接班能力与意愿的判断",
+            "确认配偶对传承安排的知悉程度"
+          ]
+        },
+        {
+          "id": "Legal-2633-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "家族结构与子女情况确认",
+          "client_cooperation": "提供各子女基本身份信息、婚姻状况、职业情况；如实告知子女间的关系与潜在矛盾；说明各子女对家族企业的参与程度与意愿",
+          "actions": [
+            "提供各子女基本身份信息、婚姻状况、职业情况",
+            "如实告知子女间的关系与潜在矛盾",
+            "说明各子女对家族企业的参与程度与意愿"
+          ]
+        },
+        {
+          "id": "Legal-2633-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "企业章程与治理现状识别",
+          "client_cooperation": "提供标的企业最新章程及历次修正案；提供现有股东协议、一致行动协议等治理文件；说明当前实际控制关系与控制路径",
+          "actions": [
+            "提供标的企业最新章程及历次修正案",
+            "提供现有股东协议、一致行动协议等治理文件",
+            "说明当前实际控制关系与控制路径"
+          ]
+        },
+        {
+          "id": "Legal-2633-R5",
+          "row_number": 5,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "婚姻与债务风险初判",
+          "client_cooperation": "如实披露本人及子女的大额债务、对外担保情况；说明子女婚姻现状及稳定性预期；告知是否存在需特别照顾的法定继承人或依赖其抚养的人",
+          "actions": [
+            "如实披露本人及子女的大额债务、对外担保情况",
+            "说明子女婚姻现状及稳定性预期",
+            "告知是否存在需特别照顾的法定继承人或依赖其抚养的人"
+          ]
+        },
+        {
+          "id": "Legal-2633-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "股权与资产权属确认",
+          "client_cooperation": "提供股权持有证明（工商登记信息、股东名册）；提供不动产产权证书、金融资产账户清单、知识产权登记证明等；说明是否有任何财产存在共有人或权利限制",
+          "actions": [
+            "提供股权持有证明（工商登记信息、股东名册）",
+            "提供不动产产权证书、金融资产账户清单、知识产权登记证明等",
+            "说明是否有任何财产存在共有人或权利限制"
+          ]
+        },
+        {
+          "id": "Legal-2633-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "财产清单与价值梳理",
+          "client_cooperation": "配合家办梳理并核对财产清单；提供财产估值所需的材料（如评估报告、财务报表、交易合同）；对难以估值的特殊财产说明背景与心理预期价值",
+          "actions": [
+            "配合家办梳理并核对财产清单",
+            "提供财产估值所需的材料（如评估报告、财务报表、交易合同）",
+            "对难以估值的特殊财产说明背景与心理预期价值"
+          ]
+        },
+        {
+          "id": "Legal-2633-R8",
+          "row_number": 8,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "债务与义务梳理",
+          "client_cooperation": "提供个人及企业征信报告或贷款合同；如实说明对外担保情况与担保风险敞口；说明未了结的法律纠纷及其可能结果",
+          "actions": [
+            "提供个人及企业征信报告或贷款合同",
+            "如实说明对外担保情况与担保风险敞口",
+            "说明未了结的法律纠纷及其可能结果"
+          ]
+        },
+        {
+          "id": "Legal-2633-R9",
+          "row_number": 9,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "其他法律关系确认",
+          "client_cooperation": "提供特殊财产权益的证明材料（如租赁合同、宅基地证）；说明保险合同的受益人约定；提供涉及抚养义务的法律文件或事实情况",
+          "actions": [
+            "提供特殊财产权益的证明材料（如租赁合同、宅基地证）",
+            "说明保险合同的受益人约定",
+            "提供涉及抚养义务的法律文件或事实情况"
+          ]
+        },
+        {
+          "id": "Legal-2633-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "遗嘱形式选择",
+          "client_cooperation": "配合评估自身书写能力、健康状况，选择合适遗嘱形式；协助物色合适的见证人（若需）；确认是否需要同步安排公证程序",
+          "actions": [
+            "配合评估自身书写能力、健康状况，选择合适遗嘱形式",
+            "协助物色合适的见证人（若需）",
+            "确认是否需要同步安排公证程序"
+          ]
+        },
+        {
+          "id": "Legal-2633-R11",
+          "row_number": 11,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "遗产管理人指定与职责设计",
+          "client_cooperation": "指定信赖的遗产管理人人选（或授权家办推荐）；明确对遗产管理人授权范围的预期与底线；确认报酬标准与支付安排",
+          "actions": [
+            "指定信赖的遗产管理人人选（或授权家办推荐）",
+            "明确对遗产管理人授权范围的预期与底线",
+            "确认报酬标准与支付安排"
+          ]
+        },
+        {
+          "id": "Legal-2633-R12",
+          "row_number": 12,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "股权传承路径与分配设计",
+          "client_cooperation": "明确表达对子女股权分配比例与公平诉求的期望；协助评估各子女的经营能力与意愿；确认是否需要配套设计控制权锁定机制",
+          "actions": [
+            "明确表达对子女股权分配比例与公平诉求的期望",
+            "协助评估各子女的经营能力与意愿",
+            "确认是否需要配套设计控制权锁定机制"
+          ]
+        },
+        {
+          "id": "Legal-2633-R13",
+          "row_number": 13,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "控制权过渡与接班人安排",
+          "client_cooperation": "与家办及律师讨论并确认权力过渡步骤与时间表；协助评估接班人目前能力与需补充的经验；确认是否需要引入职业经理人过渡方案",
+          "actions": [
+            "与家办及律师讨论并确认权力过渡步骤与时间表",
+            "协助评估接班人目前能力与需补充的经验",
+            "确认是否需要引入职业经理人过渡方案"
+          ]
+        },
+        {
+          "id": "Legal-2633-R14",
+          "row_number": 14,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "遗嘱文件起草与审阅",
+          "client_cooperation": "逐条确认遗嘱内容是否准确反映本人意愿；核对财产清单与描述是否完整准确；提供签署所需身份证明及财产权属证明",
+          "actions": [
+            "逐条确认遗嘱内容是否准确反映本人意愿",
+            "核对财产清单与描述是否完整准确",
+            "提供签署所需身份证明及财产权属证明"
+          ]
+        },
+        {
+          "id": "Legal-2633-R15",
+          "row_number": 15,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "公司章程及治理文件修订",
+          "client_cooperation": "协调公司内部治理程序，推动股东会决议；提供公司章程修订所需信息与授权；配合签署修订后的章程及治理文件",
+          "actions": [
+            "协调公司内部治理程序，推动股东会决议",
+            "提供公司章程修订所需信息与授权",
+            "配合签署修订后的章程及治理文件"
+          ]
+        },
+        {
+          "id": "Legal-2633-R16",
+          "row_number": 16,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "遗产管理人协议",
+          "client_cooperation": "审阅并确认遗产管理人协议条款；与候选遗产管理人就权责利进行充分沟通并达成一致；签署协议",
+          "actions": [
+            "审阅并确认遗产管理人协议条款",
+            "与候选遗产管理人就权责利进行充分沟通并达成一致",
+            "签署协议"
+          ]
+        },
+        {
+          "id": "Legal-2633-R17",
+          "row_number": 17,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "辅助文件准备（财产清单、声明函等）",
+          "client_cooperation": "审阅并签署财产清单及相关声明文件；提供签署所需身份证明文件；配合完成声明的录音录像（如适用）",
+          "actions": [
+            "审阅并签署财产清单及相关声明文件",
+            "提供签署所需身份证明文件",
+            "配合完成声明的录音录像（如适用）"
+          ]
+        },
+        {
+          "id": "Legal-2633-R18",
+          "row_number": 18,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "遗嘱签署与见证",
+          "client_cooperation": "在符合法定条件的情况下亲笔书写或签署遗嘱；配合安排合适的见证人到场；确认遗嘱原件的保管方式与保管人",
+          "actions": [
+            "在符合法定条件的情况下亲笔书写或签署遗嘱",
+            "配合安排合适的见证人到场",
+            "确认遗嘱原件的保管方式与保管人"
+          ]
+        },
+        {
+          "id": "Legal-2633-R19",
+          "row_number": 19,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "文件备案与公证",
+          "client_cooperation": "配合赴公证处办理公证手续；提供公证所需个人身份及财产证明材料；确认文件存档方式与调取权限",
+          "actions": [
+            "配合赴公证处办理公证手续",
+            "提供公证所需个人身份及财产证明材料",
+            "确认文件存档方式与调取权限"
+          ]
+        },
+        {
+          "id": "Legal-2633-R20",
+          "row_number": 20,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "遗产管理人工作机制建立",
+          "client_cooperation": "与遗产管理人进行首次正式会面并建立工作关系；确认通讯联络方式与重大事项决策流程；协助遗产管理人与企业关键人员建立联系",
+          "actions": [
+            "与遗产管理人进行首次正式会面并建立工作关系",
+            "确认通讯联络方式与重大事项决策流程",
+            "协助遗产管理人与企业关键人员建立联系"
+          ]
+        },
+        {
+          "id": "Legal-2633-R21",
+          "row_number": 21,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "继承人沟通与告知",
+          "client_cooperation": "决定是否向子女提前告知遗嘱内容及告知范围；在告知过程中表达家族理念与期望；对子女的疑问与情绪进行沟通与安抚",
+          "actions": [
+            "决定是否向子女提前告知遗嘱内容及告知范围",
+            "在告知过程中表达家族理念与期望",
+            "对子女的疑问与情绪进行沟通与安抚"
+          ]
+        },
+        {
+          "id": "Legal-2633-R22",
+          "row_number": 22,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "遗嘱定期审视与更新",
+          "client_cooperation": "在发生家庭、资产重大变化时主动告知家办；配合定期遗嘱审视并确认是否需修订；签署更新后的文件",
+          "actions": [
+            "在发生家庭、资产重大变化时主动告知家办",
+            "配合定期遗嘱审视并确认是否需修订",
+            "签署更新后的文件"
+          ]
+        },
+        {
+          "id": "Legal-2633-R23",
+          "row_number": 23,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "财产变动跟踪",
+          "client_cooperation": "及时向家办告知重大财产变动情况；提供新增/处置资产的权属证明；核实财产清单是否需要更新",
+          "actions": [
+            "及时向家办告知重大财产变动情况",
+            "提供新增/处置资产的权属证明",
+            "核实财产清单是否需要更新"
+          ]
+        },
+        {
+          "id": "Legal-2633-R24",
+          "row_number": 24,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "继承人能力辅导与家族治理",
+          "client_cooperation": "鼓励并安排接班人参加辅导与培训；参与家族治理机制的建立与运行；为接班人对接行业资源与人脉",
+          "actions": [
+            "鼓励并安排接班人参加辅导与培训",
+            "参与家族治理机制的建立与运行",
+            "为接班人对接行业资源与人脉"
+          ]
+        },
+        {
+          "id": "Legal-2633-R25",
+          "row_number": 25,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "法律与政策环境跟踪",
+          "client_cooperation": "关注并回应家办推送的法律政策变动通知；配合评估政策变化对传承方案的影响并决定是否调整方案",
+          "actions": [
+            "关注并回应家办推送的法律政策变动通知",
+            "配合评估政策变化对传承方案的影响并决定是否调整方案"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "Legal-2677",
+      "sku_name": "境外NRT的法律文件",
+      "aliases": [
+        "Legal-2677",
+        "境外NRT的法律文件",
+        "离岸信托-NRT"
+      ],
+      "source_file": "离岸信托-NRT.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "eebfd0a55378efe089aae6af338b3b33a4b3b5870f1172cc7d8e651023ebf009",
+      "source_modified": "2026-07-03T16:20:41+08:00",
+      "row_count": 19,
+      "rows": [
+        {
+          "id": "Legal-2677-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "1.1 委托人身份与资格确认",
+          "client_cooperation": "提供委托人过去五年的税务居民身份声明及相关证明；如实披露未来移民规划；提供护照及长期居留证明",
+          "actions": [
+            "提供委托人过去五年的税务居民身份声明及相关证明",
+            "如实披露未来移民规划",
+            "提供护照及长期居留证明"
+          ]
+        },
+        {
+          "id": "Legal-2677-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "1.2 委托人身份与资格确认",
+          "client_cooperation": "提供过去五年的出入境记录；说明在加拿大的住房、家庭、经济联系现状；提供加拿大银行账户及投资账户清单",
+          "actions": [
+            "提供过去五年的出入境记录",
+            "说明在加拿大的住房、家庭、经济联系现状",
+            "提供加拿大银行账户及投资账户清单"
+          ]
+        },
+        {
+          "id": "Legal-2677-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "1.3 受益人身份与税务居民确认",
+          "client_cooperation": "提供各受益人的加拿大税务居民身份证明（如Notice of Assessment）；列出所有潜在受益人的身份清单及取得加拿大身份的时间",
+          "actions": [
+            "提供各受益人的加拿大税务居民身份证明（如Notice of Assessment）",
+            "列出所有潜在受益人的身份清单及取得加拿大身份的时间"
+          ]
+        },
+        {
+          "id": "Legal-2677-R5",
+          "row_number": 5,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "1.4 传承资产属性初步确认",
+          "client_cooperation": "提供拟注入资产的大类清单及所在地信息；说明资产持有结构（个人直接持有/通过公司持有）；确认有无加拿大境内关联资产",
+          "actions": [
+            "提供拟注入资产的大类清单及所在地信息",
+            "说明资产持有结构（个人直接持有/通过公司持有）",
+            "确认有无加拿大境内关联资产"
+          ]
+        },
+        {
+          "id": "Legal-2677-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "2.1 拟注入资产清单与估值",
+          "client_cooperation": "提供资产清单（含类型、所在地、估值、取得时间、取得成本）；提供权属证明文件；说明资产是否设有抵押或担保",
+          "actions": [
+            "提供资产清单（含类型、所在地、估值、取得时间、取得成本）",
+            "提供权属证明文件",
+            "说明资产是否设有抵押或担保"
+          ]
+        },
+        {
+          "id": "Legal-2677-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "2.2 资产加拿大关联性全面排查",
+          "client_cooperation": "提供所有资产穿透后的最终底层资产信息；披露是否存在BVI/开曼等离岸公司间接持有加拿大资产的情况",
+          "actions": [
+            "提供所有资产穿透后的最终底层资产信息",
+            "披露是否存在BVI/开曼等离岸公司间接持有加拿大资产的情况"
+          ]
+        },
+        {
+          "id": "Legal-2677-R8",
+          "row_number": 8,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "3.1 信托设立地与适用法律选择",
+          "client_cooperation": "配合评估不同设立地的优劣；确认对设立地合规要求的接受程度；理解中国大陆信托法对信托财产独立性的保护机制",
+          "actions": [
+            "配合评估不同设立地的优劣",
+            "确认对设立地合规要求的接受程度",
+            "理解中国大陆信托法对信托财产独立性的保护机制"
+          ]
+        },
+        {
+          "id": "Legal-2677-R9",
+          "row_number": 9,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "3.2 信托角色与治理结构设计",
+          "client_cooperation": "确定受托人候选方案（机构/个人/组合）；明确委托人希望保留的控制权边界；确认是否引入第三方保护人",
+          "actions": [
+            "确定受托人候选方案（机构/个人/组合）",
+            "明确委托人希望保留的控制权边界",
+            "确认是否引入第三方保护人"
+          ]
+        },
+        {
+          "id": "Legal-2677-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "3.3 信托分配机制与收益本金化设计",
+          "client_cooperation": "明确受益人分配偏好（定期分配/事件驱动分配/全权酌情）；提供受益人当前及预期生活需求预算；确认是否接受收益延迟分配以配合本金化安排",
+          "actions": [
+            "明确受益人分配偏好（定期分配/事件驱动分配/全权酌情）",
+            "提供受益人当前及预期生活需求预算",
+            "确认是否接受收益延迟分配以配合本金化安排"
+          ]
+        },
+        {
+          "id": "Legal-2677-R11",
+          "row_number": 11,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "3.4 加拿大税务安全港合规设计",
+          "client_cooperation": "理解并接受安全港条件对委托人权利的限制；配合提供委托人身份变动的时间线证明；确认不对受托人发出具有约束力的分配指令",
+          "actions": [
+            "理解并接受安全港条件对委托人权利的限制",
+            "配合提供委托人身份变动的时间线证明",
+            "确认不对受托人发出具有约束力的分配指令"
+          ]
+        },
+        {
+          "id": "Legal-2677-R12",
+          "row_number": 12,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "4.1 信托契约与配套文件起草",
+          "client_cooperation": "审阅信托契约草案并提供反馈；确认信托财产清单的准确性与完整性；配合签署意向书及正式契约",
+          "actions": [
+            "审阅信托契约草案并提供反馈",
+            "确认信托财产清单的准确性与完整性",
+            "配合签署意向书及正式契约"
+          ]
+        },
+        {
+          "id": "Legal-2677-R13",
+          "row_number": 13,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "4.2 加拿大税务法律意见书取得",
+          "client_cooperation": "提供加拿大税务律师所需的所有背景材料与声明；理解法律意见书并非绝对保障，而是专业判断；接受意见书中的风险提示与前提假设",
+          "actions": [
+            "提供加拿大税务律师所需的所有背景材料与声明",
+            "理解法律意见书并非绝对保障，而是专业判断",
+            "接受意见书中的风险提示与前提假设"
+          ]
+        },
+        {
+          "id": "Legal-2677-R14",
+          "row_number": 14,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "4.3 T1142申报准备文件预审",
+          "client_cooperation": "协助整理信托底层资产明细用于T1142申报；确认受益人个税申报由谁负责（自行/委托会计师）；提供受益人加拿大SIN号码",
+          "actions": [
+            "协助整理信托底层资产明细用于T1142申报",
+            "确认受益人个税申报由谁负责（自行/委托会计师）",
+            "提供受益人加拿大SIN号码"
+          ]
+        },
+        {
+          "id": "Legal-2677-R15",
+          "row_number": 15,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "5.1 信托设立与资产注入执行",
+          "client_cooperation": "配合办理资产过户、股权变更、银行账户开立等手续；支付信托设立费用及首年管理费；确认资产注入时点并签署注入确认文件",
+          "actions": [
+            "配合办理资产过户、股权变更、银行账户开立等手续",
+            "支付信托设立费用及首年管理费",
+            "确认资产注入时点并签署注入确认文件"
+          ]
+        },
+        {
+          "id": "Legal-2677-R16",
+          "row_number": 16,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "5.2 首次T1142申报完成",
+          "client_cooperation": "确认受益人是否已完成当年加拿大个税申报；提供T1142申报所需补充信息；留存CRA确认回执",
+          "actions": [
+            "确认受益人是否已完成当年加拿大个税申报",
+            "提供T1142申报所需补充信息",
+            "留存CRA确认回执"
+          ]
+        },
+        {
+          "id": "Legal-2677-R17",
+          "row_number": 17,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "5.3 受益人沟通与文件交付",
+          "client_cooperation": "参加受益人沟通会议；接收并妥善保管信托相关文件；明确未来年度申报的对接人与时间节点",
+          "actions": [
+            "参加受益人沟通会议",
+            "接收并妥善保管信托相关文件",
+            "明确未来年度申报的对接人与时间节点"
+          ]
+        },
+        {
+          "id": "Legal-2677-R18",
+          "row_number": 18,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "6.1 年度T1142申报持续跟踪",
+          "client_cooperation": "每年配合提供受益人身份状态更新；确认跨境税务会计师的年度服务协议；及时关注CRA的申报截止日",
+          "actions": [
+            "每年配合提供受益人身份状态更新",
+            "确认跨境税务会计师的年度服务协议",
+            "及时关注CRA的申报截止日"
+          ]
+        },
+        {
+          "id": "Legal-2677-R19",
+          "row_number": 19,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "6.2 信托存续合规年度审查",
+          "client_cooperation": "配合年度合规问卷填写；及时如实告知委托人/受益人移民、税务身份变化；保留与受托人沟通记录以证明未施加不当指令",
+          "actions": [
+            "配合年度合规问卷填写",
+            "及时如实告知委托人/受益人移民、税务身份变化",
+            "保留与受托人沟通记录以证明未施加不当指令"
+          ]
+        },
+        {
+          "id": "Legal-2677-R20",
+          "row_number": 20,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "6.3 委托人/受益人身份变动监控",
+          "client_cooperation": "提前告知家办任何身份变动计划；在受益权代际传承时配合提供继承文件；理解身份变动可能触发的信托重构需求",
+          "actions": [
+            "提前告知家办任何身份变动计划",
+            "在受益权代际传承时配合提供继承文件",
+            "理解身份变动可能触发的信托重构需求"
+          ]
+        }
+      ]
+    },
+    {
+      "sku_id": "Tax-2409",
+      "sku_name": "加拿大-登陆税务合规-基础合规",
+      "aliases": [
+        "Tax-2409",
+        "加拿大-登陆税务合规-基础合规"
+      ],
+      "source_file": "加拿大-登陆税务合规-基础合规.xlsx",
+      "sheet_name": "Sheet1",
+      "source_sha256": "865403d859932af3133a6f509ee9039d50ee830e77611c9c35ab3c80c60cd903",
+      "source_modified": "2026-07-03T16:20:50+08:00",
+      "row_count": 24,
+      "rows": [
+        {
+          "id": "Tax-2409-R2",
+          "row_number": 2,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "移民目标与时间规划确认",
+          "client_cooperation": "提供确切登陆时间节点与移民类别（如联邦技术移民/投资移民/省提名）；确认家庭成员（配偶、子女）的登陆计划与时间安排；明确主要居住省份。",
+          "actions": [
+            "提供确切登陆时间节点与移民类别（如联邦技术移民/投资移民/省提名）",
+            "确认家庭成员（配偶、子女）的登陆计划与时间安排",
+            "明确主要居住省份。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R3",
+          "row_number": 3,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "家庭结构与身份状况梳理",
+          "client_cooperation": "提供全体家庭成员的身份文件（护照、永久居民卡、签证等）；如实披露所有已持有或正在申请中的海外身份；说明家庭成员的居住地与居住意向。",
+          "actions": [
+            "提供全体家庭成员的身份文件（护照、永久居民卡、签证等）",
+            "如实披露所有已持有或正在申请中的海外身份",
+            "说明家庭成员的居住地与居住意向。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R4",
+          "row_number": 4,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "税务居民身份识别与风险初判",
+          "client_cooperation": "提供在加拿大的现有联系信息（房产、账户、配偶子女居住情况）；说明过去3年在加拿大的累计居住天数；提供其他国家税务居民认定情况。",
+          "actions": [
+            "提供在加拿大的现有联系信息（房产、账户、配偶子女居住情况）",
+            "说明过去3年在加拿大的累计居住天数",
+            "提供其他国家税务居民认定情况。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R5",
+          "row_number": 5,
+          "primary_stage": "1 需求初判",
+          "stage_order": 1,
+          "secondary_node": "关键资产类型与持有结构识别",
+          "client_cooperation": "列出主要资产类别及大致价值范围（无需精确数字）；说明当前持有方式（个人/公司/信托）；标记是否存在计划在登陆后3-5年内处置的资产。",
+          "actions": [
+            "列出主要资产类别及大致价值范围（无需精确数字）",
+            "说明当前持有方式（个人/公司/信托）",
+            "标记是否存在计划在登陆后3-5年内处置的资产。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R6",
+          "row_number": 6,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "全球资产清单与成本基础整理",
+          "client_cooperation": "提供全球资产详细清单（含资产类型、所在地、持有方式、取得时间、取得成本）；收集并整理原始凭证（购买合同、出资证明、银行流水等）；确认各类资产的当前公允价值范围。",
+          "actions": [
+            "提供全球资产详细清单（含资产类型、所在地、持有方式、取得时间、取得成本）",
+            "收集并整理原始凭证（购买合同、出资证明、银行流水等）",
+            "确认各类资产的当前公允价值范围。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R7",
+          "row_number": 7,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "资产增值状况与潜在税负测算",
+          "client_cooperation": "提供资产增值估算数据（取得成本与当前公允价值的差额）；说明未来3-5年内的资产处置计划与预期时间点；配合测算不同处置时间节点下的税负差异。",
+          "actions": [
+            "提供资产增值估算数据（取得成本与当前公允价值的差额）",
+            "说明未来3-5年内的资产处置计划与预期时间点",
+            "配合测算不同处置时间节点下的税负差异。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R8",
+          "row_number": 8,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "现有持股结构与合规风险排查",
+          "client_cooperation": "提供持股架构图（含各层公司注册地、持股比例、资产内容）；确认是否存在离岸公司或信托结构；提供现有架构下的历史税务申报情况。",
+          "actions": [
+            "提供持股架构图（含各层公司注册地、持股比例、资产内容）",
+            "确认是否存在离岸公司或信托结构",
+            "提供现有架构下的历史税务申报情况。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R9",
+          "row_number": 9,
+          "primary_stage": "2 资产梳理",
+          "stage_order": 2,
+          "secondary_node": "中国-加拿大税务居民双重征税风险评估",
+          "client_cooperation": "提供中国税务居民身份的当前状态（是否已注销户籍或办理非税居民认定）；说明未来在中国的收入来源（工资、股息、租金等）预期；提供中国历年个税申报记录。",
+          "actions": [
+            "提供中国税务居民身份的当前状态（是否已注销户籍或办理非税居民认定）",
+            "说明未来在中国的收入来源（工资、股息、租金等）预期",
+            "提供中国历年个税申报记录。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R10",
+          "row_number": 10,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "登陆前资产处置与重组方案",
+          "client_cooperation": "确认可接受在登陆前处置的资产范围及时间安排；与顾问共同评估不同处置方案的税务结果；确认非随行家庭成员是否愿意配合资产转让安排。",
+          "actions": [
+            "确认可接受在登陆前处置的资产范围及时间安排",
+            "与顾问共同评估不同处置方案的税务结果",
+            "确认非随行家庭成员是否愿意配合资产转让安排。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R11",
+          "row_number": 11,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "税务居民身份优化策略设计",
+          "client_cooperation": "确认家庭成员各自登陆的时间安排意愿与灵活性；提供配偶在加拿大以外的居住地及工作安排信息；配合签署相关身份声明文件。",
+          "actions": [
+            "确认家庭成员各自登陆的时间安排意愿与灵活性",
+            "提供配偶在加拿大以外的居住地及工作安排信息",
+            "配合签署相关身份声明文件。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R12",
+          "row_number": 12,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "跨境持股架构调整方案",
+          "client_cooperation": "配合提供持股架构调整所需的股东会决议、股权转让文件等公司内部材料；确认目标架构的受益人安排与分配规则；与公司现有股东沟通持股调整方案。",
+          "actions": [
+            "配合提供持股架构调整所需的股东会决议、股权转让文件等公司内部材料",
+            "确认目标架构的受益人安排与分配规则",
+            "与公司现有股东沟通持股调整方案。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R13",
+          "row_number": 13,
+          "primary_stage": "3 方案设计",
+          "stage_order": 3,
+          "secondary_node": "资产披露合规方案设计",
+          "client_cooperation": "提供各类海外资产的成本基数、年度最高公允价值及所在国信息；确认未来年度是否需要持续更新披露信息；配合年度披露资料的及时提供。",
+          "actions": [
+            "提供各类海外资产的成本基数、年度最高公允价值及所在国信息",
+            "确认未来年度是否需要持续更新披露信息",
+            "配合年度披露资料的及时提供。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R14",
+          "row_number": 14,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "资产评估与成本基础证明文件准备",
+          "client_cooperation": "委托合格评估机构出具资产评估报告；整理并补齐各类资产的取得成本凭证；对非英文/法文文件安排翻译与公证。",
+          "actions": [
+            "委托合格评估机构出具资产评估报告",
+            "整理并补齐各类资产的取得成本凭证",
+            "对非英文/法文文件安排翻译与公证。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R15",
+          "row_number": 15,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "跨境转让协议及法律文件起草",
+          "client_cooperation": "确认资产转让的当事方信息及转让比例；审阅并签署相关法律文件（资产转让协议、赠与协议、信托契约等）；与法律顾问沟通特殊条款需求。",
+          "actions": [
+            "确认资产转让的当事方信息及转让比例",
+            "审阅并签署相关法律文件（资产转让协议、赠与协议、信托契约等）",
+            "与法律顾问沟通特殊条款需求。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R16",
+          "row_number": 16,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "身份筹划相关文件准备",
+          "client_cooperation": "配合填写中国税收居民身份证明申请表及提供所需材料；配合填写加拿大NR73表格及相关证明材料；保持与税务机关的沟通并及时补充材料。",
+          "actions": [
+            "配合填写中国税收居民身份证明申请表及提供所需材料",
+            "配合填写加拿大NR73表格及相关证明材料",
+            "保持与税务机关的沟通并及时补充材料。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R17",
+          "row_number": 17,
+          "primary_stage": "4 文件制备",
+          "stage_order": 4,
+          "secondary_node": "年度申报模板与披露文件预准备",
+          "client_cooperation": "提供预期年度收入的类型与金额估算；配合预填模拟申报表所需的数据验证；确认年度申报的时间节点与资料提交流程。",
+          "actions": [
+            "提供预期年度收入的类型与金额估算",
+            "配合预填模拟申报表所需的数据验证",
+            "确认年度申报的时间节点与资料提交流程。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R18",
+          "row_number": 18,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "登陆前资产交易执行与交割",
+          "client_cooperation": "协调资产交易各方完成交割与资金结算；办理股权工商变更登记或房产过户手续；保留完整的交易记录与凭证以备未来税务核查。",
+          "actions": [
+            "协调资产交易各方完成交割与资金结算",
+            "办理股权工商变更登记或房产过户手续",
+            "保留完整的交易记录与凭证以备未来税务核查。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R19",
+          "row_number": 19,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "非税居民身份申请提交",
+          "client_cooperation": "配合签署并提交NR73表格及相关材料；如CRA要求补充材料，及时提供相关信息；在等待审查期间维持与加拿大的适当联系程度。",
+          "actions": [
+            "配合签署并提交NR73表格及相关材料",
+            "如CRA要求补充材料，及时提供相关信息",
+            "在等待审查期间维持与加拿大的适当联系程度。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R20",
+          "row_number": 20,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "首次年度个税申报与T1135提交",
+          "client_cooperation": "提供年度全球收入明细（含中国及第三方国家的各类收入）；提供海外金融资产的年度变动情况（增加、减少、处置）；配合签署电子申报授权文件。",
+          "actions": [
+            "提供年度全球收入明细（含中国及第三方国家的各类收入）",
+            "提供海外金融资产的年度变动情况（增加、减少、处置）",
+            "配合签署电子申报授权文件。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R21",
+          "row_number": 21,
+          "primary_stage": "5 交付执行",
+          "stage_order": 5,
+          "secondary_node": "跨境架构落地与备案",
+          "client_cooperation": "配合完成信托或公司的设立程序（签署设立文件、指定受托人/董事、注资）；提供受益人/股东的身份信息与联系方式；确认架构的后续管理安排与费用承担。",
+          "actions": [
+            "配合完成信托或公司的设立程序（签署设立文件、指定受托人/董事、注资）",
+            "提供受益人/股东的身份信息与联系方式",
+            "确认架构的后续管理安排与费用承担。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R22",
+          "row_number": 22,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "年度税务申报合规维护",
+          "client_cooperation": "每年按时提供全球收入资料及海外资产变动信息；配合年度申报的审阅与签署；如发生重大资产变动或身份变化，及时通知家办及税务顾问。",
+          "actions": [
+            "每年按时提供全球收入资料及海外资产变动信息",
+            "配合年度申报的审阅与签署",
+            "如发生重大资产变动或身份变化，及时通知家办及税务顾问。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R23",
+          "row_number": 23,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "海外资产持续披露管理",
+          "client_cooperation": "每年更新海外资产清单及变动情况（新增、处置、公允价值变动）；提供新增资产的取得凭证与成本信息；配合年度T1135的更新填报。",
+          "actions": [
+            "每年更新海外资产清单及变动情况（新增、处置、公允价值变动）",
+            "提供新增资产的取得凭证与成本信息",
+            "配合年度T1135的更新填报。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R24",
+          "row_number": 24,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "身份状态变化应对",
+          "client_cooperation": "如身份状态发生变化，第一时间通知家办；提供身份变化的官方文件（如入籍证书、放弃身份的正式文件等）；配合评估身份变化的税务影响并决策后续步骤。",
+          "actions": [
+            "如身份状态发生变化，第一时间通知家办",
+            "提供身份变化的官方文件（如入籍证书、放弃身份的正式文件等）",
+            "配合评估身份变化的税务影响并决策后续步骤。"
+          ]
+        },
+        {
+          "id": "Tax-2409-R25",
+          "row_number": 25,
+          "primary_stage": "6 售后维护",
+          "stage_order": 6,
+          "secondary_node": "政策变动跟踪与方案调整",
+          "client_cooperation": "关注家办推送的政策更新提醒；在家办建议下评估方案调整的必要性与时机；配合实施方案调整中的必要步骤（如文件更新、架构调整等）。",
+          "actions": [
+            "关注家办推送的政策更新提醒",
+            "在家办建议下评估方案调整的必要性与时机",
+            "配合实施方案调整中的必要步骤（如文件更新、架构调整等）。"
+          ]
+        }
+      ]
+    }
+  ]
+}

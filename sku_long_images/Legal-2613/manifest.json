@@ -1,0 +1,32 @@
+{
+  "sku_id": "Legal-2613",
+  "sku_name": "拟上市公司辅导期（合规事项）",
+  "aliases": [
+    "Legal-2613",
+    "拟上市公司辅导期 - 合规事项",
+    "拟上市公司辅导期（合规事项）"
+  ],
+  "source_ppt": "拟上市公司辅导期 - 合规事项.pptx",
+  "source_sha256": "047caaf3421abaf37ac8ef42f0b811c072b3ee81da691647a0756584325babb3",
+  "source_modified": "2026-07-03T16:20:36+08:00",
+  "slide_count": 10,
+  "chunk_count": 2,
+  "chunks": [
+    {
+      "file": "Legal-2613/Legal-2613-part-01.png",
+      "start_slide": 1,
+      "end_slide": 8,
+      "width": 1080,
+      "height": 4864,
+      "bytes": 2351540
+    },
+    {
+      "file": "Legal-2613/Legal-2613-part-02.png",
+      "start_slide": 9,
+      "end_slide": 10,
+      "width": 1080,
+      "height": 1216,
+      "bytes": 577084
+    }
+  ]
+}

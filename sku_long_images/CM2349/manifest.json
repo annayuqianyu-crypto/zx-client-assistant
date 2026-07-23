@@ -1,0 +1,23 @@
+{
+  "sku_id": "CM2349",
+  "sku_name": "离岸信托-FGT",
+  "aliases": [
+    "CM2349",
+    "离岸信托-FGT"
+  ],
+  "source_ppt": "离岸信托-FGT.pptx",
+  "source_sha256": "16339bb172836b1dc550e9815fb8a249026b097e7a6547f7713c82c7d021a334",
+  "source_modified": "2026-07-03T16:21:04+08:00",
+  "slide_count": 5,
+  "chunk_count": 1,
+  "chunks": [
+    {
+      "file": "CM2349/CM2349-part-01.png",
+      "start_slide": 1,
+      "end_slide": 5,
+      "width": 1080,
+      "height": 3040,
+      "bytes": 739258
+    }
+  ]
+}

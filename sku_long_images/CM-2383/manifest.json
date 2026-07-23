@@ -1,0 +1,24 @@
+{
+  "sku_id": "CM-2383",
+  "sku_name": "银行-限售股股质",
+  "aliases": [
+    "CM-2383",
+    "CM2383",
+    "银行-限售股股质"
+  ],
+  "source_ppt": "银行-限售股股质.pptx",
+  "source_sha256": "7a1a8dfada885e5003a092d94485707358847ef887a23e3865bfecd80c33f2d2",
+  "source_modified": "2026-07-03T16:21:06+08:00",
+  "slide_count": 2,
+  "chunk_count": 1,
+  "chunks": [
+    {
+      "file": "CM-2383/CM-2383-part-01.png",
+      "start_slide": 1,
+      "end_slide": 2,
+      "width": 1080,
+      "height": 1216,
+      "bytes": 117171
+    }
+  ]
+}
