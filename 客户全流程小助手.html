@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>客户全流程小助手demo</title>
 <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
-<link rel="stylesheet" href="assistant_app.css?v=20260723-clientplan2">
+<link rel="stylesheet" href="assistant_app.css?v=20260723-multiuser1">
 <style>
   :root {
     --primary: #1a3a5c;
@@ -1513,7 +1513,12 @@ const DEFAULT_API_CONFIG = {
   model: 'deepseek-chat',
   provider: 'deepseek'
 };
-const API_CONFIG_STORAGE_KEY = 'anna_api_config_v1';
+const API_CONFIG_BASE_KEY = 'anna_api_config_v1';
+// 每个登录用户各自保存自己的 API 配置，互不影响
+function API_CONFIG_KEY() {
+  const slug = window.ZXAuth && window.ZXAuth.currentSlug && window.ZXAuth.currentSlug();
+  return slug ? API_CONFIG_BASE_KEY + '__' + slug : API_CONFIG_BASE_KEY;
+}
 
 // 服务商预设
 const API_PROVIDER_PRESETS = {
@@ -1528,7 +1533,7 @@ const API_PROVIDER_PRESETS = {
 // 读取当前生效的配置（用户自定义优先，否则回退到内置默认）
 function getApiConfig() {
   try {
-    const saved = localStorage.getItem(API_CONFIG_STORAGE_KEY);
+    const saved = localStorage.getItem(API_CONFIG_KEY());
     if (saved) {
       const cfg = JSON.parse(saved);
       if (cfg && cfg.url && cfg.key && cfg.model) return cfg;
@@ -1599,7 +1604,7 @@ function saveApiConfig() {
 
   const cfg = { url, key, model, provider };
   try {
-    localStorage.setItem(API_CONFIG_STORAGE_KEY, JSON.stringify(cfg));
+    localStorage.setItem(API_CONFIG_KEY(), JSON.stringify(cfg));
   } catch(e) {
     alert('保存失败：' + e.message);
     return;
@@ -1611,7 +1616,7 @@ function saveApiConfig() {
 
 function resetApiConfig() {
   if (!confirm('确定要清空你的自定义配置，回退到系统内置默认 Key 吗？')) return;
-  localStorage.removeItem(API_CONFIG_STORAGE_KEY);
+  localStorage.removeItem(API_CONFIG_KEY());
   refreshApiConfigBtn();
   closeApiConfigModal();
   alert('已恢复为系统内置默认 API');
@@ -3440,11 +3445,11 @@ analyze = async function() {
   </div>
 </div>
 
-<script src="auth_gate.js?v=20260723-auth1"></script>
+<script src="auth_gate.js?v=20260723-multiuser1"></script>
 <script src="jszip.min.js?v=20260720-plan1"></script>
 <script src="assistant_sop.js?v=20260720-plan1"></script>
 <script src="assistant_plan.js?v=20260720-plan1"></script>
-<script src="assistant_app.js?v=20260723-clientplan2"></script>
+<script src="assistant_app.js?v=20260723-multiuser1"></script>
 
 </body>
 </html>

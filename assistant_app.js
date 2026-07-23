@@ -1,7 +1,22 @@
 (function () {
   'use strict';
 
-  const DB_NAME = 'chaoxi_client_assistant_demo_v1';
+  // 每个登录用户一套独立的本地档案：库名与存储键都带上用户标识。
+  // 未登录（本地开发、无登录闸门）时沿用原名，保证既有数据不受影响。
+  const DB_BASE_NAME = 'chaoxi_client_assistant_demo_v1';
+  const ACTIVE_SESSION_BASE_KEY = 'chaoxi_active_session_v1';
+  let DB_NAME = DB_BASE_NAME;
+  let ACTIVE_SESSION_KEY = ACTIVE_SESSION_BASE_KEY;
+  let currentUserEmail = null;
+
+  function applyUserScope(email) {
+    currentUserEmail = email || null;
+    const slug = window.ZXAuth?.currentSlug?.();
+    if (!slug) return;
+    DB_NAME = `${DB_BASE_NAME}__${slug}`;
+    ACTIVE_SESSION_KEY = `${ACTIVE_SESSION_BASE_KEY}__${slug}`;
+  }
+
   const DB_VERSION = 1;
   const PAIN_FILE = 'pain_point_export_1783906924986.xlsx';
   const SKU_FILE = '全量SKU知识卡片-BU确认版本-20260629.xlsx';
@@ -618,8 +633,10 @@
             <button class="ca-secondary-btn" id="caApiSettings">API 设置</button>
             <button class="ca-secondary-btn" id="caExportBackup">导出备份</button>
             <button class="ca-secondary-btn" id="caImportBackup">导入备份</button>
+            <button class="ca-secondary-btn" id="caImportConversation" title="导入同事分享的单条对话">导入对话</button>
           </div>
           <input type="file" id="caImportFile" accept="application/json,.json" hidden>
+          <input type="file" id="caImportConvFile" accept="application/json,.json" hidden>
         </div>
       </aside>
       <div class="ca-resize-handle" id="caResizeHandle" title="拖动调整宽度"></div>
@@ -632,6 +649,7 @@
           </div>
           <div class="ca-top-actions">
             <button class="ca-icon-btn" id="caRenameSession">重命名</button>
+            <button class="ca-icon-btn" id="caExportConversation" title="导出这条对话，可发给同事导入">导出对话</button>
             <button class="ca-icon-btn" id="caArchiveSession">归档</button>
             <button class="ca-icon-btn" id="caDeleteSession">删除</button>
             <button class="ca-icon-btn ca-settings-btn" id="caTopSettings">⚙ 设置</button>
@@ -1735,6 +1753,13 @@
     $('#caExportBackup').addEventListener('click', exportBackup);
     $('#caImportBackup').addEventListener('click', () => $('#caImportFile').click());
     $('#caImportFile').addEventListener('change', importBackup);
+    $('#caExportConversation')?.addEventListener('click', () => {
+      const session = getActiveSession();
+      if (session) exportConversation(session.id);
+      else toast('请先选择一条对话');
+    });
+    $('#caImportConversation')?.addEventListener('click', () => $('#caImportConvFile').click());
+    $('#caImportConvFile')?.addEventListener('change', importConversation);
     $('#caMobileMenu').addEventListener('click', () => $('#assistantApp').classList.toggle('sidebar-open'));
     $('#caQuickRow').addEventListener('click', (event) => {
       const button = event.target.closest('[data-quick]');
@@ -2943,7 +2968,7 @@
       setBusy(false);
     }
     activeSessionId = sessionId;
-    localStorage.setItem('chaoxi_active_session_v1', sessionId);
+    localStorage.setItem(ACTIVE_SESSION_KEY, sessionId);
     activeMessages = await getSessionMessages(sessionId);
     await ensureCurrentGuidedQuestion(getActiveSession());
     renderSessionList();
@@ -3038,6 +3063,99 @@
       toast('本地档案已导出');
     } catch (error) {
       toast(`导出失败：${error.message}`);
+    }
+  }
+
+  // ===== 单条对话的导出 / 导入：用于同事之间分享某一次完整的客户沟通 =====
+  const CONVERSATION_FILE_TYPE = 'zx-client-assistant-conversation';
+
+  async function exportConversation(sessionId) {
+    const session = sessions.find((item) => item.id === sessionId);
+    if (!session) { toast('没有找到要导出的对话'); return; }
+    try {
+      const [allMessages, allRecs] = await Promise.all([
+        getAllRecords('messages'),
+        getAllRecords('recommendations')
+      ]);
+      const messages = allMessages
+        .filter((m) => m.sessionId === sessionId)
+        .sort((a, b) => String(a.createdAt).localeCompare(String(b.createdAt)));
+      if (!messages.length) { toast('这条对话还没有内容，无需导出'); return; }
+
+      const payload = {
+        type: CONVERSATION_FILE_TYPE,
+        version: 1,
+        exportedAt: nowIso(),
+        exportedBy: currentUserEmail || '未登录用户',
+        session,
+        messages,
+        recommendations: allRecs.filter((r) => r.sessionId === sessionId)
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const safeName = String(session.name || '未命名客户').replace(/[\\/:*?"<>|]/g, '');
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `对话_${safeName}_${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 30000);
+      toast(`已导出「${session.name || '未命名客户'}」共 ${messages.length} 条消息，可发给同事导入`);
+    } catch (error) {
+      toast(`导出对话失败：${error.message}`);
+    }
+  }
+
+  async function importConversation(event) {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file) return;
+    try {
+      const payload = JSON.parse(await file.text());
+      if (payload.type !== CONVERSATION_FILE_TYPE || !payload.session || !Array.isArray(payload.messages)) {
+        throw new Error('这不是一份对话分享文件');
+      }
+      const sourceName = payload.session.name || '未命名客户';
+      const from = payload.exportedBy ? `（来自 ${payload.exportedBy}）` : '';
+      if (!confirm(`导入「${sourceName}」${from}\n共 ${payload.messages.length} 条消息。\n\n将作为一条新的对话存入你的档案，不会覆盖你现有的任何内容。是否继续？`)) return;
+
+      // 重新分配 ID：保证导入方永远是「新增一份副本」，不会覆盖自己或他人的记录
+      const newSessionId = `session-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+      // 名称标注来源，避免和自己的同名对话混淆
+      const sender = String(payload.exportedBy || '').split('@')[0];
+      const importedName = sender ? `${sourceName}（来自 ${sender}）` : `${sourceName}（导入）`;
+      const imported = normalizeSession({
+        ...payload.session,
+        id: newSessionId,
+        name: importedName,
+        manualName: true,
+        importedFrom: payload.exportedBy || null,
+        importedAt: nowIso(),
+        updatedAt: nowIso()
+      });
+      await putRecord('sessions', imported);
+
+      for (const message of payload.messages) {
+        await putRecord('messages', {
+          ...message,
+          id: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+          sessionId: newSessionId
+        });
+      }
+      for (const rec of payload.recommendations || []) {
+        await putRecord('recommendations', {
+          ...rec,
+          id: `rec-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+          sessionId: newSessionId
+        });
+      }
+
+      sessions = (await getAllRecords('sessions')).map(normalizeSession);
+      await switchSession(newSessionId);
+      toast(`已导入「${sourceName}」${from}`);
+    } catch (error) {
+      toast(`导入对话失败：${error.message}`);
     }
   }
 
@@ -5089,8 +5207,8 @@ JSON 结构：
     }
     if (restored) {
       console.info(`[demo] 样例会话已就绪：${restored} 条`);
-      if (payload.preferredSessionId && !localStorage.getItem('chaoxi_active_session_v1')) {
-        localStorage.setItem('chaoxi_active_session_v1', payload.preferredSessionId);
+      if (payload.preferredSessionId && !localStorage.getItem(ACTIVE_SESSION_KEY)) {
+        localStorage.setItem(ACTIVE_SESSION_KEY, payload.preferredSessionId);
       }
     }
   }
@@ -5112,6 +5230,12 @@ JSON 结构：
           appShell.scrollTop = 0;
         }
       });
+    }
+    // 等登录完成后再决定打开谁的档案库（未接入登录闸门时此步立即通过）
+    if (window.ZXAuth?.whenAuthenticated) {
+      const email = await window.ZXAuth.whenAuthenticated();
+      applyUserScope(email);
+      console.info(`[auth] 当前用户 ${email}，本地档案库 ${DB_NAME}`);
     }
     try {
       db = await openDatabase();
@@ -5137,7 +5261,7 @@ JSON 结构：
     if (!sessions.length) {
       await createAndOpenSession();
     } else {
-      const remembered = localStorage.getItem('chaoxi_active_session_v1');
+      const remembered = localStorage.getItem(ACTIVE_SESSION_KEY);
       const target = sessions.find((item) => item.id === remembered)
         || sessions.sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)))[0];
       await switchSession(target.id);

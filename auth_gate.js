@@ -169,9 +169,11 @@
           pwdInput.value = '';
           return;
         }
-        writeSession(email.toLowerCase(), remember.checked);
+        var normalized = email.toLowerCase();
+        writeSession(normalized, remember.checked);
         gate.remove();
-        mountLogoutButton(email.toLowerCase());
+        mountLogoutButton(normalized);
+        resolveReady(normalized);
       } catch (err) {
         fail('验证失败：' + err.message);
       } finally {
@@ -189,17 +191,33 @@
     var session = readSession();
     if (session) {
       mountLogoutButton(session.email);
+      resolveReady(session.email);
     } else {
       showGate();
     }
   }
 
-  // 供主应用取用当前登录人（个人成长看板等）
+  // 「登录完成」信号：主应用等这个 Promise 落地后，才知道该用谁的档案库
+  var resolveReady;
+  var readyPromise = new Promise(function (resolve) { resolveReady = resolve; });
+
+  function userSlug(email) {
+    return String(email || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+  }
+
+  // 供主应用取用当前登录人（数据隔离、个人成长看板等）
   window.ZXAuth = {
     currentUser: function () {
       var s = readSession();
       return s ? s.email : null;
     },
+    // 当前登录人的存储标识，用于隔离各自的本地档案
+    currentSlug: function () {
+      var s = readSession();
+      return s ? userSlug(s.email) : null;
+    },
+    // 主应用调用：已登录立即兑现，未登录则等到登录成功
+    whenAuthenticated: function () { return readyPromise; },
     logout: function () { clearSession(); location.reload(); }
   };
 
