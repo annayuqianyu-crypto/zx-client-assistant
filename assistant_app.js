@@ -257,7 +257,10 @@
         painStep: Number(session.flow?.painStep || 0),
         skuStep: Number(session.flow?.skuStep || 0),
         refreshStep: Number(session.flow?.refreshStep || 0),
-        askedQuestions: Array.isArray(session.flow?.askedQuestions) ? session.flow.askedQuestions : []
+        askedQuestions: Array.isArray(session.flow?.askedQuestions) ? session.flow.askedQuestions : [],
+        // 画像补充采用 grill-me 逐分支追问：记录已追问过的维度，避免重复提问
+        profileAsked: Array.isArray(session.flow?.profileAsked) ? session.flow.profileAsked : [],
+        pendingProfileKey: session.flow?.pendingProfileKey || null
       },
       profile: emptyProfile(),
       profileSchemaVersion: PROFILE_SCHEMA_VERSION,
@@ -3564,6 +3567,7 @@
    - 企业上市/IPO → 发行上市审核、信息披露、股权结构与历史沿革合规。
    仅当客户信息实在过于空泛、无任何可据以推断的身份/资产/事件信号时，才可填“暂无足以判断的外部约束，待补充客户信息”，并给 0.55 以下 confidence。
 15. 【行业必须带景气度与风险判断】一旦确定客户主营/财富来源行业，industry 不能只写行业名称，必须补充：① 细分赛道 ② 该行业当前所处周期阶段或景气度（上行/下行/强监管/技术迭代/政策红利/产能过剩等）③ 由此推断客户可能面临的问题或风险。例如“制造业-高端装备，行业处于国产替代政策红利期但下游需求分化，客户或面临订单波动与扩产资金压力”。
+17. 【绝不重复提问，答不上就替客户判断】"已问问题"里出现过的维度和问法都不能再问第二遍。当销售回答"我想不出/你来想/不清楚/不知道/你来判断"或给不出该维度的实质信息时，绝对不要把同一个问题再问一遍——而是像资深顾问一样，据现有画像**主动给出你对这个维度的专业判断作为工作假设**（写进对应 profile_patch，confidence 0.5-0.6），在 reply 里自然说明"这个通常不用您专门说，我先按…理解"，然后 suggested_question 转向**下一个还没问过、仍缺失的维度**；若五维都已问过或已可据现有信息判断，suggested_question 留空，让系统进入痛点梳理。
 16. profile_patch 的写法质量要求：①用户原话中出现的具体数字、金额、比例、国家/地区、身份类型必须原样保留，不得笼统概括（如“约3000万美元离岸金融资产”不得写成“境外资产”，“约2亿元收购上游企业”不得写成“企业并购”）；②subject/assets/events 要写成完整、具体的陈述句；③subject 不使用“待进一步确认的客户主体”这类占位语，信息不足就留空等待追问，但 constraints 按第14条必须尽力推断而非留空。
 
 JSON 结构：
@@ -3693,8 +3697,8 @@ JSON 结构：
 
     return {
       reply: businessSignal
-        ? `我已记录这条客户信息${summaryBits.length ? `：${summaryBits.join('；')}` : ''}。接下来我会逐步确认关键事实，避免一次询问过多。`
-        : '我已收到这条消息。',
+        ? `好的，${summaryBits.length ? `我记一下：${summaryBits.join('；')}。` : '我记一下。'}`
+        : '嗯，我在。',
       intent: businessSignal ? 'business' : 'casual',
       business_signal: businessSignal,
       profile_patch: normalizeIncomingProfilePatch(patch),
@@ -3769,11 +3773,69 @@ JSON 结构：
     });
   }
 
-  function profileGapQuestion(session, suggested) {
-    if (suggested && String(suggested).trim()) return String(suggested).trim();
+  // 「我想不出/你来想/不清楚」这类甩锅或答不上的回答
+  const PROFILE_DEFER_RE = /(想不出|想不到|你来想|你来判断|你来定|你决定|你帮我想|你帮我判断|你分析|你觉得呢|不知道|不清楚|说不好|说不清|没头绪|没有头绪|不太清楚|不确定|随便|都行|你看着|不好说)/;
+
+  function isDeferral(text) {
+    const t = String(text || '').trim();
+    return t.length > 0 && t.length <= 30 && PROFILE_DEFER_RE.test(t);
+  }
+
+  function normalizeQ(text) {
+    return String(text || '').replace(/[\s，。？、,.?;；：:！!"“”'']/g, '');
+  }
+
+  // grill-me：返回下一个"仍缺失且尚未追问过"的维度问题；都问过了返回 null
+  function nextProfileGap(session) {
+    const asked = new Set(session.flow.profileAsked || []);
     const gaps = new Set(profileGaps(session));
-    const next = PROFILE_CORE_KEYS.find((key) => gaps.has(key)) || PROFILE_CORE_KEYS[0];
-    return PROFILE_GAP_QUESTIONS[next];
+    const key = PROFILE_CORE_KEYS.find((k) => gaps.has(k) && !asked.has(k));
+    if (!key) return null;
+    return { key, question: PROFILE_GAP_QUESTIONS[key] };
+  }
+
+  // 甩锅/答不上时：不重复提问，而是据现有画像给出专业假设，把该维度补上
+  function inferProfileDimension(session, key) {
+    const src = PROFILE_CORE_KEYS.map((k) => session.profile[k]?.value || '').join(' ');
+    if (key === 'constraints') {
+      const c = deriveConstraintsText(src);
+      return c || '暂无足以判断的强制性外部约束，后续视新信息再补充';
+    }
+    if (key === 'industry') {
+      const m = src.match(/(制造|地产|房地产|科技|互联网|生物医药|医疗|餐饮|零售|贸易|金融|教育|能源|化工|农业|物流|文娱|新能源|半导体|汽车)[^\s，。；]*/);
+      if (m) return `${m[0]}（具体赛道与景气度待补充，可先按该行业当前周期评估潜在风险）`;
+      return '';
+    }
+    if (key === 'events') {
+      return src.match(/(上市|IPO|传承|接班|并购|收购|融资|移民|离婚|设立信托|减持|股权)/) ? '' : '暂未识别到明确的近期重大事件，后续可再补充';
+    }
+    return '';
+  }
+
+  // 从已知画像文本提炼强制性外部约束（供甩锅推断复用，规则与本地兜底一致的精简版）
+  function deriveConstraintsText(text) {
+    const s = String(text || '');
+    const parts = [];
+    if (/上市公司|A股|上市|挂牌/.test(s) && /股东|创始|实控|控股|减持|全流通|持股/.test(s)) parts.push('证监会减持规则（大股东减持比例与预披露、短线交易6个月及窗口期限制）与上市公司信息披露义务');
+    if (/质押/.test(s) && /融资|贷款|资金/.test(s)) parts.push('股票质押融资监管（质押比例上限、平仓线与资金用途穿透）');
+    if (/收购|并购|受让.{0,6}股权|入股/.test(s)) parts.push('收购涉及反垄断经营者集中申报及同业竞争/关联交易审查');
+    if (/代持/.test(s)) parts.push('股权代持还原的工商登记与税务处理、上市前股权清晰合规要求');
+    if (/上市|IPO/.test(s)) parts.push('发行上市审核、信息披露与股权结构合规要求');
+    if (/跨境|境外|海外|移民|离岸|信托/.test(s) && /(美国|加拿大|英国|澳大利亚|香港|新加坡)/.test(s)) parts.push('跨境架构需关注CRS信息交换、受控外国公司CFC规则、ODI/37号文外汇登记及目标国税务居民/信托规则');
+    else if (/跨境|境外|海外|移民|离岸/.test(s)) parts.push('跨境税务、外汇（ODI/37号文）与监管合规要求');
+    if (/税|税务/.test(s) && !parts.some((p) => /税/.test(p))) parts.push('相关税务合规要求');
+    return Array.from(new Set(parts)).join('；');
+  }
+
+  function profileGapQuestion(session, suggested) {
+    // 采用建议问题前先去重：与已问过的问题重复则忽略
+    if (suggested && String(suggested).trim()) {
+      const s = String(suggested).trim();
+      const asked = (session.flow.askedQuestions || []).map(normalizeQ);
+      if (!asked.includes(normalizeQ(s))) return s;
+    }
+    const next = nextProfileGap(session);
+    return next ? next.question : null;
   }
 
   const PAIN_ANALYST_SYSTEM_PROMPT = '你是一个专注于金融领域的专业分析师，擅长对金融领域涉及的法律、税务、科技、合规、风控全领域智能分析，负责基于用户已有的KYC数据进行风险画像评估，根据客户特质自主化生成结构化的动态问题组，用于进一步明确客户画像，便于后续在痛点库中寻找最合适的痛点。你的工作流程包括：首先整合用户提供的基本信息、同一分析对象的历史KYC记录等内容；其次识别其中的重要信息缺失、逻辑矛盾或潜在高风险信号；然后据此生成有明确数据依据的验证性或补充性问题。你不得使用任何外部工具或调用额外数据，所有推理必须严格基于系统内已有信息。你必须遵守隐私保护与数据最小化原则，确保所有输出符合金融监管要求，不编造、不假设、不诱导，且提问内容需专业、中立、可解释。';
@@ -3840,6 +3902,63 @@ JSON 结构：
       session.flow.askedQuestions.push(question);
       await addGuidedQuestion(session, 'PAIN_CONFIRMATION', 1, question, intro, null, messageData);
     }
+  }
+
+  const PROFILE_DIM_CN = { subject: '客户主体', industry: '行业', assets: '资产', events: '关键事件', constraints: '外部约束' };
+
+  // grill-me 逐分支画像补充：不重复提问；客户答不上/甩锅时给专业假设再推进；无新问题可问就据现有信息进入痛点
+  async function advanceProfileGathering(session, reply, messageData, suggested) {
+    session.flow.profileAsked = session.flow.profileAsked || [];
+    const lastUser = [...activeMessages].reverse().find((m) => m.role === 'user')?.content || '';
+    const pendingKey = session.flow.pendingProfileKey;
+    let lead = reply && String(reply).trim() ? String(reply).trim() : '';
+
+    // 上一问客户答不上或让我们来判断 → 不再重复，能推断的直接给专业假设，不能推断的优雅跳过
+    const deferred = pendingKey && !session.profile[pendingKey]?.value && (isDeferral(lastUser) || (!messageData && session.flow.profileAsked.includes(pendingKey)));
+    if (deferred) {
+      const guess = inferProfileDimension(session, pendingKey);
+      let defused;
+      if (guess) {
+        session.profile[pendingKey] = { value: guess, evidence: '据现有画像专业推断（客户未明确提供）', confidence: 0.55, confirmed: false };
+        defused = `没关系，${PROFILE_DIM_CN[pendingKey]}这类判断通常不用您专门说，我先据现在的情况替您判断：${guess}。`;
+      } else {
+        // 无法据现有信息推断（如资产明细）：不追问、不硬编，先记为待补，转向别的维度
+        defused = `${PROFILE_DIM_CN[pendingKey]}这块我们先放一放，等有材料再补，先看其他方面。`;
+      }
+      // 甩锅时用承接语替换平淡的兜底 reply
+      lead = (lead && !/^(嗯，我在|好的，我记一下)/.test(lead)) ? `${lead}\n\n${defused}` : defused;
+    }
+
+    // 找下一个"仍缺失且没问过"的维度
+    let question = null;
+    if (suggested && String(suggested).trim()) {
+      const s = String(suggested).trim();
+      const askedNorm = (session.flow.askedQuestions || []).map(normalizeQ);
+      if (!askedNorm.includes(normalizeQ(s))) question = s;
+    }
+    if (!question) {
+      const gap = nextProfileGap(session);
+      if (gap) {
+        question = gap.question;
+        session.flow.pendingProfileKey = gap.key;
+        if (!session.flow.profileAsked.includes(gap.key)) session.flow.profileAsked.push(gap.key);
+      }
+    }
+
+    if (question) {
+      session.flow.askedQuestions.push(question);
+      await addMessage('assistant', lead ? `${lead}\n\n${question}` : question, 'text', messageData, session.id);
+      await saveSession(session);
+      return;
+    }
+
+    // 没有可继续追问的新维度：把还缺的约束补齐，据现有信息进入痛点确认
+    if (!session.profile.constraints?.value) {
+      const c = inferProfileDimension(session, 'constraints');
+      if (c) session.profile.constraints = { value: c, evidence: '据现有画像专业推断', confidence: 0.55, confirmed: false };
+    }
+    session.flow.pendingProfileKey = null;
+    await enterPainConfirmation(session, lead, messageData, '客户情况我这边差不多了，先据此帮您梳理最可能的痛点。');
   }
 
   function buildSearchTerms(session) {
@@ -5270,9 +5389,7 @@ JSON 结构：
         await enterPainConfirmation(session, reply, messageData, '');
       } else {
         session.stage = 'PROFILE_GATHERING';
-        const question = profileGapQuestion(session, result.suggested_question);
-        session.flow.askedQuestions.push(question);
-        await addMessage('assistant', `${reply}\n\n${question}`, 'text', messageData, session.id);
+        await advanceProfileGathering(session, reply, messageData, result.suggested_question);
       }
       return;
     }
@@ -5281,9 +5398,7 @@ JSON 结构：
       if (profileReady(session)) {
         await enterPainConfirmation(session, reply, messageData, '');
       } else {
-        const question = profileGapQuestion(session, result.suggested_question);
-        session.flow.askedQuestions.push(question);
-        await addMessage('assistant', `${reply}\n\n${question}`, 'text', messageData, session.id);
+        await advanceProfileGathering(session, reply, messageData, result.suggested_question);
       }
       return;
     }
