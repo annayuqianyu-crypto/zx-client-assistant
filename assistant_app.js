@@ -264,7 +264,9 @@
         profileAsked: Array.isArray(session.flow?.profileAsked) ? session.flow.profileAsked : [],
         pendingProfileKey: session.flow?.pendingProfileKey || null,
         // 已进行的画像深挖轮次：即使首条消息已填满 5D，也要至少 grill 满 MIN_PROFILE_ROUNDS 轮再进痛点
-        profileRounds: Number(session.flow?.profileRounds || 0)
+        profileRounds: Number(session.flow?.profileRounds || 0),
+        // 画像完成后已发出"是否梳理痛点"的柔和征询、正在等待客户回应
+        painInvitePending: !!session.flow?.painInvitePending
       },
       profile: emptyProfile(),
       profileSchemaVersion: PROFILE_SCHEMA_VERSION,
@@ -2204,6 +2206,7 @@
 
   // 柔和的下一步引导：方案之后不自动连发 SOP/供应商，而是征得客户同意再逐步展开
   const STEP_INVITE = {
+    pain: { text: '客户的情况我这边已经梳理得比较完整了。要不要我帮您把最可能、最紧迫的痛点方向梳理出来？大概会问几个小问题，帮我们更准地锁定客户的核心需求。', btn: '好，梳理痛点', skip: '先不用' },
     sop: { text: '如果需要，我可以把这套方案的落地步骤也帮你梳理出来——每一步该做什么、需要客户配合什么，一目了然。要看吗？', btn: '好，看落地步骤', skip: '暂时不用' },
     supplier: { text: '要不要我再把供应商这块理一下？也就是每个环节需要哪些外部机构配合、各自负责什么。', btn: '好，看供应商配合', skip: '暂时不用' }
   };
@@ -3815,6 +3818,17 @@ JSON 结构：
     return t.length > 0 && t.length <= 30 && PROFILE_DEFER_RE.test(t);
   }
 
+  // 客户对"是否梳理痛点"征询的回应
+  const AFFIRM_RE = /^(好|好的|好啊|行|可以|嗯|OK|ok|yes|要|想|想了解|了解一下|梳理吧|开始吧|来吧|继续|没问题|可以的|麻烦你|辛苦了|请|需要|正想|正好)/i;
+  const NEGATIVE_RE = /(先不|不用|不急|等等|待会|稍后|再说|暂时不|先别|先聊|不想|no|不需要|先不用)/i;
+  function isAffirmative(text) {
+    const t = String(text || '').trim();
+    return t.length > 0 && t.length <= 20 && AFFIRM_RE.test(t) && !NEGATIVE_RE.test(t);
+  }
+  function isNegative(text) {
+    return NEGATIVE_RE.test(String(text || '').trim());
+  }
+
   function normalizeQ(text) {
     return String(text || '').replace(/[\s，。？、,.?;；：:！!"“”'']/g, '');
   }
@@ -4001,13 +4015,23 @@ JSON 结构：
       return;
     }
 
-    // 轮次已够且无更多可问：补齐约束，进入痛点确认
+    // 轮次已够且无更多可问：补齐约束，然后柔和征询是否进入痛点梳理（不直接堆痛点问题）
     if (!session.profile.constraints?.value) {
       const c = inferProfileDimension(session, 'constraints');
       if (c) session.profile.constraints = { value: c, evidence: '据现有画像专业推断', confidence: 0.55, confirmed: false };
     }
     session.flow.pendingProfileKey = null;
-    await enterPainConfirmation(session, lead, messageData, '客户情况我这边梳理得差不多了，接下来帮您确认最可能的痛点方向。');
+    if (lead) await addMessage('assistant', lead, 'text', messageData, session.id);
+    await postPainInvite(session);
+    await saveSession(session);
+  }
+
+  // 画像完成后，柔和征询客户是否要进入痛点梳理；点按钮或打字表示愿意才生成痛点问题
+  async function postPainInvite(session) {
+    if (session.flow.painInvitePending) return;
+    if (activeMessages.some((m) => m.type === 'step-invite' && m.data?.next === 'pain')) return;
+    session.flow.painInvitePending = true;
+    await addMessage('assistant', '', 'step-invite', { next: 'pain', consumed: false }, session.id);
   }
 
   // 五维已填满时的深挖确认问题（大模型未给追问时的兜底，围绕最决策相关的信息确认细节，非正则抽取）
@@ -5412,13 +5436,21 @@ JSON 结构：
   // 客户点了"看落地步骤/看供应商配合"后：生成对应内容，标记该引导已展开，SOP 之后再柔和引导供应商
   async function handleStepInvite(next, inviteMsgId) {
     const session = getActiveSession();
-    if (!session || !Array.isArray(session.skus) || !session.skus.length) return;
+    if (!session) return;
+    // pain 之外的引导（sop/supplier）需要已有方案
+    if (next !== 'pain' && (!Array.isArray(session.skus) || !session.skus.length)) return;
     // 标记这条引导为已展开（按钮置灰），并持久化
     const invite = activeMessages.find((m) => m.id === inviteMsgId);
     if (invite) {
       invite.data = { ...invite.data, consumed: true };
       renderMessages();
       try { await putRecord('messages', invite); } catch (_) {}
+    }
+    if (next === 'pain') {
+      session.flow.painInvitePending = false;
+      await saveSession(session);
+      await enterPainConfirmation(session, '', null, '好，我这就帮您梳理最可能的痛点方向。');
+      return;
     }
     if (next === 'sop') {
       if (!activeMessages.some((m) => m.type === 'sku-sop')) await presentSkuSop(session);
@@ -5456,6 +5488,21 @@ JSON 结构：
     }
 
     if (session.stage === 'PROFILE_GATHERING') {
+      // 已发出"是否梳理痛点"的征询，正在等客户回应
+      if (session.flow.painInvitePending) {
+        const lastUser = [...activeMessages].reverse().find((m) => m.role === 'user')?.content || '';
+        if (isAffirmative(lastUser)) {
+          session.flow.painInvitePending = false;
+          await enterPainConfirmation(session, reply, messageData, '好，我这就帮您梳理最可能的痛点方向。');
+        } else if (isNegative(lastUser)) {
+          session.flow.painInvitePending = false;
+          await addMessage('assistant', reply && String(reply).trim() ? reply : '好的，那先不急。您可以继续补充客户情况，想开始梳理痛点时跟我说一声就行。', 'text', messageData, session.id);
+        } else {
+          // 客户没有明确答应/拒绝，而是补充了新信息或问了别的：正常合并推进，征询仍然有效
+          await advanceProfileGathering(session, reply, messageData, result.suggested_question);
+        }
+        return;
+      }
       await advanceProfileGathering(session, reply, messageData, result.suggested_question);
       return;
     }
