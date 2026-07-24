@@ -47,7 +47,7 @@
   };
   const PROFILE_SCHEMA_VERSION = 2;
   const EXTERNAL_CONSTRAINT_PATTERN = /法律|法规|监管|税务|税收|纳税|司法|法院|诉讼|仲裁|信披|信息披露|减持(?:规定|规则|限制)|外汇|外管|牌照|许可|审批|审核|备案|登记|合规|反洗钱|CRS|37号文|ODI|QDII|QDLP|限购|限售|法定|强制|证监会|交易所|税务局|外汇局/i;
-  const INTERNAL_EVENT_PATTERN = /家庭不和|家庭矛盾|家庭关系|家人反对|家人不同意|家族(?:存在|之间有|意见)?(?:矛盾|纠纷|分歧|意见不一)|夫妻(?:存在|之间有|意见)?(?:矛盾|不和|纠纷|分歧|意见不一)|婚姻(?:变化|矛盾|危机)|离婚|兄弟姐妹(?:存在|之间有|意见)?(?:矛盾|纠纷|分歧|意见不一)|兄弟(?:存在|之间有|意见)?(?:矛盾|纠纷|分歧|意见不一)|姐妹(?:存在|之间有|意见)?(?:矛盾|纠纷|分歧|意见不一)|代际(?:存在|之间有|意见)?(?:矛盾|冲突|分歧|意见不一)|亲属纠纷|家庭意见|传承分歧|继承纠纷/i;
+  const INTERNAL_EVENT_PATTERN = /家庭不和|家庭矛盾|家庭关系|家人反对|家人不同意|家族(?:存在|之间有|意见)?(?:矛盾|纠纷|分歧|意见不一)|夫妻(?:存在|之间有|意见)?(?:矛盾|不和|纠纷|分歧|意见不一)|婚姻(?:变化|矛盾|危机)|离婚|兄弟姐妹(?:存在|之间有|意见)?(?:矛盾|纠纷|分歧|意见不一)|兄弟(?:存在|之间有|意见)?(?:矛盾|纠纷|分歧|意见不一)|姐妹(?:存在|之间有|意见)?(?:矛盾|纠纷|分歧|意见不一)|代际(?:存在|之间有|意见)?(?:矛盾|冲突|分歧|意见不一)|亲属纠纷|家庭意见|传承分歧|继承纠纷|(?:权力|控制权|收益|利益|股权|财产|分配)[^，。；]{0,8}分配?[^，。；]{0,8}(?:意见不一|不一致|存在分歧|有分歧|有争议|难以达成一致)|分配[^，。；]{0,4}(?:意见不一|不一致|存在分歧|有分歧|有争议)|意见不一致|各执一词/i;
   const INTERNAL_PREFERENCE_PATTERN = /不愿失去控制权|不愿放弃控制权|控制权偏好|不愿承担风险|风险偏好|希望保密|保密偏好|家人意见|时间紧|期限紧|缺乏流动性|流动性不足|资金不足|团队能力不足|执行能力不足/;
   // 「其他」选项的统一文案：渲染时以此为准，历史已生成的问题也会同步显示新文案
   const OTHER_OPTION_LABEL = '点击此处，填写您心目中的答案';
@@ -3600,18 +3600,27 @@ JSON 结构：
       patch[key] = { value, evidence: source.slice(0, 220), confidence, confirmed: false };
     };
 
-    const companyMatch = source.match(/(?:名下(?:的)?|持有|拥有|创办|经营)([^，。；]{1,18}(?:公司|企业))/);
-    const roleMatch = source.match(/(创始人|实际控制人|实控人|控股股东|股东|董事长|高管|企业主|家族二代|退休)/);
-    // 主体：合成客户本人的税务居民身份、角色、家族身份等显性事实
+    const companyMatch = source.match(/(?:名下(?:的)?|持有|拥有|创办|经营|一家|某家?)([^，。；]{0,10}(?:公司|企业|集团|工厂))/);
+    const roleMatch = source.match(/(创始人|实际控制人|实控人|控股股东|大股东|股东|董事长|法定代表人|总裁|CEO|高管|企业主|老板|家族二代|二代|退休)/);
+    const ageMatch = source.match(/(\d{2})\s*岁/);
+    const shareMatch = source.match(/(?:持股|持有|占股|股权)[^，。；]{0,4}?(\d{1,3}(?:\.\d+)?%)|(\d{1,3}(?:\.\d+)?%)\s*(?:股权|股份)/);
+    const sharePct = shareMatch ? (shareMatch[1] || shareMatch[2]) : '';
+    // 主体：合成年龄、税务居民身份、角色、控股比例等显性事实
     const subjectBits = [];
+    if (ageMatch) subjectBits.push(`${ageMatch[1]}岁`);
     const clientTaxRes = source.match(/(?:客户|本人|他|她|其)?(?:为|是|系|属于)?\s*(中国|境内|香港|新加坡|美国|加拿大|英国|澳大利亚)(?:税务居民|税籍|永久居民|永居)/);
     if (/(?:客户|本人|他|她)?(?:为|是|系)?\s*(?:中国|境内)税务居民/.test(source)) subjectBits.push('中国税务居民');
     else if (clientTaxRes && !/女儿|儿子|子女|配偶|妻子|丈夫|父母/.test(source.slice(Math.max(0, clientTaxRes.index - 6), clientTaxRes.index))) subjectBits.push(`${clientTaxRes[1]}税务居民`);
-    if (companyMatch) subjectBits.push(`${companyMatch[1]}的实际权益人`);
-    else if (roleMatch) subjectBits.push(roleMatch[1] === '退休' ? '退休人士' : roleMatch[1]);
+    const coName = companyMatch ? companyMatch[1] : '';
+    // 捕获的公司名若已含地域词就不再重复前缀，避免"境内境内"
+    const region = (/境内|国内/.test(source) && !/境内|国内|境外|海外/.test(coName)) ? '境内' : '';
+    if (companyMatch && roleMatch) subjectBits.push(`${region}${coName}${roleMatch[1] === '二代' ? '家族二代' : roleMatch[1]}`);
+    else if (companyMatch) subjectBits.push(`${region}${coName}的实际权益人`);
+    else if (roleMatch) subjectBits.push(roleMatch[1] === '退休' ? '退休人士' : `${region}企业${roleMatch[1]}`);
+    if (sharePct) subjectBits.push(`持股${sharePct}`);
     if (/高净值|超高净值/.test(source)) subjectBits.push('高净值个人');
     if (!subjectBits.length && /家族|家办/.test(source)) subjectBits.push('家族财富决策人');
-    if (subjectBits.length) setField('subject', `客户为${Array.from(new Set(subjectBits)).join('、')}`, 0.82);
+    if (subjectBits.length) setField('subject', `客户${Array.from(new Set(subjectBits)).join('、')}`, 0.82);
     else if (/客户|本人|他|她/.test(source)) setField('subject', '待进一步确认的客户主体', 0.5);
 
     const industries = [
@@ -3630,7 +3639,10 @@ JSON 结构：
     // 优先保留原话中的具体金额与描述（如“约3000万美元离岸金融资产”）
     const amountMatch = source.match(/约?\s*[\d.]+\s*(?:万|亿)?\s*(?:美元|美金|港币|港元|人民币|新元|欧元|英镑|元)(?:[^，。；、]{0,16}?(?:金融资产|资产|资金|存款|现金|理财|市值|股权|房产|不动产|信托))?/);
     if (amountMatch) assetParts.push(amountMatch[0].replace(/\s+/g, '').trim());
-    if (/股权|股份|持股|代持|控制权/.test(source)) assetParts.push(/代持/.test(source) ? '公司股权（存在代持安排）' : '公司股权');
+    if (/股权|股份|持股|代持|控制权/.test(source)) {
+      const co = companyMatch ? companyMatch[1] : '企业';
+      assetParts.push(/代持/.test(source) ? `${co}股权（存在代持安排）` : (sharePct ? `${region || ''}${co}${sharePct}股权` : `${co}股权`));
+    }
     if (/房产|物业|不动产/.test(source)) assetParts.push('房产或不动产');
     if (!amountMatch && /现金|存款|理财|流动资金/.test(source)) assetParts.push('现金及流动资产');
     if (!amountMatch && /境外资产|海外资产|离岸|境外金融/.test(source)) assetParts.push('境外资产');
@@ -3650,13 +3662,21 @@ JSON 结构：
       eventParts.push('涉及信托安排');
     }
     if (/传承|接班|二代/.test(source)) eventParts.push('家族或企业传承');
+    // 子女参与企业 / 接班意愿（本例核心：两个子女都希望参与企业）
+    const childWant = source.match(/((?:两个|两位|多个|几个|大)?子女|儿子|女儿|后代|下一代)[^，。；]{0,10}?(?:希望|想要|想|有意|打算|计划|均|都)[^，。；]{0,8}?(?:参与|加入|进入|接手|接班|管理|经营|进公司)/);
+    if (childWant) eventParts.push(`${childWant[1]}有意参与/接手企业经营`);
+    // 家庭对权力/收益/股权分配存在分歧（传承安排未定）
+    if (/(?:权力|控制权|收益|利益|股权|财产|分配)[^，。；]{0,8}(?:分歧|意见不一|不一致|有争议|难以达成)/.test(source) || /分配[^，。；]{0,4}(?:意见不一|不一致|分歧|争议)/.test(source)) {
+      eventParts.push('家庭对未来权力与收益分配存在分歧、传承安排尚未确定');
+    }
+    if (/保留.{0,4}(?:最终)?控制权|不愿(?:失去|放弃).{0,4}控制权|掌握控制权/.test(source)) eventParts.push('客户希望在传承中保留最终控制权');
     // 家族成员身份变化（如“女儿刚成为加拿大税务居民”）
     const memberStatus = source.match(/(女儿|儿子|子女|配偶|妻子|丈夫|孙|父母)[^，。；]{0,8}?(?:成为|取得|获得|移居|定居)?[^，。；]{0,6}?(中国|香港|新加坡|美国|加拿大|英国|澳大利亚)(?:税务居民|税籍|永久居民|永居|身份|国籍)/);
     if (memberStatus) eventParts.push(`${memberStatus[1]}身份变化（${memberStatus[2]}税务居民/身份）`);
     else if (/移民|海外身份|境外定居/.test(source)) eventParts.push('跨境身份安排');
     if (/(?<!金)融资|引战|投资人/.test(source)) eventParts.push('企业融资或引入投资人');
     if (/婚姻|离婚/.test(source)) eventParts.push('婚姻关系变化');
-    if (INTERNAL_EVENT_PATTERN.test(source)) eventParts.push('家庭关系或内部意见存在分歧');
+    if (INTERNAL_EVENT_PATTERN.test(source) && !eventParts.some((p) => /分歧|分配|传承/.test(p))) eventParts.push('家庭关系或内部意见存在分歧');
     if (eventParts.length) setField('events', Array.from(new Set(eventParts)).join('、'), 0.82);
 
     // 约束——即使客户未明说，也据身份/资产/事件做专业推断
