@@ -629,7 +629,7 @@
         </nav>
         <div class="ca-sidebar-footer">
           <div class="ca-source-status" id="caSyncStatus">正在连接本机客户档案…</div>
-          <div class="ca-source-status" id="caSourceStatus">正在读取痛点库与 SKU 知识卡片…</div>
+          <div class="ca-source-status" id="caSourceStatus">正在读取痛点库与 解决方案知识卡片…</div>
           <div class="ca-footer-actions">
             <button class="ca-secondary-btn" id="caApiSettings">API 设置</button>
             <button class="ca-secondary-btn" id="caExportBackup">导出备份</button>
@@ -646,7 +646,7 @@
           <button class="ca-icon-btn ca-mobile-menu" id="caMobileMenu">☰</button>
           <div class="ca-client-heading">
             <h1 id="caClientTitle">未命名客户 <span class="ca-stage-badge" id="caStageBadge">随心聊</span></h1>
-            <p id="caClientSub">聊天、客户画像、痛点与 SKU 推荐将自动保存在本机</p>
+            <p id="caClientSub">聊天、客户画像、痛点与 解决方案建议将自动保存在本机</p>
           </div>
           <div class="ca-top-actions">
             <button class="ca-icon-btn" id="caRenameSession">重命名</button>
@@ -1681,7 +1681,7 @@
       { label: '服务客户', value: st.clients, unit: '位', real: true },
       { label: '完成全流程', value: st.completed, unit: '位', real: true },
       { label: '确认痛点', value: st.painCount, unit: '个', real: true },
-      { label: '推荐 SKU', value: st.skuCount, unit: '个', real: true },
+      { label: '推荐方案', value: st.skuCount, unit: '个', real: true },
       { label: 'AI 调用', value: aiCalls, unit: '次', real: false },
       { label: '话术采纳率', value: adoptRate, unit: '%', real: false }
     ];
@@ -1711,7 +1711,7 @@
       <div class="ca-growth-card">
         <div class="ca-growth-card-head">成长里程碑 <em>模拟</em></div>
         <ul class="ca-growth-timeline">
-          <li><b>已解锁</b>完成首个客户全流程闭环（画像→痛点→SKU→SOP）</li>
+          <li><b>已解锁</b>完成首个客户全流程闭环（画像→痛点→方案→落地）</li>
           <li><b>已解锁</b>累计确认痛点 ${st.painCount} 个，覆盖 ${painEntries.length || 0} 个业务领域</li>
           <li><b>进行中</b>话术采纳率提升至 ${adoptRate}%，距"金牌顾问"还差 ${Math.max(0, 90 - adoptRate)} 个百分点</li>
           <li><b>待达成</b>完成 10 次高级难度陪练（当前 ${Math.min(drillCount, 10)}/10）</li>
@@ -2015,7 +2015,7 @@
       case 'PAIN_READY':
         return { label: '痛点已确认', progress: 50, warn: false };
       case 'SKU_CONFIRMATION':
-        return { label: `SKU 匹配 ${session.flow.skuStep}/5`, progress: 50 + session.flow.skuStep * 10, warn: true };
+        return { label: `方案匹配 ${session.flow.skuStep}/5`, progress: 50 + session.flow.skuStep * 10, warn: true };
       case 'SKU_READY':
         return { label: '建议已就绪', progress: 100, warn: false };
       case 'REFRESH_NEEDED':
@@ -2037,7 +2037,7 @@
       ? '该客户已归档，仍可继续查看和恢复'
       : session.nameLocked
         ? '演示模板 · 全员统一查看，名称与内容由后台维护，本地改动刷新后自动还原'
-        : '聊天、客户画像、痛点与 SKU 推荐将自动保存在本机';
+        : '聊天、客户画像、痛点与 解决方案建议将自动保存在本机';
     // 演示模板不提供改名入口
     const renameBtn = $('#caRenameSession');
     if (renameBtn) renameBtn.hidden = !!session.nameLocked;
@@ -2094,7 +2094,7 @@
     return `<div class="ca-rec-card">
       <div class="ca-card-head"><h3>已确认的优先痛点</h3><span>版本 ${escapeHtml(message.data?.version || 1)} · 痛点库已同步痛点</span></div>
       ${items.map((item, index) => `<div class="ca-rec-item">
-        <div class="ca-rec-title"><strong>${index + 1}. ${escapeHtml(item.title)}</strong><span class="ca-rec-code">${escapeHtml(item.code)}</span><span class="ca-rec-source">${item.matchPercent === null ? escapeHtml(item.bu || '') : `综合匹配度 ${item.matchPercent}%`}</span></div>
+        <div class="ca-rec-title"><strong>${index + 1}. ${escapeHtml(item.title)}</strong><span class="ca-rec-source">${item.matchPercent === null ? escapeHtml(item.bu || '') : `综合匹配度 ${item.matchPercent}%`}</span></div>
         <div class="ca-rec-reason">${escapeHtml(item.reason || '与当前客户画像和五问答案高度相关')}</div>
         <div class="ca-rec-grid">
           <div class="ca-rec-note"><b>核心冲突</b><br>${escapeHtml(item.conflict || '待进一步确认')}</div>
@@ -2120,10 +2120,10 @@
   function skuCardHtml(message) {
     const items = Array.isArray(message.data?.items) ? message.data.items : [];
     const cardHtml = `<div class="ca-rec-card">
-      <div class="ca-card-head"><h3>SKU 适配建议</h3><span>版本 ${escapeHtml(message.data?.version || 1)} · 15 SKU 宽表专项样本</span></div>
-      ${message.data?.noFit ? '<div class="ca-rec-item"><div class="ca-rec-reason">当前测试样本池暂无适格 SKU。请补充关键事实或扩大样本池后重新评估。</div></div>' : ''}
+      <div class="ca-card-head"><h3>解决方案建议</h3><span>版本 ${escapeHtml(message.data?.version || 1)} · 15 方案匹配专项样本</span></div>
+      ${message.data?.noFit ? '<div class="ca-rec-item"><div class="ca-rec-reason">当前测试样本池暂无适配方案。请补充关键事实或扩大样本池后重新评估。</div></div>' : ''}
       ${items.map((item, index) => `<div class="ca-rec-item">
-        <div class="ca-rec-title"><strong>${index + 1}. ${escapeHtml(item.name)}</strong><span class="ca-rec-code">${escapeHtml(item.number)}</span><span class="ca-rec-source">${escapeHtml(item.fit || '建议核验')}</span></div>
+        <div class="ca-rec-title"><strong>${index + 1}. ${escapeHtml(item.name)}</strong><span class="ca-rec-source">${escapeHtml(item.fit || '建议核验')}</span></div>
         <div class="ca-rec-reason">${escapeHtml(item.reason || item.definition || '')}</div>
         <div class="ca-rec-grid">
           <div class="ca-rec-note"><b>必备前置条件</b><br>${escapeHtml(item.prerequisite || '请结合客户实际情况核验')}</div>
@@ -2131,12 +2131,12 @@
         </div>
         <div class="ca-rec-note"><b>候选来源</b><br>${escapeHtml(item.origin || '综合匹配')}</div>
         ${item.questionEvidence?.length ? `<div class="ca-rec-note"><b>五问关键证据</b><br>${escapeHtml(item.questionEvidence.join('；'))}</div>` : ''}
-        ${item.related ? `<div class="ca-rec-note"><b>辅助 SKU / 关联组合</b><br>${escapeHtml(item.related)}</div>` : ''}
+        ${item.related ? `<div class="ca-rec-note"><b>辅助方案 / 关联组合</b><br>${escapeHtml(item.related)}</div>` : ''}
       </div>`).join('')}
     </div>`;
 
     const actionHtml = items.length && !message.data?.noFit
-      ? `<div class="ca-client-image-action"><button class="ca-primary-btn ca-generate-client-image" data-client-package-message-id="${escapeHtml(message.id)}">生成客户方案网页</button><span>把入选 SKU、落地 SOP 与供应商协作整理为可管理有效状态的客户链接</span></div>`
+      ? `<div class="ca-client-image-action"><button class="ca-primary-btn ca-generate-client-image" data-client-package-message-id="${escapeHtml(message.id)}">生成客户方案网页</button><span>把入选方案、落地 SOP 与供应商协作整理为可管理有效状态的客户链接</span></div>`
       : '';
     return cardHtml.replace(/<\/div>$/, `${actionHtml}</div>`);
   }
@@ -2163,12 +2163,12 @@
     return `<div class="ca-message assistant"><div class="ca-avatar">朝</div><div class="ca-message-body ca-guided-message">
       ${message.content ? `<div class="ca-bubble ca-guided-intro">${renderText(message.content)}</div>` : ''}
       <div class="ca-guided-card" data-guided-card data-message-id="${escapeHtml(message.id)}">
-        <div class="ca-guided-head"><span>${escapeHtml(question.stage === 'SKU_CONFIRMATION' ? `SKU 适配 ${question.step}/5` : `痛点确认 ${question.step}/5`)}</span><em>${answered ? '已提交' : '可多选'}</em></div>
+        <div class="ca-guided-head"><span>${escapeHtml(question.stage === 'SKU_CONFIRMATION' ? `方案匹配 ${question.step}/5` : `痛点确认 ${question.step}/5`)}</span><em>${answered ? '已提交' : '可多选'}</em></div>
         <h4>${escapeHtml(question.displayQuestion || '请选择符合客户实际情况的描述')}</h4>
         <div class="ca-guided-options">${optionHtml}</div>
         <div class="ca-guided-other ${otherSelected ? 'show' : ''}"><textarea data-guided-other rows="2" placeholder="请在此填写您心目中的答案…" ${active ? '' : 'disabled'}>${escapeHtml(question.otherText || '')}</textarea></div>
         ${answered ? `<div class="ca-guided-summary"><b>已选择：</b>${escapeHtml(question.answerSummary || '')}</div>` : `<button class="ca-primary-btn ca-guided-submit" data-guided-submit disabled>确认提交</button>`}
-        ${(evidence || sourceIds.length) ? `<details class="ca-guided-source"><summary>查看问题依据${sourceIds.length ? ` · ${escapeHtml(sourceIds.join(' + '))}` : ''}</summary>${evidence ? `<p>${escapeHtml(evidence)}</p>` : ''}</details>` : ''}
+        ${(evidence || sourceIds.length) ? `<details class="ca-guided-source"><summary>查看问题依据</summary>${evidence ? `<p>${escapeHtml(evidence)}</p>` : ''}</details>` : ''}
       </div>
       <div class="ca-message-meta">${escapeHtml(formatTime(message.createdAt))}</div>
     </div></div>`;
@@ -2185,17 +2185,17 @@
     return `<div class="ca-message assistant"><div class="ca-avatar">朝</div><div class="ca-message-body ca-rationale-message">
       <div class="ca-rationale-card" id="caRationale-${escapeHtml(data.version || 1)}">
         <div class="ca-card-head"><h3>为什么这样判断</h3><span>版本 ${escapeHtml(data.version || 1)} · 基于已保存证据</span></div>
-        <p class="ca-rationale-lead">推荐路径由客户画像、两阶段五问、痛点匹配和 SKU 宽表条件共同形成。</p>
+        <p class="ca-rationale-lead">推荐路径由客户画像、两阶段五问、痛点匹配和 方案匹配条件共同形成。</p>
         <details open><summary>1. 客户画像事实</summary><ul>${rows(profile, (item) => `<li><b>${escapeHtml(item.label)}</b>：${escapeHtml(item.value)}</li>`)}</ul></details>
         <details open><summary>2. 痛点确认依据</summary><ul>${rows(painAnswers, (item) => `<li><b>第 ${escapeHtml(item.step)} 问</b>：${escapeHtml(item.answer)}</li>`)}</ul><div class="ca-rationale-tags">${pains.map((item) => `<span>${escapeHtml(item.code)} · ${escapeHtml(item.title)}</span>`).join('')}</div></details>
-        <details open><summary>3. SKU 五问证据</summary><ul>${rows(skuAnswers, (item) => `<li><b>第 ${escapeHtml(item.step)} 问</b>：${escapeHtml(item.answer)}${item.sourceIds?.length ? `<small>问题ID：${escapeHtml(item.sourceIds.join(' + '))}</small>` : ''}</li>`)}</ul></details>
-        <details open><summary>4. SKU 适配与风险</summary>${skus.length ? skus.map((item) => `<article><h4>${escapeHtml(item.number)} · ${escapeHtml(item.name)}</h4><p><b>入选原因：</b>${escapeHtml(item.reason || '基于画像与五问证据')}</p><p><b>前置条件：</b>${escapeHtml(item.prerequisite || '待专业核验')}</p><p><b>风险/不适用：</b>${escapeHtml(item.risk || '待专业核验')}</p>${item.questionEvidence?.length ? `<p><b>关键证据：</b>${escapeHtml(item.questionEvidence.join('；'))}</p>` : ''}</article>`).join('') : '<p class="ca-rationale-empty">当前没有入选 SKU</p>'}</details>
+        <details open><summary>3. 方案匹配五问证据</summary><ul>${rows(skuAnswers, (item) => `<li><b>第 ${escapeHtml(item.step)} 问</b>：${escapeHtml(item.answer)}</li>`)}</ul></details>
+        <details open><summary>4. 解决方案与风险</summary>${skus.length ? skus.map((item) => `<article><h4>${escapeHtml(item.name)}</h4><p><b>入选原因：</b>${escapeHtml(item.reason || '基于画像与五问证据')}</p><p><b>前置条件：</b>${escapeHtml(item.prerequisite || '待专业核验')}</p><p><b>风险/不适用：</b>${escapeHtml(item.risk || '待专业核验')}</p>${item.questionEvidence?.length ? `<p><b>关键证据：</b>${escapeHtml(item.questionEvidence.join('；'))}</p>` : ''}</article>`).join('') : '<p class="ca-rationale-empty">当前没有入选方案</p>'}</details>
         ${data.legacyLimited ? '<div class="ca-rationale-warning">历史会话的结构化选项记录有限，以上内容已使用原自然语言回答与现有推荐字段恢复。</div>' : ''}
       </div><div class="ca-message-meta">${escapeHtml(formatTime(message.createdAt))}</div>
     </div></div>`;
   }
 
-  // 柔和的下一步引导：SKU 之后不自动连发 SOP/供应商，而是征得客户同意再逐步展开
+  // 柔和的下一步引导：方案之后不自动连发 SOP/供应商，而是征得客户同意再逐步展开
   const STEP_INVITE = {
     sop: { text: '如果需要，我可以把这套方案的落地步骤也帮你梳理出来——每一步该做什么、需要客户配合什么，一目了然。要看吗？', btn: '好，看落地步骤', skip: '暂时不用' },
     supplier: { text: '要不要我再把供应商这块理一下？也就是每个环节需要哪些外部机构配合、各自负责什么。', btn: '好，看供应商配合', skip: '暂时不用' }
@@ -2236,7 +2236,7 @@
     const preview = (message.content || '').trim().replace(/\s+/g, ' ').slice(0, 30);
     const typeLabel = {
       'pain-recommendation': '痛点推荐卡片',
-      'sku-recommendation': 'SKU 建议卡片',
+      'sku-recommendation': '解决方案建议卡片',
       'sku-sop': '方案落地步骤表',
       'sku-supplier': '供应商协作清单（旧版）',
       'sku-supplier-summary': '供应商需配合事项表',
@@ -2257,7 +2257,7 @@
     }
   }
 
-  // 正文常驻入口：会话进入 SKU_READY（已有 SKU）后，在对话末尾固定一个「打开方案网页」入口，随时可点
+  // 正文常驻入口：会话进入 SKU_READY（已有方案）后，在对话末尾固定一个「打开方案网页」入口，随时可点
   function clientPlanEntryHtml() {
     const session = getActiveSession();
     if (!session || !Array.isArray(session.skus) || !session.skus.length) return '';
@@ -2266,7 +2266,7 @@
         <span class="ca-plan-entry-icon">🗂</span>
         <div class="ca-plan-entry-text">
           <div class="ca-plan-entry-title">客户网页版方案</div>
-          <div class="ca-plan-entry-sub">SKU 图文 · 方案落地步骤 · 供应商需配合事项，集成为一个可编辑网页</div>
+          <div class="ca-plan-entry-sub">方案图文 · 方案落地步骤 · 供应商需配合事项，集成为一个可编辑网页</div>
         </div>
       </div>
       <div class="ca-plan-entry-actions">
@@ -2292,9 +2292,9 @@
   }
 
   const SLASH_SKILLS = [
-    { cmd: '需求挖掘', desc: '识别客户信息，梳理画像、痛点与 SKU 推荐', ready: true },
+    { cmd: '需求挖掘', desc: '识别客户信息，梳理画像、痛点与 解决方案建议', ready: true },
     { cmd: '痛点分析', desc: '定位并展示当前客户的优先痛点', ready: true, action: 'pain' },
-    { cmd: 'SKU建议', desc: '展示当前客户的适格 SKU 推荐', ready: true, action: 'sku' },
+    { cmd: '解决方案建议', desc: '展示当前客户的适格 解决方案建议', ready: true, action: 'sku' },
     { cmd: '方案落地步骤', desc: '以表格展示一级阶段/二级步骤/客户需配合事项', ready: true, action: 'sop' },
     { cmd: '供应商建议', desc: '以表格展示供应商需配合事项（类别/阶段/角色/事项）', ready: true, action: 'supplier' },
     { cmd: '客户网页版方案', desc: 'SKU图文+落地步骤+供应商表集成为一个可编辑HTML', ready: true, action: 'clientplan' },
@@ -2361,7 +2361,7 @@
     };
     const existing = finders[key]?.();
     if (existing) { scrollFlash(existing); return; }
-    // SOP / 供应商总结表 可按需即时生成（只要已有适格 SKU）
+    // SOP / 供应商总结表 可按需即时生成（只要已有适配方案）
     if ((key === 'sop' || key === 'supplier') && Array.isArray(session.skus) && session.skus.length) {
       if (key === 'sop') await presentSkuSop(session);
       else await presentSuppliers(session);
@@ -2371,9 +2371,9 @@
     }
     const guidance = {
       pain: '当前还没有生成痛点分析。请先补充客户画像并完成痛点确认五问。',
-      sku: '当前还没有生成 SKU 建议。请先完成痛点确认与 SKU 适配五问。',
-      sop: '当前还没有适格 SKU，无法生成方案落地步骤。请先完成 SKU 适配。',
-      supplier: '当前还没有适格 SKU，无法生成供应商协作。请先完成 SKU 适配。'
+      sku: '当前还没有生成 解决方案建议。请先完成痛点确认与 方案匹配五问。',
+      sop: '当前还没有适配方案，无法生成方案落地步骤。请先完成 方案匹配。',
+      supplier: '当前还没有适配方案，无法生成供应商协作。请先完成 方案匹配。'
     };
     toast(guidance[action] || '该结果尚未生成');
   }
@@ -2396,11 +2396,11 @@
     }).join('');
 
     const painsHtml = session.pains?.length
-      ? `<div class="ca-insight-sub"><b>痛点解析</b>${session.pains.slice(0, 3).map((item) => `<p>${escapeHtml(item.code)}·${escapeHtml(item.title)}</p>`).join('')}</div>`
+      ? `<div class="ca-insight-sub"><b>痛点解析</b>${session.pains.slice(0, 3).map((item) => `<p>${escapeHtml(item.title)}</p>`).join('')}</div>`
       : '<div class="ca-insight-sub"><b>痛点解析</b><p class="ca-insight-empty">尚未确认痛点</p></div>';
     const skusHtml = session.skus?.length
-      ? `<div class="ca-insight-sub"><b>方案解读</b>${session.skus.slice(0, 3).map((item) => `<p>${escapeHtml(item.number)}·${escapeHtml(item.name)}</p>`).join('')}</div>`
-      : '<div class="ca-insight-sub"><b>方案解读</b><p class="ca-insight-empty">尚未生成 SKU 建议</p></div>';
+      ? `<div class="ca-insight-sub"><b>方案解读</b>${session.skus.slice(0, 3).map((item) => `<p>${escapeHtml(item.name)}</p>`).join('')}</div>`
+      : '<div class="ca-insight-sub"><b>方案解读</b><p class="ca-insight-empty">尚未生成 解决方案建议</p></div>';
     const oppHtml = session.searchTerms?.length
       ? `<div class="ca-insight-sub"><b>潜在业务机会</b><p>${session.searchTerms.slice(0, 8).map((term) => escapeHtml(term)).join('、')}</p></div>`
       : '<div class="ca-insight-sub"><b>潜在业务机会</b><p class="ca-insight-empty">暂无线索</p></div>';
@@ -2411,7 +2411,7 @@
 
   // ===== 跟进助手：从所有客户会话中提取跟进日程，支持编辑/完成/忽略/新增 =====
   const FOLLOWUP_KEY = 'ca_followups_v1';
-  const STAGE_CN = { CASUAL: '初步接触', PROFILE_GATHERING: '画像补充中', PAIN_CONFIRMATION: '痛点确认中', SKU_CONFIRMATION: 'SKU适配中', SKU_READY: '方案已就绪', REFRESH_NEEDED: '需刷新方案' };
+  const STAGE_CN = { CASUAL: '初步接触', PROFILE_GATHERING: '画像补充中', PAIN_CONFIRMATION: '痛点确认中', SKU_CONFIRMATION: '方案匹配中', SKU_READY: '方案已就绪', REFRESH_NEEDED: '需刷新方案' };
   const STAGE_WEIGHT = { SKU_READY: 5, REFRESH_NEEDED: 4, SKU_CONFIRMATION: 3, PAIN_CONFIRMATION: 3, PROFILE_GATHERING: 2, CASUAL: 1 };
 
   function loadFollowups() {
@@ -2425,7 +2425,7 @@
     switch (stage) {
       case 'SKU_READY': return '方案已就绪，建议约客户当面讲解并推进落地';
       case 'REFRESH_NEEDED': return '客户情况有变，建议重新核验痛点与方案';
-      case 'SKU_CONFIRMATION': return '正在做 SKU 适配，建议尽快完成五问确认';
+      case 'SKU_CONFIRMATION': return '正在做 方案匹配，建议尽快完成五问确认';
       case 'PAIN_CONFIRMATION': return '正在确认痛点，建议补齐信息推进到方案';
       case 'PROFILE_GATHERING': return '客户画像未补齐，建议继续了解并完善建档';
       default: return '初步接触，建议深入了解客户情况并开始建档';
@@ -2878,11 +2878,11 @@
     if (!skuLongImageManifestPromise) {
       skuLongImageManifestPromise = fetch(SKU_LONG_IMAGE_MANIFEST, { cache: 'no-store' })
         .then((response) => {
-          if (!response.ok) throw new Error(`SKU 长图清单读取失败（${response.status}）`);
+          if (!response.ok) throw new Error(`方案长图清单读取失败（${response.status}）`);
           return response.json();
         })
         .then((manifest) => {
-          if (!Array.isArray(manifest.items) || !manifest.items.length) throw new Error('SKU 长图清单为空');
+          if (!Array.isArray(manifest.items) || !manifest.items.length) throw new Error('方案长图清单为空');
           return manifest;
         })
         .catch((error) => {
@@ -2998,7 +2998,7 @@
   async function buildClientImagePackage(message, session) {
     const manifest = await loadSkuLongImageManifest();
     const resolved = resolveSkuLongImageSelection(message, manifest);
-    if (!resolved.selections.length) throw new Error('当前推荐 SKU 尚未配置可用 PPT 长图');
+    if (!resolved.selections.length) throw new Error('当前推荐方案 尚未配置可用 PPT 长图');
 
     const preparedSelections = [];
     for (const selection of resolved.selections) {
@@ -3025,7 +3025,7 @@
         drawWrappedText(ctx, session.name || '未命名客户', 58, y + 178, 760, 36, 2);
         ctx.font = '400 20px "Microsoft YaHei", sans-serif';
         ctx.fillStyle = '#b9cfdb';
-        ctx.fillText(`${dateText} · ${preparedSelections.length} 个 SKU 资料`, 58, y + 258);
+        ctx.fillText(`${dateText} · ${preparedSelections.length} 个 方案资料`, 58, y + 258);
       }
     }];
 
@@ -3120,7 +3120,7 @@
 
   function showClientImageLoading() {
     const modal = ensureClientImageModal();
-    modal.innerHTML = `<div class="ca-client-image-backdrop" data-client-modal-close></div><div class="ca-client-image-dialog ca-client-image-loading"><button class="ca-client-image-close" data-client-modal-close>×</button><div class="ca-package-spinner"></div><h3>正在准备客户方案资料</h3><p>正在装配入选 SKU 的 PPT 内容，请稍候…</p></div>`;
+    modal.innerHTML = `<div class="ca-client-image-backdrop" data-client-modal-close></div><div class="ca-client-image-dialog ca-client-image-loading"><button class="ca-client-image-close" data-client-modal-close>×</button><div class="ca-package-spinner"></div><h3>正在准备客户方案资料</h3><p>正在装配入选方案 的 PPT 内容，请稍候…</p></div>`;
     modal.classList.add('show');
     modal.querySelectorAll('[data-client-modal-close]').forEach((element) => element.addEventListener('click', closeClientImageModal));
   }
@@ -3207,7 +3207,7 @@
     const session = createSessionRecord();
     sessions.push(session);
     await putRecord('sessions', session);
-    await addMessage('assistant', '您好，我是朝曦客户全流程小助手。可以先随便聊聊，也可以直接输入某位客户的情况；我会在识别到业务信息后，自然地帮您梳理画像、痛点和 SKU。', 'text', null, session.id);
+    await addMessage('assistant', '您好，我是朝曦客户全流程小助手。可以先随便聊聊，也可以直接输入某位客户的情况；我会在识别到业务信息后，自然地帮您梳理画像、痛点和解决方案。', 'text', null, session.id);
     await switchSession(session.id);
     $('#assistantApp').classList.remove('sidebar-open');
   }
@@ -3460,14 +3460,14 @@
       painRows = allPainRows.filter((row) => String(row['同步状态'] || '').trim() === '已同步');
       skuRows = allSkuRows.filter((row) => row['Number'] || row['name'] || row['中文全称']);
       if (!wideQuestions || !Array.isArray(wideQuestions.skus) || wideQuestions.skus.length !== 15) {
-        throw new Error('SKU 宽表问题库不是预期的 15 个测试 SKU');
+        throw new Error('解决方案匹配问题库不是预期的 15 个方案');
       }
       skuQuestionBank = wideQuestions;
       try {
         const sop = await loadJson(SKU_LANDING_SOP_FILE);
         if (sop && Array.isArray(sop.skus)) skuSopBank = sop;
       } catch (error) {
-        console.warn('SKU 落地 SOP 库加载失败（不影响主流程）：', error.message);
+        console.warn('方案落地 SOP 库加载失败（不影响主流程）：', error.message);
       }
       try {
         const supplier = await loadJson(SKU_LANDING_SUPPLIER_FILE);
@@ -3477,11 +3477,11 @@
         const pptContent = await loadJson(SKU_PPT_CONTENT_FILE);
         if (pptContent && Array.isArray(pptContent.skus)) skuPptBank = pptContent;
       } catch (error) {
-        console.warn('SKU 供应商库加载失败（不影响主流程）：', error.message);
+        console.warn('方案供应商库加载失败（不影响主流程）：', error.message);
       }
       if (painRows.length !== 773) console.warn(`已同步痛点数量为 ${painRows.length}，设计基线为 773`);
-      if (skuRows.length !== 312) console.warn(`SKU 数量为 ${skuRows.length}，设计基线为 312`);
-      status.textContent = `知识库已就绪：${painRows.length} 条已同步痛点 · ${wideQuestions.skuCount} 个测试 SKU · ${wideQuestions.totalQuestions} 条宽表核心问题`;
+      if (skuRows.length !== 312) console.warn(`方案数量为 ${skuRows.length}，设计基线为 312`);
+      status.textContent = `知识库已就绪：${painRows.length} 条已同步痛点 · ${wideQuestions.skuCount} 个方案 · ${wideQuestions.totalQuestions} 条宽表核心问题`;
       status.classList.remove('error');
     } catch (error) {
       sourceError = error.message;
@@ -3535,11 +3535,11 @@
 
 当前 session 状态：${session.stage}
 痛点问题进度：${session.flow.painStep}/5
-SKU 问题进度：${session.flow.skuStep}/5
+方案匹配问题进度：${session.flow.skuStep}/5
 当前画像：${JSON.stringify(profileSnapshot(session))}
 已问问题：${questionContext(session) || '无'}
 已确认痛点：${pains || '无'}
-已推荐 SKU：${skus || '无'}
+已推荐方案：${skus || '无'}
 
 规则：
 1. 普通闲聊正常回应，intent=casual，不强行引导业务。
@@ -3548,9 +3548,9 @@ SKU 问题进度：${session.flow.skuStep}/5
 4. 销售明确纠正旧信息时 correction=true。
 5. suggested_question 每次只能有一个问题，必须与当前阶段有关，不能重复已问问题。
 6. PROFILE_GATHERING 阶段的 suggested_question 只能追问画像五维（主体、行业、资产、发生了什么、约束）中仍然缺失或薄弱的维度，一次只问一个维度，不得涉及痛点确认或SKU相关问题。
-7. PAIN_CONFIRMATION 的问题用于区分和确认痛点；SKU_CONFIRMATION 的下一问由系统从候选SKU宽表C列单独生成，此阶段 suggested_question 必须为空，reply 只简短回应客户刚才的回答，不要在 reply 中再提问。
+7. PAIN_CONFIRMATION 的问题用于区分和确认痛点；SKU_CONFIRMATION 的下一问由系统从候选方案宽表C列单独生成，此阶段 suggested_question 必须为空，reply 只简短回应客户刚才的回答，不要在 reply 中再提问。
 8. reply 专业、亲和、简洁，普通回复尽量在 180 字内。语气要像顾问和同事自然聊天，顺着对方刚才的话往下接；不要生硬地播报流程或暴露内部机制（例如不要说"我会用5个快捷选择题""接下来进入痛点确认环节""两阶段十问"这类话），系统会自动把问题以卡片形式呈现，你只需自然承接即可。
-9. search_terms 返回 3-10 个用于检索痛点/SKU 的专业短语，例如“家族传承”“控制权”“跨境税务”。
+9. search_terms 返回 3-10 个用于检索痛点/解决方案 的专业短语，例如“家族传承”“控制权”“跨境税务”。
 10. 五维定义必须严格遵守：subject=客户在个人、家庭、企业中的身份和决策角色；industry=主营业务、财富来源行业及行业周期；assets=客户拥有、控制或享有实际权益的资产；events=已经发生、正在发生或计划发生的个人、家庭、企业事项；constraints=仅限外部法律、监管、税务、司法、信披、减持规则、外汇管理、牌照和审核等强制条件。
 11. 家庭不和、家人反对、夫妻矛盾、兄弟姐妹纠纷、代际冲突、传承分歧、婚姻变化必须放入 events，不得放入 constraints。
 12. 客户偏好或内部困难，例如不愿失去控制权、不愿承担风险、希望保密、时间紧、缺乏流动性、团队能力不足，不得放入 constraints；保留在 reply、对话证据或下一问中即可。
@@ -4164,7 +4164,7 @@ JSON 结构：
     const planned = Array.from(groups.values())
       .map((group) => ({
         directionKey: group.topic,
-        purpose: group.skus.size > 1 ? '区分多个候选 SKU 并核验共同关键条件' : '核验候选 SKU 的关键适格条件',
+        purpose: group.skus.size > 1 ? '区分多个候选方案 并核验共同关键条件' : '核验候选方案 的关键适格条件',
         score: group.score + group.skus.size * 10,
         candidateSkus: Array.from(group.skus),
         sourceIds: group.items.slice(0, 8).map((item) => item.id)
@@ -4220,7 +4220,7 @@ JSON 结构：
     const first = clauses[0];
     const rest = clauses.slice(1).map((item) => `同时，${item}`).join('；');
     return {
-      displayQuestion: `为了判断“${direction.directionKey}”相关 SKU 是否适格，请确认：${first}；${rest}？`,
+      displayQuestion: `为了判断“${direction.directionKey}”相关方案是否适配，请确认：${first}；${rest}？`,
       sourceIds: selected.map((item) => item.id),
       claims: selected.map((item) => ({ text: conciseWideClause(item.question), sourceIds: [item.id] })),
       reason: `本地证据锁定组题：${direction.purpose}`
@@ -4269,11 +4269,11 @@ JSON 结构：
     return { displayQuestion: question, sourceIds, claims, reason: String(result.reason || '') };
   }
 
-  const SKU_RECOMMENDER_SYSTEM_PROMPT = '你是一名专业的"高净值客户非金融服务产品推荐智能体"，专注于为高净值客户、企业家客户识别并推荐合规、税务、架构、信托、身份规划等非金融服务解决方案。你的任务：根据已为客户匹配的潜在适格SKU，从其宽表"从家办角度（核心确认问题）"字段中定位关键确认问题（尤其是标注【★关键确认项】的问题），结合客户KYC与痛点，动态生成5个带选项的关键确认问题，用于进一步引导客户明确SKU需求。要求：①每个问题清晰、可直接回答，体现法税/架构专业度，不得空泛；②每题提供3~4个覆盖常见情形的选项，可含"其他"；③若【客户情况】已明确回答某关键确认问题则跳过该问题；④问题排序体现优先级（最可能影响方案选择的靠前）；⑤所有问题必须来源于给定的SKU宽表问题池，不得编造池外的适格条件。你不得假设、不诱导，输出需专业、中立、可解释。';
+  const SKU_RECOMMENDER_SYSTEM_PROMPT = '你是一名专业的"高净值客户非金融服务产品推荐智能体"，专注于为高净值客户、企业家客户识别并推荐合规、税务、架构、信托、身份规划等非金融服务解决方案。你的任务：根据已为客户匹配的潜在适配方案，从其宽表"从家办角度（核心确认问题）"字段中定位关键确认问题（尤其是标注【★关键确认项】的问题），结合客户KYC与痛点，动态生成5个带选项的关键确认问题，用于进一步引导客户明确SKU需求。要求：①每个问题清晰、可直接回答，体现法税/架构专业度，不得空泛；②每题提供3~4个覆盖常见情形的选项，可含"其他"；③若【客户情况】已明确回答某关键确认问题则跳过该问题；④问题排序体现优先级（最可能影响方案选择的靠前）；⑤所有问题必须来源于给定的SKU宽表问题池，不得编造池外的适格条件。你不得假设、不诱导，输出需专业、中立、可解释。';
 
   async function buildSkuQuestionPlan(session, candidates) {
     const pool = buildWideQuestionPool(session, candidates);
-    if (pool.length < 3) throw new Error('候选SKU宽表问题不足以组题');
+    if (pool.length < 3) throw new Error('候选方案宽表问题不足以组题');
     const seen = new Set();
     const ranked = [];
     pool.forEach((item) => {
@@ -4297,7 +4297,7 @@ JSON 结构：
       { role: 'system', content: SKU_RECOMMENDER_SYSTEM_PROMPT },
       {
         role: 'user',
-        content: `【客户情况】\n${profileSummary(session)}\n\n【潜在痛点】\n${painBrief || '暂无'}\n\n【潜在适格SKU】\n${skuNames.join('\n') || '暂无'}\n\n【SKU宽表关键确认问题池】（key_confirmation=true 为★关键确认项，须优先）\n${JSON.stringify(payload)}\n\n请据此生成恰好5个带选项的关键确认问题。只返回JSON，不要输出代码块：{"questions":[{"question":"问题文本","options":["选项A","选项B","选项C"],"source_ids":["SKU-..","..."]}]}。要求：questions长度恰好5；每题options长度3到5；每题source_ids必须全部来自问题池的id字段，且至少1个；问题须体现专业度并可直接勾选。`
+        content: `【客户情况】\n${profileSummary(session)}\n\n【潜在痛点】\n${painBrief || '暂无'}\n\n【潜在适配方案】\n${skuNames.join('\n') || '暂无'}\n\n【SKU宽表关键确认问题池】（key_confirmation=true 为★关键确认项，须优先）\n${JSON.stringify(payload)}\n\n请据此生成恰好5个带选项的关键确认问题。只返回JSON，不要输出代码块：{"questions":[{"question":"问题文本","options":["选项A","选项B","选项C"],"source_ids":["SKU-..","..."]}]}。要求：questions长度恰好5；每题options长度3到5；每题source_ids必须全部来自问题池的id字段，且至少1个；问题须体现专业度并可直接勾选。`
       }
     ], 2);
     const questions = Array.isArray(result.questions) ? result.questions : [];
@@ -4377,10 +4377,10 @@ JSON 结构：
 
   async function prepareNextSkuQuestion(session, step) {
     const candidates = skuCandidates(session);
-    if (!candidates.length) throw new Error('15 个测试 SKU 未能与知识卡片建立对应关系');
+    if (!candidates.length) throw new Error('15 个方案 未能与知识卡片建立对应关系');
     persistSkuCandidateSnapshot(session, candidates);
     const pool = buildWideQuestionPool(session, candidates);
-    if (!pool.length) throw new Error('候选 SKU 的宽表 C 列已没有可继续询问的问题');
+    if (!pool.length) throw new Error('候选方案 的宽表 C 列已没有可继续询问的问题');
     const remainingCount = Math.max(1, 6 - step);
     const plan = planWideQuestionDirections(session, pool, remainingCount);
     const direction = plan[0] || { directionKey: '关键适格条件', purpose: '核验当前候选', sourceIds: pool.slice(0, 8).map((item) => item.id) };
@@ -4506,7 +4506,7 @@ JSON 结构：
     const result = await callDeepSeekJSON([
       {
         role: 'system',
-        content: '你是朝曦家办SKU适配专家。最终推荐可以脱离痛点最初关联SKU，必须以客户画像、五问证据、前置条件和风险为准。只能从15个测试候选中选择0到3个主SKU，不得发明编号；冲突证据明显时不得强推。related_skus只能引用候选知识卡片已有的关联SKU。只返回JSON：{"selections":[{"number":"Legal-0000","reason":"画像与五问证据","fit":"强匹配|条件匹配","condition":"仍需线下确认的条件","related_skus":"辅助SKU"}]}'
+        content: '你是朝曦家办方案匹配专家。最终推荐可以脱离痛点最初关联SKU，必须以客户画像、五问证据、前置条件和风险为准。只能从15个测试候选中选择0到3个主SKU，不得发明编号；冲突证据明显时不得强推。related_skus只能引用候选知识卡片已有的关联解决方案。只返回JSON：{"selections":[{"number":"Legal-0000","reason":"画像与五问证据","fit":"强匹配|条件匹配","condition":"仍需线下确认的条件","related_skus":"辅助SKU"}]}'
       },
       {
         role: 'user',
@@ -4545,7 +4545,7 @@ JSON 结构：
   }
 
   // 依据落地 SOP 库的 A列(一级阶段)/B列(二级阶段)/E列(客户配合事项) + G列(供应商牌照与职责)，
-  // 将多个适格 SKU 综合成"供应商 SOP"：按阶段/步骤归并、客户配合与供应商职责逐步对应、重复项去重清洗。
+  // 将多个适配方案 综合成"供应商 SOP"：按阶段/步骤归并、客户配合与供应商职责逐步对应、重复项去重清洗。
   function buildCombinedSop(items) {
     const matched = [];
     const missing = [];
@@ -4633,10 +4633,10 @@ JSON 结构：
     if (!sop) return '';
     const totalNodes = sop.stages.reduce((n, s) => n + s.nodes.length, 0);
     const header = sop.combined
-      ? `已合并 ${sop.skuList.length} 个适格 SKU 的落地步骤（${sop.stages.length} 个阶段 / ${totalNodes} 个步骤，重复项已去重）`
-      : `适格 SKU 方案落地步骤（${sop.stages.length} 个阶段 / ${totalNodes} 个步骤）`;
-    const skuTags = sop.skuList.map((item) => `<span>${escapeHtml(item.number)} · ${escapeHtml(item.name)}</span>`).join('');
-    const showSku = sop.combined;
+      ? `已合并 ${sop.skuList.length} 个适配方案的落地步骤（${sop.stages.length} 个阶段 / ${totalNodes} 个步骤，重复项已去重）`
+      : `适配方案 方案落地步骤（${sop.stages.length} 个阶段 / ${totalNodes} 个步骤）`;
+    const skuTags = sop.skuList.map((item) => `<span>${escapeHtml(item.name)}</span>`).join('');
+    const showSku = false; // 来源方案编码属内部数据，不对外展示
     let seq = 0;
     const rowsHtml = sop.stages.map((stage) => stage.nodes.map((node, ni) => {
       seq += 1;
@@ -4655,7 +4655,7 @@ JSON 结构：
       </tr>`;
     }).join('')).join('');
     const missingHtml = sop.missing.length
-      ? `<div class="ca-sop-missing">以下 SKU 暂无落地步骤记录，需线下补充：${sop.missing.map((item) => escapeHtml(`${item.number} ${item.name}`)).join('、')}</div>`
+      ? `<div class="ca-sop-missing">以下 方案暂无落地步骤记录，需线下补充：${sop.missing.map((item) => escapeHtml(`${item.number} ${item.name}`)).join('、')}</div>`
       : '';
     return `<div class="ca-message assistant"><div class="ca-avatar">朝</div><div class="ca-message-body ca-sop-message">
       <div class="ca-sop-card">
@@ -4677,12 +4677,12 @@ JSON 结构：
     if (!Array.isArray(session.skus) || !session.skus.length) return;
     const sop = buildCombinedSop(session.skus);
     if (!sop) {
-      await addMessage('assistant', '当前适格 SKU 暂无可展示的方案落地步骤记录，建议结合线下方案手册补充。', 'text', null, session.id);
+      await addMessage('assistant', '当前适配方案 暂无可展示的方案落地步骤记录，建议结合线下方案手册补充。', 'text', null, session.id);
       return;
     }
     const intro = sop.combined
-      ? '已根据以上适格 SKU 合并出统一的方案落地步骤（一级阶段 / 二级步骤 / 客户需配合事项），重复项已去重清洗，供客户经理直接推进。'
-      : '以下是该适格 SKU 的方案落地步骤（一级阶段 / 二级步骤 / 客户需配合事项），供客户经理直接推进。';
+      ? '已根据以上适配方案 合并出统一的方案落地步骤（一级阶段 / 二级步骤 / 客户需配合事项），重复项已去重清洗，供客户经理直接推进。'
+      : '以下是该适配方案的方案落地步骤（一级阶段 / 二级步骤 / 客户需配合事项），供客户经理直接推进。';
     await addMessage('assistant', intro, 'text', null, session.id);
     await addMessage('assistant', '', 'sku-sop', { sop }, session.id);
   }
@@ -4715,7 +4715,7 @@ JSON 结构：
 
   const SUPPLIER_CATEGORY_ORDER = ['银行', '信托公司', '券商', '保险公司', '律所', '税所', '会计师事务所', '评估机构', '公证机构', '移民服务机构', '其他专业机构'];
 
-  // 依据宽表 G 列，动态组合多个适格 SKU 涉及的供应商牌照与工作内容，重复项去重清洗。
+  // 依据宽表 G 列，动态组合多个适配方案 涉及的供应商牌照与工作内容，重复项去重清洗。
   function buildCombinedSuppliers(items) {
     const matched = [];
     const missing = [];
@@ -4769,9 +4769,9 @@ JSON 结构：
     const data = message.data?.suppliers;
     if (!data) return '';
     const header = data.combined
-      ? `已为 ${data.skuList.length} 个适格 SKU 动态组合供应商协作清单（重复职责已去重）`
-      : '适格 SKU 供应商协作清单';
-    const skuTags = data.skuList.map((item) => `<span>${escapeHtml(item.number)} · ${escapeHtml(item.name)}</span>`).join('');
+      ? `已为 ${data.skuList.length} 个适配方案 动态组合供应商协作清单（重复职责已去重）`
+      : '适配方案 供应商协作清单';
+    const skuTags = data.skuList.map((item) => `<span>${escapeHtml(item.name)}</span>`).join('');
     const catsHtml = data.categories.map((cat) => `<div class="ca-supplier-cat">
       <div class="ca-supplier-cat-head"><span class="ca-supplier-badge">牌照/资质</span>${escapeHtml(cat.category)}</div>
       ${cat.suppliers.map((sup) => `<div class="ca-supplier-node">
@@ -4780,7 +4780,7 @@ JSON 结构：
       </div>`).join('')}
     </div>`).join('');
     const missingHtml = data.missing.length
-      ? `<div class="ca-sop-missing">以下 SKU 暂无供应商记录，需线下补充：${data.missing.map((item) => escapeHtml(`${item.number} ${item.name}`)).join('、')}</div>`
+      ? `<div class="ca-sop-missing">以下 方案暂无供应商记录，需线下补充：${data.missing.map((item) => escapeHtml(`${item.number} ${item.name}`)).join('、')}</div>`
       : '';
     return `<div class="ca-message assistant"><div class="ca-avatar">朝</div><div class="ca-message-body ca-sop-message">
       <div class="ca-sop-card ca-supplier-card">
@@ -4804,7 +4804,7 @@ JSON 结构：
     }) || null;
   }
 
-  // 多个适格 SKU 时合并成一张表：按「供应商类别+主要配合事项」去重，并标注来源 SKU
+  // 多个适配方案 时合并成一张表：按「供应商类别+主要配合事项」去重，并标注来源方案
   function buildSupplierSummary(items) {
     const matched = [];
     const missing = [];
@@ -4840,10 +4840,10 @@ JSON 结构：
     const data = message.data?.summary;
     if (!data) return '';
     const header = data.combined
-      ? `已合并 ${data.skuList.length} 个适格 SKU 的供应商配合事项（重复项已去重）`
-      : '适格 SKU 供应商需配合事项';
-    const skuTags = data.skuList.map((item) => `<span>${escapeHtml(item.number)} · ${escapeHtml(item.name)}</span>`).join('');
-    const showSku = data.combined;
+      ? `已合并 ${data.skuList.length} 个适配方案的供应商配合事项（重复项已去重）`
+      : '适配方案 供应商需配合事项';
+    const skuTags = data.skuList.map((item) => `<span>${escapeHtml(item.name)}</span>`).join('');
+    const showSku = false; // 来源方案编码属内部数据，不对外展示
     const rowsHtml = data.rows.map((r, i) => `<tr>
       <td class="ca-sup-idx">${i + 1}</td>
       <td><b>${escapeHtml(r.category)}</b></td>
@@ -4853,7 +4853,7 @@ JSON 结构：
       ${showSku ? `<td class="ca-sup-src">${r.skus.map((n) => escapeHtml(n)).join('<br>')}</td>` : ''}
     </tr>`).join('');
     const missingHtml = data.missing.length
-      ? `<div class="ca-sop-missing">以下 SKU 暂无供应商总结表，需线下补充：${data.missing.map((item) => escapeHtml(`${item.number} ${item.name}`)).join('、')}</div>`
+      ? `<div class="ca-sop-missing">以下 方案暂无供应商总结表，需线下补充：${data.missing.map((item) => escapeHtml(`${item.number} ${item.name}`)).join('、')}</div>`
       : '';
     return `<div class="ca-message assistant"><div class="ca-avatar">朝</div><div class="ca-message-body ca-sop-message">
       <div class="ca-sop-card ca-supsum-card">
@@ -4871,7 +4871,7 @@ JSON 结构：
     </div></div>`;
   }
 
-  // ===== 客户网页版方案：SKU 图文（源自PPT，结构化非图片）+ 落地步骤表 + 供应商表，合成单个可编辑 HTML =====
+  // ===== 客户网页版方案：方案图文（源自PPT，结构化非图片）+ 落地步骤表 + 供应商表，合成单个可编辑 HTML =====
   function pptRecord(number, name) {
     if (!skuPptBank?.skus?.length) return null;
     const target = normalizeSkuKey(number);
@@ -4964,7 +4964,7 @@ JSON 结构：
     const customer = session.name || '未命名客户';
     const dateStr = new Date().toLocaleDateString('zh-CN');
 
-    // 1) SKU 图文（来自 PPT 的结构化内容）
+    // 1) 方案图文（来自 PPT 的结构化内容）
     const skuSections = skus.map((item) => {
       const rec = pptRecord(item.number, item.name);
       const slides = rec?.slides || [];
@@ -4973,9 +4973,9 @@ JSON 结构：
             ${s.title ? `<h3>${planEsc(s.title)}</h3>` : ''}
             ${slideBodyHtml(s)}
           </section>`).join('\n')
-        : `<p class="muted">该 SKU 暂无图文资料，可在此自行补充。</p>`;
+        : `<p class="muted">该 方案暂无图文资料，可在此自行补充。</p>`;
       return `<article class="sku">
-        <div class="sku-head"><span class="code">${planEsc(item.number)}</span><h2>${planEsc(item.name)}</h2></div>
+        <div class="sku-head"><h2>${planEsc(item.name)}</h2></div>
         ${item.reason ? `<p class="why"><b>为什么推荐：</b>${planEsc(item.reason)}</p>` : ''}
         ${body}
       </article>`;
@@ -5002,7 +5002,7 @@ JSON 结构：
         }</tbody></table></div>`
       : '<p class="muted">暂无供应商配合事项数据。</p>';
 
-    const painList = (session.pains || []).map((p) => `<li><b>${planEsc(p.code)}</b> ${planEsc(p.title)}</li>`).join('');
+    const painList = (session.pains || []).map((p) => `<li>${planEsc(p.title)}</li>`).join('');
 
     return `<!DOCTYPE html>
 <html lang="zh-CN">
@@ -5063,10 +5063,10 @@ JSON 结构：
 
   ${painList ? `<div class="block"><h2 class="sec">一、已识别的核心痛点</h2><ul>${painList}</ul></div>` : ''}
 
-  <div class="block"><h2 class="sec">二、推荐方案（SKU）</h2>
+  <div class="block"><h2 class="sec">二、解决方案建议</h2>
     <p class="muted">以下内容取自各方案的图文资料，均为可直接编辑的文字与表格。</p>
   </div>
-  ${skuSections || '<div class="block"><p class="muted">暂无推荐 SKU。</p></div>'}
+  ${skuSections || '<div class="block"><p class="muted">暂无推荐方案。</p></div>'}
 
   <div class="block"><h2 class="sec">三、方案落地步骤</h2>${sopHtml}</div>
 
@@ -5091,10 +5091,10 @@ JSON 结构：
     return { blob: new Blob([html], { type: 'text/html;charset=utf-8' }), name: clientPlanFileName(session) };
   }
 
-  // 在正文入口/技能里点击「打开」：在新标签页展示方案网页，内容按当前 SKU 实时生成
+  // 在正文入口/技能里点击「打开」：在新标签页展示方案网页，内容按当前方案实时生成
   async function openClientPlanInNewTab(session) {
     if (!Array.isArray(session.skus) || !session.skus.length) {
-      toast('请先完成 SKU 适配，再打开客户网页版方案');
+      toast('请先完成 方案匹配，再打开客户网页版方案');
       return;
     }
     // 必须在用户手势内先同步开好空白标签页，否则会被浏览器弹窗拦截
@@ -5126,7 +5126,7 @@ JSON 结构：
 
   async function downloadClientPlan(session) {
     if (!Array.isArray(session.skus) || !session.skus.length) {
-      toast('请先完成 SKU 适配，再下载客户网页版方案');
+      toast('请先完成 方案匹配，再下载客户网页版方案');
       return;
     }
     toast('正在生成客户网页版方案…');
@@ -5159,23 +5159,23 @@ JSON 结构：
     if (!Array.isArray(session.skus) || !session.skus.length) return;
     const summary = buildSupplierSummary(session.skus);
     if (!summary) {
-      await addMessage('assistant', '当前适格 SKU 暂无「供应商需配合事项提炼总结表」记录，建议结合线下资源库补充。', 'text', null, session.id);
+      await addMessage('assistant', '当前适配方案 暂无「供应商需配合事项提炼总结表」记录，建议结合线下资源库补充。', 'text', null, session.id);
       return;
     }
     const intro = summary.combined
-      ? '已根据以上适格 SKU 的「供应商需配合事项提炼总结表」合并出下表，重复项已去重并标注来源 SKU。'
-      : '以下是该适格 SKU 的「供应商需配合事项提炼总结表」。';
+      ? '已根据以上适配方案的「供应商需配合事项提炼总结表」合并出下表，重复项已去重并标注来源 解决方案。'
+      : '以下是该适配方案的「供应商需配合事项提炼总结表」。';
     await addMessage('assistant', intro, 'text', null, session.id);
     await addMessage('assistant', '', 'sku-supplier-summary', { summary }, session.id);
   }
 
   async function generateSkuRecommendations(session) {
-    if (!skuRows.length || !skuQuestionBank?.skus?.length) throw new Error(sourceError || '测试 SKU 宽表问题库未加载');
+    if (!skuRows.length || !skuQuestionBank?.skus?.length) throw new Error(sourceError || '测试 解决方案匹配问题库未加载');
     const candidates = skuCandidates(session);
     persistSkuCandidateSnapshot(session, candidates);
     let selections = [];
     try { selections = await selectSkusWithAI(session, candidates); }
-    catch (error) { console.warn('AI SKU 排序失败，使用本地动态评分', error); }
+    catch (error) { console.warn('AI 方案排序失败，使用本地动态评分', error); }
     const candidateMap = new Map(candidates.map((item) => [item.number, item]));
     const picked = [];
     selections.forEach((selection) => {
@@ -5319,7 +5319,7 @@ JSON 结构：
           await addGuidedQuestion(session, 'SKU_CONFIRMATION', session.flow.skuStep, question, reply, session.skuAnalysis.lastQuestion, messageData);
         }
       } else {
-        await addMessage('assistant', `${reply}\n\nSKU 适配五问已完成，正在根据 15 个测试 SKU 的宽表证据重新核验全部候选，请稍候（约需数秒）…`, 'text', messageData, session.id);
+        await addMessage('assistant', `${reply}\n\n方案匹配五问已完成，正在根据 15 个方案 的宽表证据重新核验全部候选，请稍候（约需数秒）…`, 'text', messageData, session.id);
         showTyping();
         await generateSkuRecommendations(session);
       }
@@ -5333,7 +5333,7 @@ JSON 结构：
         session.flow.refreshStep = 1;
         const question = fallbackQuestion(session, result.suggested_question);
         session.flow.askedQuestions.push(question);
-        await addMessage('assistant', `${reply}\n\n这条新信息可能影响现有痛点或 SKU，我会做一次局部刷新。${question}`, 'text', { ...(messageData || {}), stage: 'REFRESH_NEEDED', step: 1 }, session.id);
+        await addMessage('assistant', `${reply}\n\n这条新信息可能影响现有痛点或解决方案，我会做一次局部刷新。${question}`, 'text', { ...(messageData || {}), stage: 'REFRESH_NEEDED', step: 1 }, session.id);
       } else {
         await addMessage('assistant', reply, 'text', messageData, session.id);
       }
@@ -5347,7 +5347,7 @@ JSON 结构：
         session.flow.askedQuestions.push(question);
         await addMessage('assistant', `${reply}\n\n${question}`, 'text', { ...(messageData || {}), stage: 'REFRESH_NEEDED', step: session.flow.refreshStep }, session.id);
       } else {
-        await addMessage('assistant', `${reply}\n\n受影响信息已确认，正在生成新版痛点与 SKU 建议。`, 'text', messageData, session.id);
+        await addMessage('assistant', `${reply}\n\n受影响信息已确认，正在生成新版痛点与 解决方案建议。`, 'text', messageData, session.id);
         await generatePainRecommendations(session, true);
         await generateSkuRecommendations(session);
       }

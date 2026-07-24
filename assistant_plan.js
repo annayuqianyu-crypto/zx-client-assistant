@@ -209,7 +209,7 @@
     modal.innerHTML = `<div class="ca-plan-backdrop" data-plan-close></div><div class="ca-plan-dialog ca-plan-created">
       <button class="ca-plan-close" data-plan-close>×</button>
       <div class="ca-plan-success-mark">✓</div><h3>客户方案网页已生成</h3>
-      <p>${escapeHtml(snapshot.customer_name)} · ${snapshot.skus.length} 个 SKU · ${snapshot.suppliers.length} 类供应商</p>
+      <p>${escapeHtml(snapshot.customer_name)} · ${snapshot.skus.length} 个方案 · ${snapshot.suppliers.length} 类供应商</p>
       <div class="ca-plan-link"><input value="${escapeHtml(absoluteUrl)}" readonly><button class="ca-primary-btn" data-plan-copy>复制链接</button></div>
       <div class="ca-plan-actions"><a class="ca-primary-btn" href="${escapeHtml(absoluteUrl)}" target="_blank" rel="noopener">打开客户网页</a><button class="ca-secondary-btn" data-plan-manage>管理全部链接</button></div>
       <div class="ca-plan-note">该链接当前有效；可在“客户方案链接”中随时设为失效或重新启用。</div>
@@ -224,7 +224,7 @@
     const packageData = options?.packageData;
     const session = options?.session;
     if (!packageData || !session) return;
-    showLoading('正在生成客户方案网页', '正在整合 SKU、落地 SOP 和宽表 G 列供应商职责…');
+    showLoading('正在生成客户方案网页', '正在整合方案、落地步骤与供应商职责…');
     try {
       const catalog = await loadCatalog();
       if (!window.ChaoxiSopModule?.buildSop) throw new Error('落地 SOP 模块尚未加载');
@@ -232,7 +232,7 @@
       const supplierResult = buildSuppliers(catalog, packageData);
       const skus = serializeSkus(packageData);
       const warnings = [
-        ...(packageData.missing || []).map((item) => `SKU PPT 缺失：${item}`),
+        ...(packageData.missing || []).map((item) => `方案资料缺失：${item}`),
         ...supplierResult.missing.map((item) => `供应商 G 列数据缺失：${item}`)
       ];
       const snapshot = {
@@ -261,14 +261,14 @@
     return items.map((item) => {
       const url = new URL(`/客户方案.html?id=${encodeURIComponent(item.plan_id)}`, window.location.href).href;
       return `<article class="ca-plan-record" data-plan-record="${escapeHtml(item.plan_id)}">
-        <div class="ca-plan-record-main"><div><h4>${escapeHtml(item.customer_name)}</h4><p>${new Date(item.created_at).toLocaleString('zh-CN')} · ${item.sku_count} 个 SKU · ${item.supplier_count} 类供应商</p></div><span class="ca-plan-status ${item.status}">${item.status === 'active' ? '有效' : '已失效'}</span></div>
+        <div class="ca-plan-record-main"><div><h4>${escapeHtml(item.customer_name)}</h4><p>${new Date(item.created_at).toLocaleString('zh-CN')} · ${item.sku_count} 个方案 · ${item.supplier_count} 类供应商</p></div><span class="ca-plan-status ${item.status}">${item.status === 'active' ? '有效' : '已失效'}</span></div>
         <div class="ca-plan-record-actions"><a class="ca-secondary-btn" href="${escapeHtml(url)}" target="_blank" rel="noopener">预览</a><button class="ca-secondary-btn" data-plan-copy-url="${escapeHtml(url)}">复制链接</button><button class="ca-secondary-btn" data-plan-audit="${escapeHtml(item.plan_id)}">数据来源</button><button class="${item.status === 'active' ? 'ca-danger-btn' : 'ca-primary-btn'}" data-plan-status="${escapeHtml(item.plan_id)}" data-next-status="${item.status === 'active' ? 'inactive' : 'active'}">${item.status === 'active' ? '设为失效' : '重新启用'}</button></div>
       </article>`;
     }).join('');
   }
 
   async function openAudit(planId) {
-    showLoading('正在读取供应商来源', '正在加载 G 列原文、SKU 和宽表行号…');
+    showLoading('正在读取供应商来源', '正在加载供应商来源与方案数据…');
     try {
       const plan = await request(`/api/manage/plans/${encodeURIComponent(planId)}`);
       const groups = new Map();

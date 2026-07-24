@@ -90,7 +90,7 @@
       }
     });
     const missingCore = missing.filter((item) => item.role === 'main');
-    if (missingCore.length) throw new Error(`核心 SKU 缺少 SOP 宽表：${missingCore.map((item) => item.sku_id).join('、')}`);
+    if (missingCore.length) throw new Error(`核心方案缺少落地步骤数据：${missingCore.map((item) => item.sku_id).join('、')}`);
     if (!matched.length) throw new Error('本次方案没有可用的 SOP 宽表');
 
     const stages = [];
@@ -192,7 +192,7 @@
 
   function showLoading() {
     const modal = ensureModal();
-    modal.innerHTML = `<div class="ca-sop-backdrop" data-sop-close></div><div class="ca-sop-dialog ca-sop-loading"><button class="ca-sop-close" data-sop-close>×</button><div class="ca-package-spinner"></div><h3>正在整理落地 SOP</h3><p>正在融合入选 SKU 的宽表 A、B、E 列…</p></div>`;
+    modal.innerHTML = `<div class="ca-sop-backdrop" data-sop-close></div><div class="ca-sop-dialog ca-sop-loading"><button class="ca-sop-close" data-sop-close>×</button><div class="ca-package-spinner"></div><h3>正在整理落地 SOP</h3><p>正在融合入选方案的落地 A、B、E 列…</p></div>`;
     modal.classList.add('show');
     modal.querySelectorAll('[data-sop-close]').forEach((element) => element.addEventListener('click', closeModal));
   }
@@ -397,12 +397,12 @@
 
   function renderSop(sop, session, cacheKey) {
     const modal = ensureModal();
-    const missing = sop.missing.length ? `<div class="ca-package-warning">未纳入缺少宽表的辅助 SKU：${escapeHtml(sop.missing.map((item) => item.sku_id).join('、'))}</div>` : '';
+    const missing = sop.missing.length ? `<div class="ca-package-warning">未纳入缺少落地数据的辅助方案：${escapeHtml(sop.missing.map((item) => item.sku_id).join('、'))}</div>` : '';
     modal.innerHTML = `<div class="ca-sop-backdrop" data-sop-close></div><div class="ca-sop-dialog">
       <div class="ca-sop-header"><div><h3>客户方案落地 SOP</h3><p>${escapeHtml(session.name || '未命名客户')} · ${sop.stages.length} 个阶段 · ${sop.totalNodes} 个融合节点 · ${sop.totalActions} 项客户配合事项</p></div><button class="ca-sop-close" data-sop-close>×</button></div>
       <div class="ca-sop-skus">${skuTagsHtml(sop.matched)}</div>${missing}
       <div class="ca-sop-toolbar"><button class="ca-primary-btn" data-sop-download>下载客户版 SOP 长图</button><button class="ca-secondary-btn" data-sop-expand>展开全部</button><button class="ca-secondary-btn" data-sop-collapse>收起全部</button><button class="ca-secondary-btn" data-sop-regenerate>重新生成</button><button class="ca-secondary-btn" data-sop-close>返回客户方案 PPT</button></div>
-      <div class="ca-sop-integrity">数据版本 ${escapeHtml(sop.generatedAt)} · 已融合 ${sop.sourceRows} 条宽表原始节点；完整事项可按 SKU 与宽表行号溯源</div>
+      <div class="ca-sop-integrity">数据版本 ${escapeHtml(sop.generatedAt)} · 已融合 ${sop.sourceRows} 条宽表原始节点；完整事项可按方案与来源行号溯源</div>
       <div class="ca-sop-timeline">${timelineHtml(sop)}</div>
     </div>`;
     modal.classList.add('show');
