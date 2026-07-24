@@ -1778,6 +1778,16 @@
     $('#caMessages').addEventListener('click', (event) => {
       const del = event.target.closest('[data-del-msg]');
       if (del) { deleteMessageById(del.dataset.delMsg); return; }
+      if (event.target.closest('[data-open-clientplan]')) {
+        const s = getActiveSession();
+        if (s) openClientPlanInNewTab(s);
+        return;
+      }
+      if (event.target.closest('[data-download-clientplan]')) {
+        const s = getActiveSession();
+        if (s) downloadClientPlan(s);
+        return;
+      }
       const submit = event.target.closest('[data-guided-submit]');
       if (submit) {
         submitGuidedAnswer(submit.closest('[data-guided-card]'));
@@ -2033,13 +2043,33 @@
     }
   }
 
+  // 正文常驻入口：会话进入 SKU_READY（已有 SKU）后，在对话末尾固定一个「打开方案网页」入口，随时可点
+  function clientPlanEntryHtml() {
+    const session = getActiveSession();
+    if (!session || !Array.isArray(session.skus) || !session.skus.length) return '';
+    return `<div class="ca-plan-entry" role="group" aria-label="客户网页版方案入口">
+      <div class="ca-plan-entry-main">
+        <span class="ca-plan-entry-icon">🗂</span>
+        <div class="ca-plan-entry-text">
+          <div class="ca-plan-entry-title">客户网页版方案</div>
+          <div class="ca-plan-entry-sub">SKU 图文 · 方案落地步骤 · 供应商需配合事项，集成为一个可编辑网页</div>
+        </div>
+      </div>
+      <div class="ca-plan-entry-actions">
+        <button type="button" class="ca-plan-entry-btn" data-open-clientplan>🔗 打开方案网页</button>
+        <button type="button" class="ca-plan-entry-link" data-download-clientplan>下载 HTML</button>
+      </div>
+    </div>`;
+  }
+
   function renderMessages() {
     const container = $('#caMessages');
     if (!container) return;
     if (!activeMessages.length) {
       container.innerHTML = '<div class="ca-empty"><div><strong>开始一段客户对话</strong>生活近况、企业经营、家庭安排或财富需求都可以聊。</div></div>';
     } else {
-      container.innerHTML = activeMessages.map((message) => `<div class="ca-msg-wrap">${messageHtml(message)}<button class="ca-msg-del" data-del-msg="${escapeHtml(message.id)}" title="删除这条">✕</button></div>`).join('');
+      container.innerHTML = activeMessages.map((message) => `<div class="ca-msg-wrap">${messageHtml(message)}<button class="ca-msg-del" data-del-msg="${escapeHtml(message.id)}" title="删除这条">✕</button></div>`).join('')
+        + clientPlanEntryHtml();
     }
     renderQuickActions();
     refreshGuidedSubmitStates();
@@ -4837,26 +4867,78 @@ JSON 结构：
 </html>`;
   }
 
-  async function generateClientPlanPage(session) {
+  function clientPlanFileName(session) {
+    return `客户方案_${(session.name || '未命名客户').replace(/[\\/:*?"<>|]/g, '')}_${new Date().toISOString().slice(0, 10)}.html`;
+  }
+
+  async function buildClientPlanBlob(session) {
+    await prefetchPlanImages(session.skus);
+    const html = buildClientPlanHtml(session);
+    return { blob: new Blob([html], { type: 'text/html;charset=utf-8' }), name: clientPlanFileName(session) };
+  }
+
+  // 在正文入口/技能里点击「打开」：在新标签页展示方案网页，内容按当前 SKU 实时生成
+  async function openClientPlanInNewTab(session) {
     if (!Array.isArray(session.skus) || !session.skus.length) {
-      toast('请先完成 SKU 适配，再生成客户网页版方案');
+      toast('请先完成 SKU 适配，再打开客户网页版方案');
+      return;
+    }
+    // 必须在用户手势内先同步开好空白标签页，否则会被浏览器弹窗拦截
+    const tab = window.open('', '_blank');
+    if (tab) {
+      try {
+        tab.document.write('<!doctype html><meta charset="utf-8"><title>客户网页版方案</title>'
+          + '<body style="margin:0;height:100vh;display:flex;align-items:center;justify-content:center;'
+          + 'font:15px/1.7 PingFang SC,Microsoft YaHei,system-ui;color:#5a6b78">正在生成客户网页版方案…</body>');
+      } catch (_) { /* 跨源写入失败可忽略 */ }
+    }
+    toast('正在生成客户网页版方案…');
+    try {
+      const { blob, name } = await buildClientPlanBlob(session);
+      const url = URL.createObjectURL(blob);
+      if (tab && !tab.closed) {
+        tab.location.href = url;
+      } else {
+        // 弹窗被拦截：回退为下载，保证功能可用
+        triggerDownload(url, name);
+        toast('浏览器拦截了新标签页，已改为下载方案文件');
+      }
+      setTimeout(() => URL.revokeObjectURL(url), 120000);
+    } catch (error) {
+      if (tab && !tab.closed) tab.close();
+      toast(`生成失败：${error.message}`);
+    }
+  }
+
+  async function downloadClientPlan(session) {
+    if (!Array.isArray(session.skus) || !session.skus.length) {
+      toast('请先完成 SKU 适配，再下载客户网页版方案');
       return;
     }
     toast('正在生成客户网页版方案…');
-    await prefetchPlanImages(session.skus);
-    const html = buildClientPlanHtml(session);
-    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const name = `客户方案_${(session.name || '未命名客户').replace(/[\\/:*?"<>|]/g, '')}_${new Date().toISOString().slice(0, 10)}.html`;
+    try {
+      const { blob, name } = await buildClientPlanBlob(session);
+      const url = URL.createObjectURL(blob);
+      triggerDownload(url, name);
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+      toast(`已下载：${name}`);
+    } catch (error) {
+      toast(`生成失败：${error.message}`);
+    }
+  }
+
+  function triggerDownload(url, name) {
     const a = document.createElement('a');
     a.href = url;
     a.download = name;
     document.body.appendChild(a);
     a.click();
     a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 60000);
-    const sizeKb = Math.max(1, Math.round(blob.size / 1024));
-    await addMessage('assistant', `客户网页版方案已生成并下载：**${name}**（约 ${sizeKb} KB）。\n\n该网页把「推荐 SKU 图文」「方案落地步骤表」「供应商需配合事项表」集成在一个 HTML 文件里，用浏览器可直接打开、用任意编辑器可直接修改。\n\n其中 PPT 的**文字页与表格页**已转成结构化文字和可编辑表格；**带连接线的关系结构图**（如信托架构图、股权路径图）保留为整页图片，避免拆成文字后丢失结构关系。`, 'text', null, session.id);
+  }
+
+  // 技能 / 底部 chip 触发：直接在新标签页打开（正文里也常驻同一入口）
+  async function generateClientPlanPage(session) {
+    await openClientPlanInNewTab(session);
   }
 
   async function presentSuppliers(session) {
