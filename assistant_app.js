@@ -3529,7 +3529,7 @@ SKU 问题进度：${session.flow.skuStep}/5
 5. suggested_question 每次只能有一个问题，必须与当前阶段有关，不能重复已问问题。
 6. PROFILE_GATHERING 阶段的 suggested_question 只能追问画像五维（主体、行业、资产、发生了什么、约束）中仍然缺失或薄弱的维度，一次只问一个维度，不得涉及痛点确认或SKU相关问题。
 7. PAIN_CONFIRMATION 的问题用于区分和确认痛点；SKU_CONFIRMATION 的下一问由系统从候选SKU宽表C列单独生成，此阶段 suggested_question 必须为空，reply 只简短回应客户刚才的回答，不要在 reply 中再提问。
-8. reply 专业、亲和、简洁，普通回复尽量在 180 字内。
+8. reply 专业、亲和、简洁，普通回复尽量在 180 字内。语气要像顾问和同事自然聊天，顺着对方刚才的话往下接；不要生硬地播报流程或暴露内部机制（例如不要说"我会用5个快捷选择题""接下来进入痛点确认环节""两阶段十问"这类话），系统会自动把问题以卡片形式呈现，你只需自然承接即可。
 9. search_terms 返回 3-10 个用于检索痛点/SKU 的专业短语，例如“家族传承”“控制权”“跨境税务”。
 10. 五维定义必须严格遵守：subject=客户在个人、家庭、企业中的身份和决策角色；industry=主营业务、财富来源行业及行业周期；assets=客户拥有、控制或享有实际权益的资产；events=已经发生、正在发生或计划发生的个人、家庭、企业事项；constraints=仅限外部法律、监管、税务、司法、信披、减持规则、外汇管理、牌照和审核等强制条件。
 11. 家庭不和、家人反对、夫妻矛盾、兄弟姐妹纠纷、代际冲突、传承分歧、婚姻变化必须放入 events，不得放入 constraints。
@@ -3808,7 +3808,7 @@ JSON 结构：
   async function enterPainConfirmation(session, reply, messageData, transitionText) {
     session.stage = 'PAIN_CONFIRMATION';
     session.flow.painStep = 1;
-    const intro = reply ? `${reply}\n\n${transitionText}` : transitionText;
+    const intro = [reply, transitionText].filter((t) => t && String(t).trim()).join('\n\n');
     try {
       session.painQuestionPlan = await buildPainQuestionPlan(session);
       session.flow.askedQuestions.push(session.painQuestionPlan[0].question);
@@ -5197,8 +5197,8 @@ JSON 结构：
     });
     await addMessage('assistant', '', 'sku-recommendation', { items, noFit: !items.length, version: session.recommendationVersion }, session.id);
     await addMessage('assistant', items.length
-      ? '两阶段十问已经完成。SKU 建议已根据 15 个测试样本的宽表 C 列五问动态核验；痛点只作为初始线索，最终结果以客户适格性为准。'
-      : '两阶段十问已经完成。根据当前画像与宽表五问证据，15 个测试样本中暂无足够适格的 SKU；建议补充关键材料后再评估。', 'text', null, session.id);
+      ? '结合刚才聊下来的情况，我梳理了几个比较适配的方向，你看看——'
+      : '综合目前了解到的情况，暂时还没有特别适配的方案；如果能再补充一些关键信息，我可以帮你判断得更准。', 'text', null, session.id);
     if (items.length) {
       await presentSkuSop(session);
       await presentSuppliers(session);
@@ -5217,7 +5217,7 @@ JSON 结构：
         return;
       }
       if (profileReady(session)) {
-        await enterPainConfirmation(session, reply, messageData, '听起来这里已经涉及客户画像和业务安排，我会用 5 个快捷选择题帮助确认最可能的痛点。');
+        await enterPainConfirmation(session, reply, messageData, '');
       } else {
         session.stage = 'PROFILE_GATHERING';
         const question = profileGapQuestion(session, result.suggested_question);
@@ -5229,7 +5229,7 @@ JSON 结构：
 
     if (session.stage === 'PROFILE_GATHERING') {
       if (profileReady(session)) {
-        await enterPainConfirmation(session, reply, messageData, '客户画像已经补充得比较完整了，接下来我会用 5 个快捷选择题帮助确认最可能的痛点。');
+        await enterPainConfirmation(session, reply, messageData, '');
       } else {
         const question = profileGapQuestion(session, result.suggested_question);
         session.flow.askedQuestions.push(question);
@@ -5250,7 +5250,7 @@ JSON 结构：
           await addGuidedQuestion(session, 'PAIN_CONFIRMATION', session.flow.painStep, question, reply, null, messageData);
         }
       } else {
-        await addMessage('assistant', `${reply}\n\n痛点确认五问已完成，正在从痛点库中匹配优先痛点，请稍候（约需数秒）…`, 'text', messageData, session.id);
+        await addMessage('assistant', `${reply}\n\n好，我先梳理一下最值得关注的方向，稍等一下…`, 'text', messageData, session.id);
         showTyping();
         await generatePainRecommendations(session, false);
       }
