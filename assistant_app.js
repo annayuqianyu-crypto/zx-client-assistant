@@ -29,7 +29,7 @@
   const CLIENT_IMAGE_WIDTH = 1080;
   const CLIENT_IMAGE_MAX_HEIGHT = 6500;
   const SHOW_SKU_QUESTION_IDS = true;
-  const CHAT_ORCHESTRATOR_TIMEOUT_MS = 25000;
+  const CHAT_ORCHESTRATOR_TIMEOUT_MS = 75000; // 放宽到 75s：推理型模型(deepseek-reasoner/v4-pro)处理长编排prompt常需30-60s，25s会误判超时并静默退回本地兜底
   const PROFILE_KEYS = ['subject', 'industry', 'assets', 'events', 'constraints'];
   const PROFILE_LABELS = {
     subject: '主体',
@@ -3766,6 +3766,14 @@ JSON 结构：
     } catch (error) {
       const fallback = localOrchestratorFallback(latestUserText);
       if (fallback.business_signal || session.stage !== 'CASUAL') {
+        // 区分「未配置 API」（demo 正常态，静默）与「配了 key 但失败/超时」（需提醒，此前是静默降级）
+        let hasKey = false;
+        try { hasKey = !!(typeof getApiConfig === 'function' && getApiConfig().key); } catch (_) { hasKey = false; }
+        if (hasKey) {
+          const timedOut = /超时/.test(error.message || '');
+          const reason = timedOut ? 'AI 响应超时（推理型模型较慢，可换 deepseek-chat 等更快的模型）' : `AI 调用未成功（${error.message || '未知错误'}）`;
+          toast(`${reason}，本轮已用本地识别兜底；可在「API 设置」检查`);
+        }
         console.warn('模型编排暂不可用，已切换本地画像识别：', error.message);
         return fallback;
       }
