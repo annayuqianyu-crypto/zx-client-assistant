@@ -30,6 +30,8 @@
   const CLIENT_IMAGE_MAX_HEIGHT = 6500;
   const SHOW_SKU_QUESTION_IDS = true;
   const CHAT_ORCHESTRATOR_TIMEOUT_MS = 75000; // 放宽到 75s：推理型模型(deepseek-reasoner/v4-pro)处理长编排prompt常需30-60s，25s会误判超时并静默退回本地兜底
+  const MIN_PROFILE_ROUNDS = 2; // 至少 grill 满 2 轮画像深挖再进入痛点确认（即使首条消息已填满 5D）
+  const MAX_PROFILE_ROUNDS = 5; // 深挖上限：达到后即使还想追问也进入痛点确认，避免无限打转
   const PROFILE_KEYS = ['subject', 'industry', 'assets', 'events', 'constraints'];
   const PROFILE_LABELS = {
     subject: '主体',
@@ -260,7 +262,9 @@
         askedQuestions: Array.isArray(session.flow?.askedQuestions) ? session.flow.askedQuestions : [],
         // 画像补充采用 grill-me 逐分支追问：记录已追问过的维度，避免重复提问
         profileAsked: Array.isArray(session.flow?.profileAsked) ? session.flow.profileAsked : [],
-        pendingProfileKey: session.flow?.pendingProfileKey || null
+        pendingProfileKey: session.flow?.pendingProfileKey || null,
+        // 已进行的画像深挖轮次：即使首条消息已填满 5D，也要至少 grill 满 MIN_PROFILE_ROUNDS 轮再进痛点
+        profileRounds: Number(session.flow?.profileRounds || 0)
       },
       profile: emptyProfile(),
       profileSchemaVersion: PROFILE_SCHEMA_VERSION,
@@ -3541,6 +3545,7 @@
 方案匹配问题进度：${session.flow.skuStep}/5
 当前画像：${JSON.stringify(profileSnapshot(session))}
 已问问题：${questionContext(session) || '无'}
+已完成画像深挖轮次：${session.flow.profileRounds || 0}（至少需 ${MIN_PROFILE_ROUNDS} 轮才进入痛点确认）
 已确认痛点：${pains || '无'}
 已推荐方案：${skus || '无'}
 
@@ -3550,6 +3555,7 @@
 3. profile_patch 只填写本轮能够从用户原话可靠得出的新信息；不确定就留空，不得为了显得"已了解"而填入笼统或猜测性的描述。confidence 必须如实反映把握程度：明确具体的事实给 0.7 以上；只是模糊提及、尚待展开的给 0.5 以下；纯粹的意向性表态（如"我来说一下客户情况"）不算新信息，不填 profile_patch。
 4. 销售明确纠正旧信息时 correction=true。
 5. suggested_question 每次只能有一个问题，必须与当前阶段有关，不能重复已问问题。
+5b. 【PROFILE_GATHERING 必须充分 grill，至少 2 轮】只要"已完成画像深挖轮次" < ${MIN_PROFILE_ROUNDS}，suggested_question 就绝不能为空——即使五维看起来都已填上，也要继续像资深顾问一样深挖确认：优先补齐仍缺失/薄弱的维度；若五维都已有内容，则针对**最影响方案判断的那一点**追一个确认性问题（例如关键事件的进展/时间节点/交易规模、约束的具体触发情形、客户最核心的诉求与最担心的风险、家庭成员诉求是否一致等），一次只问一个。只有当深挖轮次已达 ${MIN_PROFILE_ROUNDS} 且五维扎实时，suggested_question 才可以留空，由系统转入痛点确认。
 6. PROFILE_GATHERING 阶段的 suggested_question 只能追问画像五维（主体、行业、资产、发生了什么、约束）中仍然缺失或薄弱的维度，一次只问一个维度，不得涉及痛点确认或SKU相关问题。
 7. PAIN_CONFIRMATION 的问题用于区分和确认痛点；SKU_CONFIRMATION 的下一问由系统从候选方案宽表C列单独生成，此阶段 suggested_question 必须为空，reply 只简短回应客户刚才的回答，不要在 reply 中再提问。
 8. reply 专业、亲和、简洁，普通回复尽量在 180 字内。语气要像顾问和同事自然聊天，顺着对方刚才的话往下接；不要生硬地播报流程或暴露内部机制（例如不要说"我会用5个快捷选择题""接下来进入痛点确认环节""两阶段十问"这类话），系统会自动把问题以卡片形式呈现，你只需自然承接即可。
@@ -3957,36 +3963,66 @@ JSON 结构：
       lead = (lead && !/^(嗯，我在|好的，我记一下)/.test(lead)) ? `${lead}\n\n${defused}` : defused;
     }
 
-    // 找下一个"仍缺失且没问过"的维度
+    const rounds = Number(session.flow.profileRounds || 0);
+    const askedNorm = (session.flow.askedQuestions || []).map(normalizeQ);
+
+    // 决定下一问：① 大模型给的深挖/追问优先（grill-me 主路径，去重）
     let question = null;
-    if (suggested && String(suggested).trim()) {
-      const s = String(suggested).trim();
-      const askedNorm = (session.flow.askedQuestions || []).map(normalizeQ);
-      if (!askedNorm.includes(normalizeQ(s))) question = s;
+    let pendingKeyForQ = null;
+    // 已达深挖上限且五维扎实：不再追问，进入痛点确认
+    const capped = rounds >= MAX_PROFILE_ROUNDS && profileReady(session);
+    if (!capped && suggested && String(suggested).trim() && !askedNorm.includes(normalizeQ(String(suggested).trim()))) {
+      question = String(suggested).trim();
     }
-    if (!question) {
+    // ② 大模型没给：若有仍缺失且没问过的维度，用该维度的兜底问法（仅在无大模型问句时）
+    if (!question && !capped) {
       const gap = nextProfileGap(session);
-      if (gap) {
+      if (gap && !askedNorm.includes(normalizeQ(gap.question))) {
         question = gap.question;
-        session.flow.pendingProfileKey = gap.key;
-        if (!session.flow.profileAsked.includes(gap.key)) session.flow.profileAsked.push(gap.key);
+        pendingKeyForQ = gap.key;
       }
+    }
+    // ③ 五维已填满但还没 grill 满最少轮次：追一个深挖确认问题（避免首条消息即跳痛点）
+    if (!question && profileReady(session) && rounds < MIN_PROFILE_ROUNDS) {
+      question = deepeningProfileQuestion(session, askedNorm);
     }
 
     if (question) {
+      if (pendingKeyForQ) {
+        session.flow.pendingProfileKey = pendingKeyForQ;
+        if (!session.flow.profileAsked.includes(pendingKeyForQ)) session.flow.profileAsked.push(pendingKeyForQ);
+      } else {
+        session.flow.pendingProfileKey = null; // 大模型深挖问句不绑定单一维度
+      }
       session.flow.askedQuestions.push(question);
+      session.flow.profileRounds = rounds + 1;
       await addMessage('assistant', lead ? `${lead}\n\n${question}` : question, 'text', messageData, session.id);
       await saveSession(session);
       return;
     }
 
-    // 没有可继续追问的新维度：把还缺的约束补齐，据现有信息进入痛点确认
+    // 轮次已够且无更多可问：补齐约束，进入痛点确认
     if (!session.profile.constraints?.value) {
       const c = inferProfileDimension(session, 'constraints');
       if (c) session.profile.constraints = { value: c, evidence: '据现有画像专业推断', confidence: 0.55, confirmed: false };
     }
     session.flow.pendingProfileKey = null;
-    await enterPainConfirmation(session, lead, messageData, '客户情况我这边差不多了，先据此帮您梳理最可能的痛点。');
+    await enterPainConfirmation(session, lead, messageData, '客户情况我这边梳理得差不多了，接下来帮您确认最可能的痛点方向。');
+  }
+
+  // 五维已填满时的深挖确认问题（大模型未给追问时的兜底，围绕最决策相关的信息确认细节，非正则抽取）
+  function deepeningProfileQuestion(session, askedNorm) {
+    const pool = [];
+    const ev = session.profile.events?.value || '';
+    const co = session.profile.constraints?.value || '';
+    if (ev) pool.push(`关于「${String(ev).slice(0, 18)}${ev.length > 18 ? '…' : ''}」，这件事目前进展到哪一步了？有没有明确的时间节点或截止要求？`);
+    if (/代持|股权|上市|减持|收购|并购/.test(ev + co)) pool.push('这块涉及的股权或金额规模大概是什么量级？是否已经有律师、会计师或券商在跟进？');
+    pool.push('客户本人最看重、最担心的一件事是什么？如果只能先解决一个问题，会是哪个？');
+    pool.push('除了刚才说的，家庭内部（配偶、子女、其他股东）对这件事的态度和诉求是否一致？');
+    for (const q of pool) {
+      if (!askedNorm.includes(normalizeQ(q))) return q;
+    }
+    return '';
   }
 
   function buildSearchTerms(session) {
@@ -5413,21 +5449,14 @@ JSON 结构：
         await addMessage('assistant', reply, 'text', messageData, session.id);
         return;
       }
-      if (profileReady(session)) {
-        await enterPainConfirmation(session, reply, messageData, '');
-      } else {
-        session.stage = 'PROFILE_GATHERING';
-        await advanceProfileGathering(session, reply, messageData, result.suggested_question);
-      }
+      // 即使首条消息已填满 5D，也先进入画像深挖，由 advanceProfileGathering 决定是否够轮次进痛点
+      session.stage = 'PROFILE_GATHERING';
+      await advanceProfileGathering(session, reply, messageData, result.suggested_question);
       return;
     }
 
     if (session.stage === 'PROFILE_GATHERING') {
-      if (profileReady(session)) {
-        await enterPainConfirmation(session, reply, messageData, '');
-      } else {
-        await advanceProfileGathering(session, reply, messageData, result.suggested_question);
-      }
+      await advanceProfileGathering(session, reply, messageData, result.suggested_question);
       return;
     }
 
