@@ -331,6 +331,16 @@ body.assistant-mode #apiConfigModal {
 }
 .ca-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--ca-gold), var(--ca-navy)); transition: width .25s; }
 
+/* 下一步柔和引导按钮 */
+.ca-step-invite-actions { margin-top: 10px; }
+.ca-step-invite-btn {
+  border: 1px solid var(--ca-navy); background: var(--ca-navy); color: #fff;
+  border-radius: 8px; padding: 8px 16px; font: inherit; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: background .15s;
+}
+.ca-step-invite-btn:hover { background: var(--ca-navy-2); }
+.ca-step-invite-btn:disabled { background: #eef1f4; color: #9aa7b2; border-color: #e2e8ed; cursor: default; }
+
 /* 正文常驻入口：客户网页版方案 */
 .ca-plan-entry {
   margin: 14px 0 6px;

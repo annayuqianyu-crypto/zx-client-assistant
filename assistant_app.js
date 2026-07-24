@@ -1982,6 +1982,8 @@
         if (s) downloadClientPlan(s);
         return;
       }
+      const invite = event.target.closest('[data-step-invite]');
+      if (invite) { handleStepInvite(invite.dataset.stepInvite, invite.dataset.inviteMsg); return; }
       const submit = event.target.closest('[data-guided-submit]');
       if (submit) {
         submitGuidedAnswer(submit.closest('[data-guided-card]'));
@@ -2193,6 +2195,23 @@
     </div></div>`;
   }
 
+  // 柔和的下一步引导：SKU 之后不自动连发 SOP/供应商，而是征得客户同意再逐步展开
+  const STEP_INVITE = {
+    sop: { text: '如果需要，我可以把这套方案的落地步骤也帮你梳理出来——每一步该做什么、需要客户配合什么，一目了然。要看吗？', btn: '好，看落地步骤', skip: '暂时不用' },
+    supplier: { text: '要不要我再把供应商这块理一下？也就是每个环节需要哪些外部机构配合、各自负责什么。', btn: '好，看供应商配合', skip: '暂时不用' }
+  };
+  function stepInviteHtml(message) {
+    const cfg = STEP_INVITE[message.data?.next];
+    if (!cfg) return '';
+    const done = message.data?.consumed;
+    return `<div class="ca-message assistant"><div class="ca-avatar">朝</div><div class="ca-message-body">
+      <div class="ca-bubble">${renderText(cfg.text)}</div>
+      <div class="ca-step-invite-actions">
+        <button class="ca-step-invite-btn" data-step-invite="${escapeHtml(message.data.next)}" data-invite-msg="${escapeHtml(message.id)}"${done ? ' disabled' : ''}>${done ? '已展开 ✓' : escapeHtml(cfg.btn)}</button>
+      </div>
+      <div class="ca-message-meta">${escapeHtml(formatTime(message.createdAt))}</div></div></div>`;
+  }
+
   function messageHtml(message) {
     if (message.type === 'profile') return profileCardHtml(message.data?.profile || {});
     if (message.type === 'pain-recommendation') return painCardHtml(message);
@@ -2201,6 +2220,7 @@
     if (message.type === 'sku-supplier') return supplierCardHtml(message);
     if (message.type === 'sku-supplier-summary') return supplierSummaryCardHtml(message);
     if (message.type === 'guided-question') return guidedQuestionHtml(message);
+    if (message.type === 'step-invite') return stepInviteHtml(message);
     if (message.type === 'recommendation-rationale') return recommendationRationaleHtml(message);
     const role = message.role === 'user' ? 'user' : message.role === 'system' ? 'system' : 'assistant';
     const errorClass = message.type === 'error' ? ' error' : '';
@@ -4339,8 +4359,8 @@ JSON 结构：
     session.stage = 'SKU_CONFIRMATION';
     session.skuAnalysis = emptySkuAnalysis();
     session.flow.skuStep = 1;
-    const intro = '痛点已经形成第一版判断。接下来会围绕候选 SKU 的关键确认项完成 5 轮快捷确认；可直接勾选，无需输入长段文字。';
-    await addMessage('assistant', '已定位优先痛点。接下来我会据此从候选 SKU 的宽表中生成 5 个适配确认问题，请稍候（约需数秒）…', 'text', null, session.id);
+    const intro = '为了给你更贴合的建议，我再跟你确认几个关键点，勾选就行——';
+    await addMessage('assistant', '好，我顺着这些痛点看看哪些方案比较对得上，稍等一下…', 'text', null, session.id);
     showTyping();
     const candidates = skuCandidates(session);
     persistSkuCandidateSnapshot(session, candidates);
@@ -5199,11 +5219,41 @@ JSON 结构：
     await addMessage('assistant', items.length
       ? '结合刚才聊下来的情况，我梳理了几个比较适配的方向，你看看——'
       : '综合目前了解到的情况，暂时还没有特别适配的方案；如果能再补充一些关键信息，我可以帮你判断得更准。', 'text', null, session.id);
+    // 不再一次性把落地步骤、供应商全部连发；先柔和征询，客户点了再逐步展开
     if (items.length) {
-      await presentSkuSop(session);
-      await presentSuppliers(session);
+      await postStepInvite(session, 'sop');
     }
     await saveSession(session);
+  }
+
+  // 客户点了"看落地步骤/看供应商配合"后：生成对应内容，标记该引导已展开，SOP 之后再柔和引导供应商
+  async function handleStepInvite(next, inviteMsgId) {
+    const session = getActiveSession();
+    if (!session || !Array.isArray(session.skus) || !session.skus.length) return;
+    // 标记这条引导为已展开（按钮置灰），并持久化
+    const invite = activeMessages.find((m) => m.id === inviteMsgId);
+    if (invite) {
+      invite.data = { ...invite.data, consumed: true };
+      renderMessages();
+      try { await putRecord('messages', invite); } catch (_) {}
+    }
+    if (next === 'sop') {
+      if (!activeMessages.some((m) => m.type === 'sku-sop')) await presentSkuSop(session);
+      await postStepInvite(session, 'supplier');
+    } else if (next === 'supplier') {
+      if (!activeMessages.some((m) => m.type === 'sku-supplier-summary' || m.type === 'sku-supplier')) await presentSuppliers(session);
+    }
+    await saveSession(session);
+  }
+
+  // 发出一条"下一步引导"，若同类引导或对应结果已存在则不重复发
+  async function postStepInvite(session, next) {
+    const resultShown = next === 'sop'
+      ? activeMessages.some((m) => m.type === 'sku-sop')
+      : activeMessages.some((m) => m.type === 'sku-supplier-summary' || m.type === 'sku-supplier');
+    const inviteShown = activeMessages.some((m) => m.type === 'step-invite' && m.data?.next === next);
+    if (resultShown || inviteShown) return;
+    await addMessage('assistant', '', 'step-invite', { next, consumed: false }, session.id);
   }
 
   async function handleStageCompletion(session, result, changedKeys) {
