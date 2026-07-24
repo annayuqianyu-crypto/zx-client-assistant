@@ -631,7 +631,6 @@
           <div class="ca-source-status" id="caSyncStatus">正在连接本机客户档案…</div>
           <div class="ca-source-status" id="caSourceStatus">正在读取痛点库与 SKU 知识卡片…</div>
           <div class="ca-footer-actions">
-            <button class="ca-secondary-btn" id="caAdvancedTools">高级工具</button>
             <button class="ca-secondary-btn" id="caApiSettings">API 设置</button>
             <button class="ca-secondary-btn" id="caExportBackup">导出备份</button>
             <button class="ca-secondary-btn" id="caImportBackup">导入备份</button>
@@ -1945,7 +1944,6 @@
     $('#caRenameSession').addEventListener('click', renameActiveSession);
     $('#caArchiveSession').addEventListener('click', archiveActiveSession);
     $('#caDeleteSession').addEventListener('click', deleteActiveSession);
-    $('#caAdvancedTools').addEventListener('click', showLegacyTools);
     $('#caApiSettings').addEventListener('click', openSettings);
     $('#caTopSettings').addEventListener('click', openSettings);
     $('#caExportBackup').addEventListener('click', exportBackup);

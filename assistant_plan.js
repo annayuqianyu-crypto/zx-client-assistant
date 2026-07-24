@@ -306,15 +306,7 @@
   }
 
   function mount() {
-    const actions = document.querySelector('.ca-footer-actions');
-    if (actions && !document.querySelector('#caPlanManager')) {
-      const button = document.createElement('button');
-      button.className = 'ca-secondary-btn';
-      button.id = 'caPlanManager';
-      button.textContent = '客户方案链接';
-      button.addEventListener('click', openManager);
-      actions.prepend(button);
-    }
+    // 「客户方案链接」入口已下线；openManager 仍通过 window.ChaoxiPlanModule 暴露，供内部按需调用
   }
 
   window.ChaoxiPlanModule = { mount, create, openManager, buildSuppliers };
