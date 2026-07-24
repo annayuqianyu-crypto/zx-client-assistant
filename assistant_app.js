@@ -623,7 +623,7 @@
         </nav>
         <nav class="ca-nav-section">
           <div class="ca-nav-title">能力提升</div>
-          <div class="ca-nav-row"><input type="checkbox" class="ca-nav-checkbox"><button class="ca-nav-stub" data-stub="案例研究员">案例研究员</button></div>
+          <div class="ca-nav-row"><input type="checkbox" class="ca-nav-checkbox"><button class="ca-nav-stub" data-stub="案例研究院">案例研究院</button></div>
           <div class="ca-nav-row"><input type="checkbox" class="ca-nav-checkbox"><button class="ca-nav-stub" data-stub="法税百科">法税百科</button></div>
           <div class="ca-nav-row"><input type="checkbox" class="ca-nav-checkbox"><button class="ca-nav-stub" data-stub="个人成长看板">个人成长看板</button></div>
         </nav>
@@ -767,6 +767,22 @@
           </div>
           <div class="ca-lexicon-hot" id="caLexiconHot"></div>
           <div class="ca-lexicon-answer" id="caLexiconAnswer"></div>
+        </div>
+      </div>
+      <div class="ca-hotspot-modal" id="caCaseModal" hidden>
+        <div class="ca-hotspot-panel ca-case-panel">
+          <div class="ca-hotspot-head">
+            <div><strong>案例研究院</strong><small>真实脱敏案例 · 讲给客户 / 警示风险 / 内部学习 / 匹配客户池</small></div>
+            <button class="ca-icon-btn" id="caCaseClose">✕ 关闭</button>
+          </div>
+          <div class="ca-case-log" id="caCaseLog"></div>
+          <div class="ca-case-inputbar">
+            <textarea id="caCaseInput" rows="1" placeholder="描述你想找的案例：客户画像 / 行业 / 想解决的问题，例如「地产老板 离婚分产」…"></textarea>
+            <div class="ca-case-input-actions">
+              <button class="ca-case-attach" id="caCaseAttach" type="button">📎 上传附件</button>
+              <button class="ca-primary-btn" id="caCaseSend" type="button">发送</button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="ca-hotspot-modal" id="caGrowthModal" hidden>
@@ -1463,6 +1479,162 @@
     </div>`;
   }
 
+  // ===== 案例研究院：按客户画像/行业/问题检索脱敏案例，支持讲给客户/警示/学习/匹配客户池 =====
+  let caseBusy = false;
+  let caseLoaded = false;
+
+  const CASE_WELCOME = `欢迎来到案例研究院。想找什么样的案例？我可以帮你从这几个方向来找——`;
+  const CASE_DIRECTIONS = [
+    { icon: '👤', label: '客户画像', hint: '比如', chips: ['制造业老板', '科技新贵', '地产开发商', '跨境贸易商'] },
+    { icon: '🏭', label: '行业', hint: '比如', chips: ['汽配', '跨境电商', '生物医药', '餐饮连锁'] },
+    { icon: '🎯', label: '你想解决客户的什么问题？', hint: '比如', chips: ['二代不想接班', '税负太重', '担心离婚分产', '想做股权激励'] }
+  ];
+  const CASE_USES = [
+    '讲给客户听，证明"我做过类似案子"',
+    '警示客户，帮他看到潜在风险',
+    '内部学习，看看别人怎么做的',
+    '用来匹配我的客户池，找线索'
+  ];
+
+  // 本地脱敏案例库（AI 不可用时兜底；命中关键词返回对应案例）
+  const CASE_LIBRARY = [
+    {
+      keys: ['离婚', '分产', '婚姻', '婚内', '隔离'],
+      title: '某地产老板没有做婚姻隔离，离婚被分走一半公司',
+      quote: '他当时觉得"不至于"，结果真走到了那一步',
+      points: ['股权代持风险', '婚内财产协议的重要性'],
+      detail: '背景：客户为地产开发商，公司股权全部登记在本人名下，未做任何婚姻财产安排。\n经过：婚姻破裂后，配偶主张公司股权为夫妻共同财产，法院最终认定婚内取得的股权价值应予分割，客户被迫让渡近半股权或以巨额现金对价回购。\n教训：企业实控人的股权在缺乏婚前/婚内财产协议时，默认属于夫妻共同财产；一旦离婚，控制权与现金流同时承压。\n我们的做法：婚内财产协议 + 家族信托持股 + 表决权与财产权分离，既保住控制权，也隔离婚姻风险。'
+    },
+    {
+      keys: ['接班', '二代', '传承', '交班', '子女'],
+      title: '制造业二代无意接班，父辈用"三步过渡"完成平稳交接',
+      quote: '不是逼孩子接班，而是让企业不依赖任何一个人',
+      points: ['职业经理人+家族监督', '表决权信托', '接班时间表与考核'],
+      detail: '背景：传统制造业，创始人年近七旬，独子在海外无意回国接手。\n经过：直接交班风险高，家族一度考虑整体出售。\n我们的做法：设立表决权信托锁定家族最终决策权，引入职业经理人团队负责经营，制定 5 年过渡时间表与考核指标；二代以受益人+监督人身份参与而非直接管理。\n结果：企业经营不因接班问题停摆，家族财富与控制权得以延续。'
+    },
+    {
+      keys: ['税负', '税重', '减持', '个税', '分红'],
+      title: '科技新贵上市前未做税务规划，减持时税负远超预期',
+      quote: '钱到账那天才发现，一大半要交出去',
+      points: ['减持限制与窗口期', '持股平台与税务架构', '身份与居民地规划'],
+      detail: '背景：科技公司核心创始人，公司即将上市，个人直接持股。\n经过：上市后减持时，因缺乏持股平台与税务架构，叠加个税与限售规则，实际到手比例远低于预期。\n教训：股权的税务成本要在上市/融资前规划，上市后架构调整空间极小。\n我们的做法：搭建有限合伙持股平台 + 合理居民地安排 + 减持节奏规划，在合规前提下优化整体税负。'
+    },
+    {
+      keys: ['股权激励', '激励', '期权', '员工', '合伙'],
+      title: '餐饮连锁老板做股权激励，激励没到位反而闹散伙',
+      quote: '本来想留住人，结果把核心团队推走了',
+      points: ['激励工具选择（实股/期权/分红权）', '成熟期与退出机制', '控制权不旁落'],
+      detail: '背景：连锁餐饮，创始人想用股权绑定几位核心店长与合伙人。\n经过：直接给实股且无退出机制，人员离职后股权无法收回，引发纠纷并稀释控制权。\n我们的做法：改用有限合伙+分层激励，设定成熟期（vesting）与回购条款，激励与控制权分离；既留人又不丢控制权。'
+    },
+    {
+      keys: ['代持', '还原', '名义股东'],
+      title: '跨境贸易商多年股权代持，融资尽调时暴露重大隐患',
+      quote: '一直没出事，直到要引资本的那一刻',
+      points: ['代持协议效力与举证', '还原路径与税务成本', '融资/上市合规'],
+      detail: '背景：跨境贸易企业，历史上因种种原因由亲属代持部分股权。\n经过：引入战投尽调时，代持关系被视为重大不确定性，直接影响估值与交易推进。\n我们的做法：梳理代持证据链，设计还原路径并测算税务成本，配合律师出具意见，将隐患在融资前清理干净。'
+    }
+  ];
+
+  function caseClientHint() {
+    const names = (sessions || [])
+      .filter((s) => !s.archived && s.name && s.name !== '未命名客户' && !s.nameLocked)
+      .slice(0, 2)
+      .map((s) => s.name);
+    if (names.length) return `${names.join('、')}存在类似风险，可重点关注`;
+    return '暂无可匹配的在管客户，建档后这里会自动提示相关客户';
+  }
+
+  function openCaseStudy() {
+    const modal = $('#caCaseModal');
+    if (!modal) return;
+    modal.hidden = false;
+    if (!caseLoaded) {
+      renderCaseWelcome();
+      caseLoaded = true;
+    }
+    setTimeout(() => $('#caCaseInput')?.focus(), 60);
+  }
+  function closeCaseStudy() { const m = $('#caCaseModal'); if (m) m.hidden = true; }
+
+  function caseAppend(html) {
+    const log = $('#caCaseLog');
+    if (!log) return;
+    log.insertAdjacentHTML('beforeend', html);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function renderCaseWelcome() {
+    const directions = CASE_DIRECTIONS.map((d) => `
+      <div class="ca-case-dir">
+        <div class="ca-case-dir-label"><span>${d.icon}</span>${escapeHtml(d.label)}${d.label.includes('？') ? '' : '：'}<em>${escapeHtml(d.hint)}</em></div>
+        <div class="ca-case-chips">${d.chips.map((c) => `<button class="ca-case-chip" data-case-q="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('')}</div>
+      </div>`).join('');
+    const uses = CASE_USES.map((u) => `<div class="ca-case-use">→ ${escapeHtml(u)}</div>`).join('');
+    caseAppend(`<div class="ca-case-msg bot"><div class="ca-avatar">朝</div><div class="ca-case-body">
+      <div class="ca-case-bubble">
+        <p class="ca-case-welcome">${escapeHtml(CASE_WELCOME)}</p>
+        ${directions}
+        <div class="ca-case-uses-label">🖥 你想怎么用这个案例？</div>
+        ${uses}
+      </div></div></div>`);
+    // 落地页示例：直接展示一张样例案例卡片，让人一眼看懂产出形态
+    const sample = CASE_LIBRARY[0];
+    caseAppend(caseCardHtml(sample));
+  }
+
+  function caseCardHtml(card) {
+    const id = 'case-' + Math.random().toString(36).slice(2, 9);
+    const points = (card.points || []).join('、');
+    const hint = card.matchClients || caseClientHint();
+    return `<div class="ca-case-msg bot"><div class="ca-avatar">朝</div><div class="ca-case-body">
+      <div class="ca-case-card" data-case-card>
+        <div class="ca-case-card-tag">案例卡片</div>
+        <div class="ca-case-card-title">${escapeHtml(card.title)}</div>
+        ${card.quote ? `<div class="ca-case-card-quote">金句：“${escapeHtml(card.quote)}”</div>` : ''}
+        ${points ? `<div class="ca-case-card-row"><b>警示要点：</b>${escapeHtml(points)}</div>` : ''}
+        <div class="ca-case-card-row"><b>你的客户中：</b>${escapeHtml(hint)}</div>
+        ${card.detail ? `<div class="ca-case-detail" id="${id}" hidden>${card.detail.split('\n').map((p) => `<p>${escapeHtml(p)}</p>`).join('')}</div>` : ''}
+        ${card.detail ? `<button class="ca-case-more" data-case-detail="${id}">点击查看案例详情 ›</button>` : ''}
+      </div></div></div>`;
+  }
+
+  function localCaseFor(query) {
+    const q = String(query || '');
+    const hit = CASE_LIBRARY.find((c) => c.keys.some((k) => q.includes(k)));
+    return hit || null;
+  }
+
+  async function sendCaseQuery(text) {
+    const q = String(text || '').trim();
+    if (!q || caseBusy) return;
+    const input = $('#caCaseInput');
+    if (input) { input.value = ''; input.style.height = 'auto'; }
+    caseAppend(`<div class="ca-case-msg user"><div class="ca-case-body"><div class="ca-case-bubble user">${renderText(q)}</div></div><div class="ca-avatar user">销</div></div>`);
+    caseBusy = true;
+    const loadingId = 'load-' + Math.random().toString(36).slice(2, 9);
+    caseAppend(`<div class="ca-case-msg bot" id="${loadingId}"><div class="ca-avatar">朝</div><div class="ca-case-body"><div class="ca-case-bubble"><div class="ca-typing"><i></i><i></i><i></i></div>正在从案例库检索…</div></div></div>`);
+
+    let card = null;
+    try {
+      const data = await callDeepSeekJSON([
+        { role: 'system', content: '你是"朝曦案例研究院"助手，面向家族办公室客户经理。根据其检索词（可能是客户画像、行业或想解决的问题），输出一个**真实感强但完全脱敏**的家办/财富管理案例卡片，用于讲给客户、警示风险或内部学习。要求：title 用一句话概括"谁+因为什么+导致什么结果"，有冲击力；quote 是当事人口吻的一句"金句"，口语化、有代入感；points 列 2-3 个警示要点/专业关注点；detail 分"背景/经过/教训/我们的做法"若干段，具体可信但不得出现真实姓名与可识别信息。基于中国家办与跨境实务常识，不编造精确条款号与数字。只返回JSON：{"title":"","quote":"","points":[],"detail":""}' },
+        { role: 'user', content: `检索词：${q}\n请给出一个匹配的脱敏案例卡片。` }
+      ], 2);
+      if (data && data.title) card = data;
+    } catch (error) {
+      console.warn('案例研究院 AI 生成失败，尝试本地案例：', error.message);
+    }
+    if (!card) card = localCaseFor(q);
+    caseBusy = false;
+    document.getElementById(loadingId)?.remove();
+    if (card) {
+      caseAppend(caseCardHtml(card));
+    } else {
+      caseAppend(`<div class="ca-case-msg bot"><div class="ca-avatar">朝</div><div class="ca-case-body"><div class="ca-case-bubble">
+        暂未从案例库匹配到相关案例（AI 未配置或网络问题，本地也未收录该方向）。<br><small>可换一个更常见的方向试试，如「离婚分产」「二代接班」「税负太重」「股权激励」「股权代持」。</small></div></div></div>`);
+    }
+  }
+
   // ===== 个人成长看板：真实会话数据 + 模拟活跃/能力指标 =====
   function openGrowth() {
     const modal = $('#caGrowthModal');
@@ -1549,7 +1721,7 @@
       <div class="ca-growth-card ca-growth-reco">
         <div class="ca-growth-card-head">推荐提升 <em>模拟</em></div>
         <ul>
-          <li>方案落地维度偏弱，建议在「案例研究员」中精读 2 个跨境传承案例。</li>
+          <li>方案落地维度偏弱，建议在「案例研究院」中精读 2 个跨境传承案例。</li>
           <li>近 7 天资本市场类痛点接触较少，可在「法税百科」补齐减持/质押相关知识。</li>
           <li>尝试用「热点借势工坊」每周产出 1 条朋友圈，提升客户触达频率。</li>
         </ul>
@@ -1590,6 +1762,7 @@
       if (stub && stub.dataset.stub === '通用素材库') { openMaterialLibrary(); return; }
       if (stub && stub.dataset.stub === '模拟陪练场') { openRoleplay(); return; }
       if (stub && stub.dataset.stub === '法税百科') { openLexicon(); return; }
+      if (stub && stub.dataset.stub === '案例研究院') { openCaseStudy(); return; }
       if (stub && stub.dataset.stub === '个人成长看板') { openGrowth(); return; }
       if (stub) toast(`「${stub.dataset.stub}」即将上线，敬请期待`);
     });
@@ -1613,6 +1786,28 @@
     });
     $('#caLexiconInput').addEventListener('keydown', (event) => {
       if (event.key === 'Enter') { event.preventDefault(); queryLexicon(event.target.value); }
+    });
+    // 案例研究院
+    $('#caCaseClose').addEventListener('click', closeCaseStudy);
+    $('#caCaseModal').addEventListener('click', (event) => {
+      if (event.target.id === 'caCaseModal') { closeCaseStudy(); return; }
+      const chip = event.target.closest('[data-case-q]');
+      if (chip) { sendCaseQuery(chip.dataset.caseQ); return; }
+      const more = event.target.closest('[data-case-detail]');
+      if (more) {
+        const box = document.getElementById(more.dataset.caseDetail);
+        if (box) { box.hidden = !box.hidden; more.textContent = box.hidden ? '点击查看案例详情 ›' : '收起案例详情 ‹'; }
+        return;
+      }
+      if (event.target.closest('#caCaseSend')) sendCaseQuery($('#caCaseInput')?.value);
+      if (event.target.closest('#caCaseAttach')) toast('附件解析即将上线：后续可上传案例材料/判决书自动生成卡片');
+    });
+    $('#caCaseInput').addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendCaseQuery(event.target.value); }
+    });
+    $('#caCaseInput').addEventListener('input', (event) => {
+      event.target.style.height = 'auto';
+      event.target.style.height = Math.min(event.target.scrollHeight, 120) + 'px';
     });
     $('#caRoleplayClose').addEventListener('click', closeRoleplay);
     // 设定弹窗：只处理设定项
@@ -1693,6 +1888,7 @@
       if (event.key === 'Escape' && !$('#caMaterialModal')?.hidden) closeMaterialLibrary();
       if (event.key === 'Escape' && !$('#caRoleplayModal')?.hidden) closeRoleplay();
       if (event.key === 'Escape' && !$('#caLexiconModal')?.hidden) closeLexicon();
+      if (event.key === 'Escape' && !$('#caCaseModal')?.hidden) closeCaseStudy();
       if (event.key === 'Escape' && !$('#caGrowthModal')?.hidden) closeGrowth();
     });
     $('#caHotspotFilters').addEventListener('click', (event) => {
