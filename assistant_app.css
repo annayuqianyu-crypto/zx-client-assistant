@@ -396,7 +396,9 @@ body.assistant-mode #apiConfigModal {
 .ca-message.error .ca-bubble { background: #fff0f0; color: var(--ca-danger); }
 .ca-message-meta { margin: 4px 4px 0; color: #9aa4aa; font-size: 10px; }
 
-.ca-typing { display: flex; gap: 4px; padding: 6px 2px; }
+.ca-typing-row { display: flex; align-items: center; gap: 9px; }
+.ca-typing-label { color: var(--ca-sub); font-size: 12.5px; line-height: 1.6; }
+.ca-typing { display: flex; gap: 4px; padding: 6px 2px; flex: none; }
 .ca-typing i { width: 6px; height: 6px; border-radius: 50%; background: #80909b; animation: caBounce 1.1s infinite; }
 .ca-typing i:nth-child(2) { animation-delay: .15s; }
 .ca-typing i:nth-child(3) { animation-delay: .3s; }

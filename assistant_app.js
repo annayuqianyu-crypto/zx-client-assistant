@@ -2859,14 +2859,18 @@
     refreshGuidedSubmitStates();
   }
 
-  function showTyping() {
+  function showTyping(label) {
     const container = $('#caMessages');
-    if (!container || $('#caTyping')) return;
-    const div = document.createElement('div');
-    div.id = 'caTyping';
-    div.className = 'ca-message assistant';
-    div.innerHTML = '<div class="ca-avatar">朝</div><div class="ca-message-body"><div class="ca-bubble"><div class="ca-typing"><i></i><i></i><i></i></div></div></div>';
-    container.appendChild(div);
+    if (!container) return;
+    let div = $('#caTyping');
+    if (!div) {
+      div = document.createElement('div');
+      div.id = 'caTyping';
+      div.className = 'ca-message assistant';
+      container.appendChild(div);
+    }
+    const labelHtml = label ? `<span class="ca-typing-label">${escapeHtml(label)}</span>` : '';
+    div.innerHTML = `<div class="ca-avatar">朝</div><div class="ca-message-body"><div class="ca-bubble"><div class="ca-typing-row"><div class="ca-typing"><i></i><i></i><i></i></div>${labelHtml}</div></div></div>`;
     container.scrollTop = container.scrollHeight;
   }
 
@@ -3951,16 +3955,21 @@ JSON 结构：
     session.stage = 'PAIN_CONFIRMATION';
     session.flow.painStep = 1;
     const intro = [reply, transitionText].filter((t) => t && String(t).trim()).join('\n\n');
+    // 先给出承接语，再显示带文字的加载提示，避免点击后到问题出现之间的空白
+    if (intro) await addMessage('assistant', intro, 'text', messageData, session.id);
+    showTyping('正在结合客户画像，从痛点库梳理最可能、最紧迫的痛点方向，这一步稍花几秒，请稍候…');
     try {
       session.painQuestionPlan = await buildPainQuestionPlan(session);
+      removeTyping();
       session.flow.askedQuestions.push(session.painQuestionPlan[0].question);
-      await addPlannedPainQuestion(session, 1, intro);
+      await addPlannedPainQuestion(session, 1, '');
     } catch (error) {
+      removeTyping();
       console.warn('痛点确认问题组生成失败，使用本地逐题兜底：', error.message);
       session.painQuestionPlan = null;
       const question = fallbackQuestion(session, '');
       session.flow.askedQuestions.push(question);
-      await addGuidedQuestion(session, 'PAIN_CONFIRMATION', 1, question, intro, null, messageData);
+      await addGuidedQuestion(session, 'PAIN_CONFIRMATION', 1, question, '', null, messageData);
     }
   }
 
