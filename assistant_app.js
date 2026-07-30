@@ -630,7 +630,7 @@
         <nav class="ca-nav-section">
           <div class="ca-nav-title">营销助手</div>
           <div class="ca-nav-row"><input type="checkbox" class="ca-nav-checkbox"><button class="ca-nav-stub" data-stub="热点借势工坊">热点借势工坊</button></div>
-          <div class="ca-nav-row"><input type="checkbox" class="ca-nav-checkbox"><button class="ca-nav-stub" data-stub="通用素材库">通用素材库</button></div>
+          <div class="ca-nav-row"><input type="checkbox" class="ca-nav-checkbox"><button class="ca-nav-stub" data-stub="专家技能库">专家技能库</button></div>
           <div class="ca-nav-row"><input type="checkbox" class="ca-nav-checkbox"><button class="ca-nav-stub" data-stub="拓客雷达">拓客雷达</button></div>
         </nav>
         <nav class="ca-nav-section">
@@ -747,7 +747,7 @@
       <div class="ca-hotspot-modal" id="caMaterialModal" hidden>
         <div class="ca-hotspot-panel">
           <div class="ca-hotspot-head">
-            <div><strong>通用素材库</strong><small>朝曦自产 · 常青素材 · 一键换皮（模拟演示）</small></div>
+            <div><strong>专家技能库</strong><small>法律 · 税务 · 资本市场 · 产品中心 四大能力池（专家 + 技能，模拟演示）</small></div>
             <button class="ca-icon-btn" id="caMaterialClose">✕ 关闭</button>
           </div>
           <div class="ca-hotspot-tabs" id="caMaterialFilters"></div>
@@ -921,8 +921,8 @@
     </div>`;
   }
 
-  // 通用素材库（模拟演示数据）：朝曦自产、常青、可一键换皮的对客素材
-  const MATERIAL_LIBRARY = [
+  // 对客素材（模拟演示）：并入「专家技能库 · 产品中心」作为对客素材类技能
+  const MATERIAL_ASSETS = [
     {
       id: 'mg1', category: '一图读懂', title: '什么是家族信托？一图看懂', tag: '传承',
       render: (item) => `<div class="ca-hotspot-long-image">
@@ -1029,7 +1029,76 @@
       </div>` }
   ];
 
-  const MATERIAL_CATEGORIES = ['全部', '一图读懂', 'FAQ应答卡', '节点营销', '服务一页纸', '口播脚本'];
+  // ===== 专家技能库：法律 / 税务 / 资本市场 / 产品中心 四大能力池，含专家与技能 =====
+  function expertRender(item) {
+    return `<div class="ca-expert-card">
+      <div class="ca-expert-role">${escapeHtml(item.role || '专家')}</div>
+      <p class="ca-expert-desc">${escapeHtml(item.desc || '')}</p>
+      ${item.team ? `<div class="ca-expert-team">所属：${escapeHtml(item.team)}</div>` : ''}
+      <div class="ca-expert-sub">擅长领域</div>
+      <div class="ca-expert-tags">${(item.skills || []).map((s) => `<span>${escapeHtml(s)}</span>`).join('')}</div>
+      <div class="ca-expert-sub">可协同场景</div>
+      <ul class="ca-expert-scenes">${(item.scenes || []).map((s) => `<li>${escapeHtml(s)}</li>`).join('')}</ul>
+    </div>`;
+  }
+  function skillRender(item) {
+    return `<div class="ca-skill-card">
+      <p class="ca-expert-desc">${escapeHtml(item.desc || '')}</p>
+      <div class="ca-skill-grid">
+        <div><b>输入</b><p>${escapeHtml(item.input || '—')}</p></div>
+        <div><b>产出</b><p>${escapeHtml(item.output || '—')}</p></div>
+      </div>
+      ${item.example ? `<div class="ca-expert-sub">示例</div><div class="ca-skill-example">${escapeHtml(item.example)}</div>` : ''}
+      <div class="ca-skill-status">${escapeHtml(item.status || '模拟演示 · 即将开放')}</div>
+    </div>`;
+  }
+
+  const EXPERTS = [
+    { id: 'exp-mkt', kind: '专家', category: '产品中心', title: '高净值个人营销分析专家', role: '产品中心 · 营销分析',
+      desc: '面向高净值个人的营销与客户经营专家，擅长从画像洞察出发设计触达与转化路径。',
+      skills: ['客户画像洞察', '需求挖掘', '营销策略设计', '转化路径规划'],
+      scenes: ['新客建档后的营销切入建议', '存量客户的二次经营与唤醒', '产品与客户的匹配度诊断'] },
+    { id: 'exp-law', kind: '专家', category: '法律', title: '家办方案专家团 · 法律专家', role: '法律 · 家办方案专家团',
+      team: '高净值个人客户家办方案专家团', desc: '专注家族财富的法律架构：信托、代持还原、传承与控制权安排、跨境合规。',
+      skills: ['家族信托架构', '股权代持与还原', '传承与遗嘱', '跨境法律合规'],
+      scenes: ['为客户设计控制权与传承分离方案', '代持还原路径的合规论证', '跨境架构的法律风险排查'] },
+    { id: 'exp-tax', kind: '专家', category: '税务', title: '家办方案专家团 · 税务专家', role: '税务 · 家办方案专家团',
+      team: '高净值个人客户家办方案专家团', desc: '专注高净值家庭的税务筹划：跨境税务、CRS、离岸信托税务、减持税负优化。',
+      skills: ['跨境税务筹划', 'CRS与信息交换', '离岸信托税务', '减持税负优化'],
+      scenes: ['上市/减持前的税务架构规划', '跨境资产的合规与税务测算', '身份规划涉及的税务居民认定'] },
+    { id: 'exp-cap', kind: '专家', category: '资本市场', title: '家办方案专家团 · 资本市场专家', role: '资本市场 · 家办方案专家团',
+      team: '高净值个人客户家办方案专家团', desc: '专注上市公司股东的资本运作：减持合规、股权质押、并购与市值管理。',
+      skills: ['减持合规与窗口期', '股权质押融资', '并购与重组', '信息披露'],
+      scenes: ['大股东减持节奏与信披筹划', '股权质押的比例与平仓风险评估', '并购中的合规与同业竞争审查'] }
+  ];
+
+  const NAMED_SKILLS = [
+    { id: 'sk-5d', kind: '技能', category: '产品中心', title: '高净值客户5D询问技能',
+      desc: '按主体/行业/资产/事件/约束五维，像资深顾问一样逐步把客户信息问全，带贴合行业的示例。',
+      input: '零散的客户原始信息', output: '结构化五维画像 + 缺口追问', example: '「制造业实控人，持股70%…」→ 自动识别缺口并追问事件与约束', status: '已上线（画像深挖阶段已内置）' },
+    { id: 'sk-avatar', kind: '技能', category: '产品中心', title: '数字人生成器',
+      desc: '把方案要点或科普内容转成数字人口播短视频脚本与形象，用于朋友圈与私域触达。',
+      input: '方案要点 / 科普主题', output: '数字人口播脚本 + 短视频', status: '模拟演示 · 即将开放' },
+    { id: 'sk-trusttax', kind: '技能', category: '税务', title: '离岸信托税务计算器',
+      desc: '输入离岸信托的架构与受益人所在地，测算跨境税务成本与合规要点（含CRS/CFC/NRT考量）。',
+      input: '信托架构 + 受益人居民地 + 资产类型', output: '税务成本测算 + 合规提示', status: '模拟演示 · 即将开放' },
+    { id: 'sk-delaw', kind: '技能', category: '法律', title: '特拉华州法律条款校验器',
+      desc: '针对特拉华州公司/信托文件，逐条校验关键条款是否符合当地法与常见实务要求。',
+      input: '英文条款 / 章程文本', output: '逐条校验结果 + 风险标注', status: '模拟演示 · 即将开放' },
+    { id: 'sk-capreduce', kind: '技能', category: '资本市场', title: '减持窗口期与信披测算器',
+      desc: '输入持股与身份，测算可减持比例、预披露与窗口期限制，提示短线交易与信披义务。',
+      input: '持股比例 + 身份 + 限售信息', output: '可减持窗口 + 信披清单', status: '模拟演示 · 即将开放' }
+  ];
+
+  // 现有对客素材并入 产品中心 作为「对客素材」类技能
+  const FOLDED_MATERIAL = MATERIAL_ASSETS.map((m) => ({
+    id: m.id, kind: '技能', category: '产品中心', title: m.title, sub: m.category, tag: m.tag, render: m.render, isMaterial: true
+  }));
+
+  const EXPERT_SKILL_LIB = [...EXPERTS, ...NAMED_SKILLS, ...FOLDED_MATERIAL];
+  const MATERIAL_LIBRARY = EXPERT_SKILL_LIB; // 复用原素材库管道（DOM/事件不变）
+
+  const MATERIAL_CATEGORIES = ['全部', '法律', '税务', '资本市场', '产品中心'];
   let materialFilter = '全部';
   let materialSelectedId = null;
 
@@ -1060,10 +1129,10 @@
     if (!list) return;
     const items = MATERIAL_LIBRARY.filter((item) => materialFilter === '全部' || item.category === materialFilter);
     list.innerHTML = items.map((item) => `<button class="ca-hotspot-item ${item.id === materialSelectedId ? 'active' : ''}" data-material-id="${escapeHtml(item.id)}">
-      <span class="ca-hotspot-cat">${escapeHtml(item.category)}</span>
+      <span class="ca-es-kind ca-es-${item.kind === '专家' ? 'expert' : 'skill'}">${escapeHtml(item.kind)}</span>
       <div class="ca-hotspot-item-title">${escapeHtml(item.title)}</div>
-      <div class="ca-hotspot-item-date">${escapeHtml(item.tag || '')}</div>
-    </button>`).join('') || '<div class="ca-insight-empty">该分类暂无素材</div>';
+      <div class="ca-hotspot-item-date">${escapeHtml(item.category)}${item.sub ? ' · ' + escapeHtml(item.sub) : ''}</div>
+    </button>`).join('') || '<div class="ca-insight-empty">该分类暂无内容</div>';
   }
 
   function selectMaterialItem(id) {
@@ -1072,17 +1141,20 @@
     const item = MATERIAL_LIBRARY.find((entry) => entry.id === id);
     const detail = $('#caMaterialDetail');
     if (!item || !detail) return;
+    const body = item.kind === '专家' ? expertRender(item) : (item.isMaterial ? item.render(item) : skillRender(item));
+    const actions = item.kind === '专家'
+      ? '<button class="ca-primary-btn" data-material-action="调用专家">调用该专家</button><button class="ca-secondary-btn" data-material-action="加入方案">加入客户方案</button>'
+      : item.isMaterial
+        ? '<button class="ca-primary-btn" data-material-action="换皮">一键换皮</button><button class="ca-secondary-btn" data-material-action="复制文案">复制文案</button><button class="ca-secondary-btn" data-material-action="下载素材">下载素材</button>'
+        : '<button class="ca-primary-btn" data-material-action="运行技能">运行技能（模拟）</button><button class="ca-secondary-btn" data-material-action="查看示例">查看示例</button>';
     detail.innerHTML = `
       <div class="ca-hotspot-detail-head">
+        <span class="ca-es-kind ca-es-${item.kind === '专家' ? 'expert' : 'skill'}">${escapeHtml(item.kind)}</span>
         <span class="ca-hotspot-cat">${escapeHtml(item.category)}</span>
         <h3>${escapeHtml(item.title)}</h3>
       </div>
-      <div class="ca-hotspot-output">${item.render(item)}</div>
-      <div class="ca-material-actions">
-        <button class="ca-primary-btn" data-material-action="换皮">一键换皮</button>
-        <button class="ca-secondary-btn" data-material-action="复制文案">复制文案</button>
-        <button class="ca-secondary-btn" data-material-action="下载素材">下载素材</button>
-      </div>`;
+      <div class="ca-hotspot-output">${body}</div>
+      <div class="ca-material-actions">${actions}</div>`;
   }
 
   // ===== 模拟陪练场：AI 扮演客户，与销售进行沟通沙盘推演 =====
@@ -1852,7 +1924,7 @@
     $('#assistantApp').addEventListener('click', (event) => {
       const stub = event.target.closest('[data-stub]');
       if (stub && stub.dataset.stub === '热点借势工坊') { openHotspotWorkshop(); return; }
-      if (stub && stub.dataset.stub === '通用素材库') { openMaterialLibrary(); return; }
+      if (stub && stub.dataset.stub === '专家技能库') { openMaterialLibrary(); return; }
       if (stub && stub.dataset.stub === '模拟陪练场') { openRoleplay(); return; }
       if (stub && stub.dataset.stub === '法税百科') { openLexicon(); return; }
       if (stub && stub.dataset.stub === '案例研究院') { openCaseStudy(); return; }

@@ -698,6 +698,27 @@ body.assistant-mode #apiConfigModal {
 .ca-material-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .ca-material-actions button { padding: 8px 14px; border-radius: 8px; font-size: 12px; cursor: pointer; }
 
+/* 专家技能库 */
+.ca-es-kind { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; margin-bottom: 5px; margin-right: 6px; }
+.ca-es-expert { background: #eaf1f8; color: var(--ca-navy); }
+.ca-es-skill { background: #f3efe4; color: #8a6d2f; }
+.ca-expert-card, .ca-skill-card { font-size: 13px; color: var(--ca-ink); line-height: 1.7; }
+.ca-expert-role { display: inline-block; font-size: 11.5px; color: var(--ca-navy-2); background: #eef4f9; border-radius: 8px; padding: 3px 10px; margin-bottom: 10px; }
+.ca-expert-desc { margin: 0 0 12px; font-size: 13px; color: #45525c; line-height: 1.75; }
+.ca-expert-team { font-size: 12px; color: var(--ca-gold); margin-bottom: 12px; }
+.ca-expert-sub { font-size: 12px; font-weight: 600; color: var(--ca-navy); margin: 12px 0 6px; }
+.ca-expert-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.ca-expert-tags span { background: #f2f6f9; border: 1px solid #e2e9ee; color: var(--ca-navy-2); border-radius: 12px; padding: 3px 11px; font-size: 12px; }
+.ca-expert-scenes { margin: 4px 0 0; padding-left: 18px; }
+.ca-expert-scenes li { font-size: 12.5px; color: #55636d; line-height: 1.85; }
+.ca-skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+.ca-skill-grid > div { background: #f7f9fb; border: 1px solid var(--ca-line); border-radius: 9px; padding: 10px 12px; }
+.ca-skill-grid b { font-size: 12px; color: var(--ca-navy); }
+.ca-skill-grid p { margin: 5px 0 0; font-size: 12.5px; color: #55636d; line-height: 1.6; }
+.ca-skill-example { background: #fbfaf6; border-left: 3px solid var(--ca-gold); border-radius: 7px; padding: 9px 12px; font-size: 12.5px; color: #6a6446; line-height: 1.6; }
+.ca-skill-status { margin-top: 12px; font-size: 12px; color: var(--ca-gold); }
+@media (max-width: 560px) { .ca-skill-grid { grid-template-columns: 1fr; } }
+
 /* 模拟陪练场 */
 .ca-roleplay-panel { display: flex; flex-direction: column; }
 .ca-roleplay-setup[hidden], .ca-roleplay-stage[hidden], .ca-roleplay-report[hidden] { display: none; }
