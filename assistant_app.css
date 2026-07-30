@@ -717,6 +717,8 @@ body.assistant-mode #apiConfigModal {
 .ca-skill-grid p { margin: 5px 0 0; font-size: 12.5px; color: #55636d; line-height: 1.6; }
 .ca-skill-example { background: #fbfaf6; border-left: 3px solid var(--ca-gold); border-radius: 7px; padding: 9px 12px; font-size: 12.5px; color: #6a6446; line-height: 1.6; }
 .ca-skill-status { margin-top: 12px; font-size: 12px; color: var(--ca-gold); }
+.ca-gen-sample { margin: 8px 0 12px; }
+.ca-gen-sample-name { font-size: 12px; color: var(--ca-sub); margin-bottom: 5px; }
 @media (max-width: 560px) { .ca-skill-grid { grid-template-columns: 1fr; } }
 
 /* 模拟陪练场 */

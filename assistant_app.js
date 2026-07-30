@@ -1090,12 +1090,27 @@
       input: '持股比例 + 身份 + 限售信息', output: '可减持窗口 + 信披清单', status: '模拟演示 · 即将开放' }
   ];
 
-  // 现有对客素材并入 产品中心 作为「对客素材」类技能
-  const FOLDED_MATERIAL = MATERIAL_ASSETS.map((m) => ({
-    id: m.id, kind: '技能', category: '产品中心', title: m.title, sub: m.category, tag: m.tag, render: m.render, isMaterial: true
-  }));
+  // 原对客素材归并为「生成器」类技能：技能框架 + 原素材作为可生成示例
+  const assetById = (id) => MATERIAL_ASSETS.find((m) => m.id === id);
+  function generatorRender(item) {
+    const samples = (item.sampleIds || []).map(assetById).filter(Boolean);
+    return `${skillRender(item)}
+      ${samples.length ? `<div class="ca-expert-sub">可生成示例</div>${samples.map((s) => `<div class="ca-gen-sample"><div class="ca-gen-sample-name">${escapeHtml(s.title)}</div><div class="ca-hotspot-output">${s.render(s)}</div></div>`).join('')}` : ''}`;
+  }
+  const GENERATORS = [
+    { id: 'gen-img', kind: '技能', category: '产品中心', title: '一图读懂生成器', render: generatorRender,
+      desc: '把家办/法税专业主题一键转成对客科普长图，用于朋友圈与客户科普。', input: '专业主题（如"家族信托""CRS"）', output: '对客科普一图读懂长图', status: '模拟演示 · 即将开放', sampleIds: ['mg1', 'mg2', 'mg3'] },
+    { id: 'gen-faq', kind: '技能', category: '产品中心', title: '对客FAQ应答卡生成器', render: generatorRender,
+      desc: '把客户常问的疑问自动生成"白话版 + 专业版"双口径应答卡，随问随取。', input: '客户疑问（如"代持能还原吗"）', output: '白话版 + 专业版应答卡', status: '模拟演示 · 即将开放', sampleIds: ['mf1', 'mf2', 'mf3'] },
+    { id: 'gen-node', kind: '技能', category: '产品中心', title: '节点营销素材生成器', render: generatorRender,
+      desc: '按年终、开年等时间节点，生成对客触达的营销素材与话题。', input: '时间节点 + 客群', output: '节点营销文案与素材', status: '模拟演示 · 即将开放', sampleIds: ['ms1', 'ms2'] },
+    { id: 'gen-onepager', kind: '技能', category: '产品中心', title: '服务一页纸生成器', render: generatorRender,
+      desc: '把某项家办服务整理成结构清晰、可直接发客户的对客一页纸。', input: '服务类型（如"家族信托"）', output: '对客服务一页纸', status: '模拟演示 · 即将开放', sampleIds: ['mp1', 'mp2'] },
+    { id: 'gen-script', kind: '技能', category: '产品中心', title: '口播脚本生成器', render: generatorRender,
+      desc: '把专业主题转成 30–90 秒的数字人/真人口播短视频脚本。', input: '主题 + 时长', output: '口播短视频脚本', status: '模拟演示 · 即将开放', sampleIds: ['mv1', 'mv2'] }
+  ];
 
-  const EXPERT_SKILL_LIB = [...EXPERTS, ...NAMED_SKILLS, ...FOLDED_MATERIAL];
+  const EXPERT_SKILL_LIB = [...EXPERTS, ...NAMED_SKILLS, ...GENERATORS];
   const MATERIAL_LIBRARY = EXPERT_SKILL_LIB; // 复用原素材库管道（DOM/事件不变）
 
   const MATERIAL_CATEGORIES = ['全部', '法律', '税务', '资本市场', '产品中心'];
@@ -1141,12 +1156,10 @@
     const item = MATERIAL_LIBRARY.find((entry) => entry.id === id);
     const detail = $('#caMaterialDetail');
     if (!item || !detail) return;
-    const body = item.kind === '专家' ? expertRender(item) : (item.isMaterial ? item.render(item) : skillRender(item));
+    const body = item.kind === '专家' ? expertRender(item) : (item.render ? item.render(item) : skillRender(item));
     const actions = item.kind === '专家'
       ? '<button class="ca-primary-btn" data-material-action="调用专家">调用该专家</button><button class="ca-secondary-btn" data-material-action="加入方案">加入客户方案</button>'
-      : item.isMaterial
-        ? '<button class="ca-primary-btn" data-material-action="换皮">一键换皮</button><button class="ca-secondary-btn" data-material-action="复制文案">复制文案</button><button class="ca-secondary-btn" data-material-action="下载素材">下载素材</button>'
-        : '<button class="ca-primary-btn" data-material-action="运行技能">运行技能（模拟）</button><button class="ca-secondary-btn" data-material-action="查看示例">查看示例</button>';
+      : '<button class="ca-primary-btn" data-material-action="运行技能">运行技能（模拟）</button><button class="ca-secondary-btn" data-material-action="查看示例">查看示例</button>';
     detail.innerHTML = `
       <div class="ca-hotspot-detail-head">
         <span class="ca-es-kind ca-es-${item.kind === '专家' ? 'expert' : 'skill'}">${escapeHtml(item.kind)}</span>
