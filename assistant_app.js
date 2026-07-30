@@ -786,13 +786,19 @@
             <div><strong>案例研究院</strong><small>真实脱敏案例 · 讲给客户 / 警示风险 / 内部学习 / 匹配客户池</small></div>
             <button class="ca-icon-btn" id="caCaseClose">✕ 关闭</button>
           </div>
-          <div class="ca-case-log" id="caCaseLog"></div>
-          <div class="ca-case-inputbar">
-            <textarea id="caCaseInput" rows="1" placeholder="描述你想找的案例：客户画像 / 行业 / 想解决的问题，例如「地产老板 离婚分产」…"></textarea>
-            <div class="ca-case-input-actions">
-              <button class="ca-case-attach" id="caCaseAttach" type="button">📎 上传附件</button>
-              <button class="ca-primary-btn" id="caCaseSend" type="button">发送</button>
+          <div class="ca-case-body-wrap">
+            <div class="ca-case-main">
+              <div class="ca-case-log" id="caCaseLog"></div>
+              <div class="ca-case-inputbar">
+                <textarea id="caCaseInput" rows="1" placeholder="描述你想找的案例：客户画像 / 行业 / 想解决的问题，例如「地产老板 离婚分产」…"></textarea>
+                <div class="ca-case-input-actions">
+                  <span class="ca-case-lens-tip" id="caCaseLensTip"></span>
+                  <button class="ca-case-attach" id="caCaseAttach" type="button">📎 上传附件</button>
+                  <button class="ca-primary-btn" id="caCaseSend" type="button">发送</button>
+                </div>
+              </div>
             </div>
+            <aside class="ca-case-dict" id="caCaseDict"></aside>
           </div>
         </div>
       </div>
@@ -1494,18 +1500,28 @@
   let caseBusy = false;
   let caseLoaded = false;
 
+  let caseLens = 'warn'; // 当前"怎么用这个案例"的视角，决定案例卡片提炼的维度
+
   const CASE_WELCOME = `欢迎来到案例研究院。想找什么样的案例？我可以帮你从这几个方向来找——`;
   const CASE_DIRECTIONS = [
     { icon: '👤', label: '客户画像', hint: '比如', chips: ['制造业老板', '科技新贵', '地产开发商', '跨境贸易商'] },
     { icon: '🏭', label: '行业', hint: '比如', chips: ['汽配', '跨境电商', '生物医药', '餐饮连锁'] },
     { icon: '🎯', label: '你想解决客户的什么问题？', hint: '比如', chips: ['二代不想接班', '税负太重', '担心离婚分产', '想做股权激励'] }
   ];
-  const CASE_USES = [
-    '讲给客户听，证明"我做过类似案子"',
-    '警示客户，帮他看到潜在风险',
-    '内部学习，看看别人怎么做的',
-    '用来匹配我的客户池，找线索'
+  // 案例字典右栏：三类可点检索入口（对应线框图「案例字典」）
+  const CASE_DICT = [
+    { icon: '👤', label: '客户画像', chips: ['制造业老板', '科技新贵', '地产开发商', '跨境贸易商'] },
+    { icon: '🏭', label: '客户行业', chips: ['汽配', '跨境电商', '生物医药', '餐饮连锁'] },
+    { icon: '⚠️', label: '风险 / 需求分类', chips: ['二代不想接班', '税负太重', '担心离婚分产', '想做股权激励', '股权代持'] }
   ];
+  // 四种使用场景 → 各自不同的案例卡片提炼维度
+  const CASE_LENSES = [
+    { key: 'tell', use: '讲给客户听，证明"我做过类似案子"', fields: ['相似情形', '我们怎么做的', '成效结果', '一句可复述的话'] },
+    { key: 'warn', use: '警示客户，帮他看到潜在风险', fields: ['金句', '警示要点', '不处理的后果', '你的客户中谁有风险'] },
+    { key: 'learn', use: '内部学习，看看别人怎么做的', fields: ['操作步骤', '关键决策点', '用到的工具/架构', '可复用方法'] },
+    { key: 'match', use: '用来匹配我的客户池，找线索', fields: ['适配画像', '匹配到的在管客户', '切入话术', '下一步动作'] }
+  ];
+  const caseLensCfg = (k) => CASE_LENSES.find((l) => l.key === (k || caseLens)) || CASE_LENSES[1];
 
   // 本地脱敏案例库（AI 不可用时兜底；命中关键词返回对应案例）
   const CASE_LIBRARY = [
@@ -1559,6 +1575,7 @@
     const modal = $('#caCaseModal');
     if (!modal) return;
     modal.hidden = false;
+    renderCaseDict();
     if (!caseLoaded) {
       renderCaseWelcome();
       caseLoaded = true;
@@ -1574,36 +1591,98 @@
     log.scrollTop = log.scrollHeight;
   }
 
+  // 右栏「案例字典」：三类可点检索入口
+  function renderCaseDict() {
+    const el = $('#caCaseDict');
+    if (!el) return;
+    el.innerHTML = `<div class="ca-case-dict-title">案例字典</div>`
+      + CASE_DICT.map((d) => `<div class="ca-case-dict-group">
+          <div class="ca-case-dict-label"><span class="ca-case-dict-star">★</span>${escapeHtml(d.label)}</div>
+          <div class="ca-case-chips">${d.chips.map((c) => `<button class="ca-case-chip" data-case-q="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('')}</div>
+        </div>`).join('');
+  }
+
+  function caseLensTip() {
+    const tip = $('#caCaseLensTip');
+    if (tip) tip.textContent = `当前用途：${caseLensCfg().use.split('，')[0]}`;
+  }
+
   function renderCaseWelcome() {
     const directions = CASE_DIRECTIONS.map((d) => `
       <div class="ca-case-dir">
         <div class="ca-case-dir-label"><span>${d.icon}</span>${escapeHtml(d.label)}${d.label.includes('？') ? '' : '：'}<em>${escapeHtml(d.hint)}</em></div>
         <div class="ca-case-chips">${d.chips.map((c) => `<button class="ca-case-chip" data-case-q="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('')}</div>
       </div>`).join('');
-    const uses = CASE_USES.map((u) => `<div class="ca-case-use">→ ${escapeHtml(u)}</div>`).join('');
+    // 四种用途可点击：选中后决定案例卡片提炼的维度
+    const uses = CASE_LENSES.map((l) => `<button class="ca-case-use${l.key === caseLens ? ' active' : ''}" data-case-lens="${l.key}">→ ${escapeHtml(l.use)}</button>`).join('');
     caseAppend(`<div class="ca-case-msg bot"><div class="ca-avatar">朝</div><div class="ca-case-body">
       <div class="ca-case-bubble">
         <p class="ca-case-welcome">${escapeHtml(CASE_WELCOME)}</p>
         ${directions}
-        <div class="ca-case-uses-label">🖥 你想怎么用这个案例？</div>
+        <div class="ca-case-uses-label">🖥 你想怎么用这个案例？（选一个，卡片会按该用途提炼）</div>
         ${uses}
       </div></div></div>`);
-    // 落地页示例：直接展示一张样例案例卡片，让人一眼看懂产出形态
-    const sample = CASE_LIBRARY[0];
-    caseAppend(caseCardHtml(sample));
+    caseLensTip();
+    // 落地页示例：按当前视角展示一张样例卡片
+    caseAppend(caseCardHtml(CASE_LIBRARY[0]));
   }
 
-  function caseCardHtml(card) {
-    const id = 'case-' + Math.random().toString(36).slice(2, 9);
-    const points = (card.points || []).join('、');
+  // 把基础案例（title/quote/points/detail 或 AI 直接给的 fields）投影成"当前视角"的维度
+  function caseFieldsFor(card, lensKey) {
+    const cfg = caseLensCfg(lensKey);
+    // AI 已按视角返回 fields 时直接用
+    if (card.fields && card.fields[cfg.key]) return { cfg, values: card.fields[cfg.key] };
+    // 本地兜底：从基础字段派生
+    const detail = String(card.detail || '');
+    const seg = (label) => { const m = detail.match(new RegExp(label + '[：:]([^\\n]+)')); return m ? m[1].trim() : ''; };
+    const doing = seg('我们的做法') || seg('我们的做法') || '';
+    const bg = seg('背景');
+    const result = seg('结果') || seg('教训');
+    const points = card.points || [];
     const hint = card.matchClients || caseClientHint();
+    const map = {
+      tell: {
+        '相似情形': bg || card.title,
+        '我们怎么做的': doing || (points.join('、')),
+        '成效结果': result || '风险化解、控制权与财富得以延续',
+        '一句可复述的话': card.quote || card.title
+      },
+      warn: {
+        '金句': card.quote || '',
+        '警示要点': points.join('、'),
+        '不处理的后果': result || `若不及早处理，${points[0] || '相关风险'}可能演变为不可逆的损失`,
+        '你的客户中谁有风险': hint
+      },
+      learn: {
+        '操作步骤': doing || '梳理事实 → 设计架构 → 落地文件 → 长期监控',
+        '关键决策点': points[0] || '',
+        '用到的工具/架构': (detail.match(/信托|有限合伙|表决权|持股平台|架构|协议/g) || ['专业架构安排']).slice(0, 4).join('、'),
+        '可复用方法': doing || points.join('、')
+      },
+      match: {
+        '适配画像': card.title.replace(/[，。].*$/, ''),
+        '匹配到的在管客户': hint,
+        '切入话术': card.quote ? `可以从"${card.quote}"这类真实故事切入，引出客户自身的顾虑` : '用真实案例引出客户自身顾虑',
+        '下一步动作': '约客户当面讲解此案例，对照其情况做初步风险体检'
+      }
+    };
+    return { cfg, values: map[cfg.key] || {} };
+  }
+
+  function caseCardHtml(card, lensKey) {
+    const id = 'case-' + Math.random().toString(36).slice(2, 9);
+    const { cfg, values } = caseFieldsFor(card, lensKey);
+    const rows = cfg.fields.map((f) => {
+      const v = values[f];
+      if (!v) return '';
+      if (f === '金句' || f === '一句可复述的话') return `<div class="ca-case-card-quote">${escapeHtml(f)}：“${escapeHtml(String(v))}”</div>`;
+      return `<div class="ca-case-card-row"><b>${escapeHtml(f)}：</b>${escapeHtml(String(v))}</div>`;
+    }).join('');
     return `<div class="ca-case-msg bot"><div class="ca-avatar">朝</div><div class="ca-case-body">
       <div class="ca-case-card" data-case-card>
-        <div class="ca-case-card-tag">案例卡片</div>
+        <div class="ca-case-card-tag">案例卡片 · ${escapeHtml(cfg.use.split('，')[0])}</div>
         <div class="ca-case-card-title">${escapeHtml(card.title)}</div>
-        ${card.quote ? `<div class="ca-case-card-quote">金句：“${escapeHtml(card.quote)}”</div>` : ''}
-        ${points ? `<div class="ca-case-card-row"><b>警示要点：</b>${escapeHtml(points)}</div>` : ''}
-        <div class="ca-case-card-row"><b>你的客户中：</b>${escapeHtml(hint)}</div>
+        ${rows}
         ${card.detail ? `<div class="ca-case-detail" id="${id}" hidden>${card.detail.split('\n').map((p) => `<p>${escapeHtml(p)}</p>`).join('')}</div>` : ''}
         ${card.detail ? `<button class="ca-case-more" data-case-detail="${id}">点击查看案例详情 ›</button>` : ''}
       </div></div></div>`;
@@ -1625,13 +1704,16 @@
     const loadingId = 'load-' + Math.random().toString(36).slice(2, 9);
     caseAppend(`<div class="ca-case-msg bot" id="${loadingId}"><div class="ca-avatar">朝</div><div class="ca-case-body"><div class="ca-case-bubble"><div class="ca-typing"><i></i><i></i><i></i></div>正在从案例库检索…</div></div></div>`);
 
+    const cfg = caseLensCfg();
     let card = null;
     try {
       const data = await callDeepSeekJSON([
-        { role: 'system', content: '你是"朝曦案例研究院"助手，面向家族办公室客户经理。根据其检索词（可能是客户画像、行业或想解决的问题），输出一个**真实感强但完全脱敏**的家办/财富管理案例卡片，用于讲给客户、警示风险或内部学习。要求：title 用一句话概括"谁+因为什么+导致什么结果"，有冲击力；quote 是当事人口吻的一句"金句"，口语化、有代入感；points 列 2-3 个警示要点/专业关注点；detail 分"背景/经过/教训/我们的做法"若干段，具体可信但不得出现真实姓名与可识别信息。基于中国家办与跨境实务常识，不编造精确条款号与数字。只返回JSON：{"title":"","quote":"","points":[],"detail":""}' },
-        { role: 'user', content: `检索词：${q}\n请给出一个匹配的脱敏案例卡片。` }
+        { role: 'system', content: `你是"朝曦案例研究院"助手，面向家族办公室客户经理。根据检索词，输出一个**真实感强但完全脱敏**的家办/财富管理案例卡片，当前用途是「${cfg.use}」，因此卡片要按这个用途来提炼。要求：title 用一句话概括"谁+因为什么+导致什么结果"；detail 分"背景/经过/教训/我们的做法"若干段，具体可信但不得出现真实姓名与可识别信息；**fields 必须严格包含且仅包含这几个键：${cfg.fields.map((f) => `"${f}"`).join('、')}**，每个键给一句贴合该用途、可直接使用的话（"你的客户中谁有风险"/"匹配到的在管客户"这类可写"需结合在管客户判断"）。基于中国家办与跨境实务常识，不编造精确条款号与数字。只返回JSON：{"title":"","detail":"","fields":{${cfg.fields.map((f) => `"${f}":""`).join(',')}}}` },
+        { role: 'user', content: `检索词：${q}\n用途：${cfg.use}\n请给出一个匹配的脱敏案例卡片，fields 按上述用途提炼。` }
       ], 2);
-      if (data && data.title) card = data;
+      if (data && data.title) {
+        card = data.fields ? { title: data.title, detail: data.detail, fields: { [cfg.key]: data.fields } } : data;
+      }
     } catch (error) {
       console.warn('案例研究院 AI 生成失败，尝试本地案例：', error.message);
     }
@@ -1639,7 +1721,7 @@
     caseBusy = false;
     document.getElementById(loadingId)?.remove();
     if (card) {
-      caseAppend(caseCardHtml(card));
+      caseAppend(caseCardHtml(card, cfg.key));
     } else {
       caseAppend(`<div class="ca-case-msg bot"><div class="ca-avatar">朝</div><div class="ca-case-body"><div class="ca-case-bubble">
         暂未从案例库匹配到相关案例（AI 未配置或网络问题，本地也未收录该方向）。<br><small>可换一个更常见的方向试试，如「离婚分产」「二代接班」「税负太重」「股权激励」「股权代持」。</small></div></div></div>`);
@@ -1802,6 +1884,15 @@
     $('#caCaseClose').addEventListener('click', closeCaseStudy);
     $('#caCaseModal').addEventListener('click', (event) => {
       if (event.target.id === 'caCaseModal') { closeCaseStudy(); return; }
+      const lens = event.target.closest('[data-case-lens]');
+      if (lens) {
+        caseLens = lens.dataset.caseLens;
+        $('#caCaseModal').querySelectorAll('[data-case-lens]').forEach((b) => b.classList.toggle('active', b.dataset.caseLens === caseLens));
+        caseLensTip();
+        const cfg = caseLensCfg();
+        caseAppend(`<div class="ca-case-msg bot"><div class="ca-avatar">朝</div><div class="ca-case-body"><div class="ca-case-bubble">好，之后的案例我会按「${escapeHtml(cfg.use.split('，')[0])}」这个用途来提炼：${escapeHtml(cfg.fields.join(' / '))}。你可以从右侧「案例字典」选一个方向，或直接描述你想找的案例。</div></div></div>`);
+        return;
+      }
       const chip = event.target.closest('[data-case-q]');
       if (chip) { sendCaseQuery(chip.dataset.caseQ); return; }
       const more = event.target.closest('[data-case-detail]');
